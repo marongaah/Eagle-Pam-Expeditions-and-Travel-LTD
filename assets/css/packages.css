@@ -556,6 +556,11 @@ img {
         grid-template-columns:1fr;
     }
 
+    .safari-sidebar{
+        position:static;
+        top:auto;
+    }
+
     .package-card{
         flex-direction:column;
     }
