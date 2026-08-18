@@ -2495,3 +2495,51 @@ ACCOMMODATION PRICE
     }
 
 }
+
+/*==================================================
+MOBILE FIXES — STACK TWO-COLUMN SECTIONS
+==================================================*/
+@media(max-width:768px){
+
+    .overview-grid{
+        grid-template-columns:1fr;
+    }
+
+    .include-grid{
+        grid-template-columns:1fr;
+    }
+
+    .timeline-item{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .timeline-item.reverse .timeline-image{
+        order:0;
+    }
+
+    .timeline-item.reverse .timeline-content{
+        order:0;
+    }
+
+    .timeline::before{
+        left:20px;
+    }
+
+    .timeline-image img{
+        height:220px;
+    }
+
+    .accommodation-card{
+        grid-template-columns:1fr;
+    }
+
+    .accommodation-content{
+        padding:30px;
+    }
+
+    .booking-card{
+        position:static;
+        top:auto;
+    }
+}
