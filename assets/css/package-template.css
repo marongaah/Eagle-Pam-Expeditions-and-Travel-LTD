@@ -2567,3 +2567,7 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
         padding:10px 16px;
         font-size:0.85rem;
     }
+
+        .booking-badge{
+        display:none;
+    }
