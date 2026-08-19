@@ -340,6 +340,14 @@ function initNavbarFooter() {
 
                 });
 
+                    // Fix relative image paths inside the injected navbar
+                    navbar.querySelectorAll("img[src]").forEach(img => {
+                        const src = img.getAttribute('src');
+                        if (!src) return;
+                        if (src.startsWith('http') || src.startsWith('data:') || src.startsWith('mailto:') || src.startsWith('tel:')) return;
+                        img.setAttribute('src', BASE_PATH + src);
+                    });
+
                 applyNavbarBehavior();
 
             })

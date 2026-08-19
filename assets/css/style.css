@@ -80,6 +80,25 @@ section {
     text-decoration: none;
 }
 
+/* Constrain image logo inside .logo anchor */
+.logo img{
+    display:inline-block;
+    height:64px;
+    width:auto;
+    vertical-align:middle;
+}
+
+@media (max-width:640px) {
+    .logo img{
+        height:44px;
+    }
+
+    .navbar{
+        padding:14px 6%;
+        min-height:64px;
+    }
+}
+
 .logo:hover {
     color: #163f24;
 }
@@ -128,6 +147,7 @@ section {
     transform: translateY(-1px);
     box-shadow: 0 10px 24px rgba(184, 134, 11, 0.28);
 }
+
 
 /* ================= DROPDOWN ================= */
 
