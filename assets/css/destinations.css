@@ -175,10 +175,12 @@ CARD (FIXED + PREMIUM FEEL)
 .destination-card {
     background: white;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     transition: all 0.4s ease;
     position: relative;
+    height: auto;
+    cursor: default;
 }
 
 .destination-card:hover {
