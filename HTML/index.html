@@ -23,85 +23,143 @@
 <div id="navbar"></div>
 
 <!-- ================= HERO ================= -->
-<section class="hero">
+<section class="ep-hero">
+    <div class="ep-hero-content">
 
-    <div class="hero-left">
-
-        <span class="hero-tag">
+        <span class="ep-hero-tag">
             KENYA • TANZANIA • UGANDA
         </span>
 
         <h1>
-            Explore East Africa,<br>
-            <span>but make it unforgettable.</span>
+            Kenya, Tanzania and Uganda<br>
+            <span>Unforgettable Safaris</span>
         </h1>
 
-        <p>
-            Luxury and budget-friendly safari adventures across East Africa.
-            Discover wildlife, culture and breathtaking landscapes.
+        <p class="ep-hero-text">
+           Luxury and budget safaris across Kenya, Tanzania and Uganda.
         </p>
 
-        <div class="hero-buttons">
-            <a href="packages.html" class="hero-btn">Explore Tours</a>
-            <a href="../book.html" class="hero-outline">Plan A Safari</a>
-        </div>
+        <a href="https://wa.me/254111932279" class="ep-hero-whatsapp" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Or message us on WhatsApp
+        </a>
 
     </div>
 
-    <div class="hero-right">
+    <!-- Featured tour card (bottom right) -->
+    <a href="../Packages-HTML/3-days-mara.html" class="ep-float-card">
+        <div>
+            <small>From $650 pp</small>
+            <strong>3 days · Masai Mara</strong>
+        </div>
+        <span class="ep-float-arrow">→</span>
+    </a>
 
-        <div class="hero-main-image">
-            <img src="../assets/images/balloon.jpg" alt="">
+    <!-- Tabs -->
+    <div class="ep-tabs" role="tablist">
+        <button type="button" class="ep-tab active" data-panel="ep-panel-tours" role="tab">Tours</button>
+        <button type="button" class="ep-tab" data-panel="ep-panel-custom" role="tab">Plan a custom trip</button>
+    </div>
+
+    <!-- Tours search -->
+    <form class="ep-panel ep-search active" id="ep-panel-tours" action="../HTML/packages.html" method="get">
+
+        <div class="ep-field">
+            <label for="ep-where">Where</label>
+            <input id="ep-where" name="destination" type="text" list="ep-destinations" placeholder="Masai Mara, Amboseli, Serengeti..." autocomplete="off">
+            <datalist id="ep-destinations">
+                <option value="Masai Mara">
+                <option value="Amboseli">
+                <option value="Lake Nakuru">
+                <option value="Serengeti">
+                <option value="Ngorongoro">
+            </datalist>
         </div>
 
-        <div class="hero-small hero-small-1">
-            <img src="../assets/images/giraffe.jpg" alt="">
+        <div class="ep-field">
+            <label for="ep-when">When</label>
+            <input id="ep-when" name="date" type="date">
         </div>
 
-        <div class="hero-small hero-small-2">
-            <img src="../assets/images/lion.jpg" alt="">
+        <div class="ep-field">
+            <label for="ep-days">Days</label>
+            <select id="ep-days" name="days">
+                <option value="">Any length</option>
+                <option value="1-3">1 - 3 days</option>
+                <option value="4-6">4 - 6 days</option>
+                <option value="7-10">7 - 10 days</option>
+                <option value="10+">10+ days</option>
+            </select>
         </div>
 
+        <div class="ep-field">
+            <label for="ep-travelers">Travelers</label>
+            <select id="ep-travelers" name="travelers">
+                <option value="2">2 adults</option>
+                <option value="1">1 adult</option>
+                <option value="4">4 travelers</option>
+                <option value="6">6 travelers</option>
+                <option value="10+">10+ travelers</option>
+            </select>
+        </div>
+
+        <button type="submit" class="ep-search-btn">
+            <i class="fas fa-search"></i> Search tours
+        </button>
+
+    </form>
+
+    <!-- Custom trip panel -->
+    <div class="ep-panel ep-custom" id="ep-panel-custom">
+        <p>
+            Tell us your dates, budget and must-see animals, and we'll build a personalized safari itinerary for you.
+        </p>
+        <a href="../book.html">Start planning →</a>
     </div>
 
 </section>
 
-<!-- ================= SEARCH ================= -->
-<section class="search-box">
+<!-- ================= TRUST STRIP ================= -->
+<section class="ep-trust">
 
-    <div class="search-field">
-        <label>Destination</label>
-        <input type="text" placeholder="Masai Mara, Amboseli..." />
+    <div class="ep-trust-item">
+        <span class="ep-trust-icon"><i class="fas fa-binoculars"></i></span>
+        <div>
+            <strong>Local expert guides</strong>
+            <small>Know the parks inside out</small>
+        </div>
     </div>
 
-    <div class="search-field">
-        <label>Travel Date</label>
-        <input type="date" />
+    <div class="ep-trust-item">
+        <span class="ep-trust-icon"><i class="fas fa-tags"></i></span>
+        <div>
+            <strong>Transparent pricing</strong>
+            <small>No hidden charges</small>
+        </div>
     </div>
 
-    <div class="search-field">
-        <label>Travelers</label>
-        <select>
-            <option>2 Travelers</option>
-            <option>4 Travelers</option>
-            <option>6 Travelers</option>
-            <option>10+ Travelers</option>
-        </select>
+    <div class="ep-trust-item">
+        <span class="ep-trust-icon"><i class="fas fa-route"></i></span>
+        <div>
+            <strong>Tailor-made trips</strong>
+            <small>Built around your budget</small>
+        </div>
     </div>
 
-    <div class="search-field">
-        <label>Budget</label>
-        <select>
-            <option>Any Budget</option>
-            <option>$500 - $1,000</option>
-            <option>$1,000 - $2,000</option>
-            <option>$2,000+</option>
-        </select>
+    <div class="ep-trust-item">
+        <span class="ep-trust-icon"><i class="fas fa-suitcase-rolling"></i></span>
+        <div>
+            <strong>50+ safari packages</strong>
+            <small>Kenya, Tanzania and Uganda</small>
+        </div>
     </div>
 
-    <button>
-      <a href="../HTML/packages.html" class="Find-Safaris btn">🔍 Find Safaris</a>
-    </button>
+    <div class="ep-trust-item">
+        <span class="ep-trust-icon"><i class="fas fa-star"></i></span>
+        <div>
+            <strong>Reviewed on TourRadar</strong>
+            <small>Real traveler feedback</small>
+        </div>
+    </div>
 
 </section>
 
@@ -215,7 +273,7 @@
                         <h4>$1,450</h4>
                     </div>
 
-                    <a href="#" class="tour-btn">View Tour</a>
+                    <a href="../Packages-HTML/7-days-kenya-tz-safari.html" class="tour-btn">View Tour</a>
                 </div>
             </div>
 
