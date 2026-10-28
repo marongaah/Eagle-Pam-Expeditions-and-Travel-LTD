@@ -3086,3 +3086,110 @@ textarea:focus {
         min-height: 0;
     }
 }
+
+/* FEATURED SAFARIS — MOBILE HORIZONTAL CAROUSEL */
+@media (max-width: 600px) {
+    .tours .tours-container {
+        display: flex !important;
+        flex-wrap: nowrap;
+        gap: 16px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+
+        padding: 4px 4px 18px;
+        margin: 0;
+        scrollbar-width: thin;
+    }
+
+    .tours .tour-card {
+        flex: 0 0 86%;
+        width: 86%;
+        min-width: 0;
+        max-width: 360px;
+        margin: 0;
+        scroll-snap-align: start;
+
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .tours .tour-image {
+        height: 190px;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    .tours .tour-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .tours .tour-info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        padding: 16px;
+    }
+
+    .tours .tour-info h3 {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    /* Keep descriptions short */
+    .tours .tour-info p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .tours .tour-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .tours .tour-meta span {
+        font-size: 11px;
+    }
+
+    .tours .tour-footer {
+        margin-top: auto;
+        padding-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tours .tour-btn {
+        width: 100%;
+        max-width: none;
+        text-align: center;
+        padding: 11px;
+        font-size: 13px;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 360px) {
+    .tours .tour-card {
+        flex-basis: 90%;
+        width: 90%;
+    }
+
+    .tours .tour-image {
+        height: 165px;
+    }
+}
