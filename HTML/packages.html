@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,1321 +6,667 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Safari Packages | Eagle Pam Expeditions</title>
+    <meta name="description" content="Explore Kenya safaris, Kenya and Tanzania wildlife adventures, and Mount Kenya trekking packages with Eagle Pam Expeditions.">
 
-    <!-- GOOGLE FONTS -->
+    <meta name="theme-color" content="#163f24">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/packages.css">
 </head>
 
 <body data-base="../">
 
-<!--==========Packages hero section===============-->
-<div id="navbar"></div>
-<!--====================Safari Layout========================-->
-<!--==================== SAFARI LAYOUT ========================-->
-<section class="safari-layout">
+    <div id="navbar"></div>
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="safari-sidebar">
+    <main class="safari-layout">
 
-        <h3>Your Safari</h3>
+        <div class="safari-results">
 
-        <div class="sidebar-group">
-            <label>Destination</label>
-            <select>
-                <option>All Destinations</option>
-                <option>Kenya</option>
-                <option>Tanzania</option>
-                <option>Uganda</option>
-            </select>
-        </div>
+            <!-- =====================================
+                 PREMIUM SAFARI PAGE HEADER
+            ====================================== -->
 
-        <div class="sidebar-group">
-            <label>Travel Date</label>
-            <input type="date">
-        </div>
+            <header class="results-header">
+                <div class="results-header-content">
 
-        <div class="sidebar-group">
-            <label>Travelers</label>
-            <select>
-                <option>2 Travelers</option>
-                <option>4 Travelers</option>
-                <option>6 Travelers</option>
-            </select>
-        </div>
+                    <span class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        YOUR EAST AFRICAN ADVENTURE STARTS HERE
+                    </span>
 
-        <div class="sidebar-group">
-            <label>Budget</label>
-            <select>
-                <option>Any Budget</option>
-                <option>$500 - $1000</option>
-                <option>$1000 - $2000</option>
-                <option>$2000+</option>
-            </select>
-        </div>
+                    <h1>
+                        Discover Your Next
+                        <span>Wild Adventure.</span>
+                    </h1>
 
-        <button class="sidebar-btn">
-            Search Safaris
-        </button>
+                    <p class="results-description">
+                        From the legendary plains of the Masai Mara to the
+                        peaks of Mount Kilimanjaro, explore thoughtfully
+                        crafted safaris and trekking experiences with
+                        Eagle Pam Expeditions.
+                    </p>
 
-    </aside>
+                    <div class="results-highlights">
+                        <span>
+                            <i class="fas fa-binoculars" aria-hidden="true"></i>
+                            Wildlife Safaris
+                        </span>
 
-    <!-- RIGHT CONTENT -->
-    <div class="safari-results">
+                        <span>
+                            <i class="fas fa-mountain" aria-hidden="true"></i>
+                            Mountain Treks
+                        </span>
 
-        <div class="results-header">
-            <h2>Safari Packages</h2>
-            <p>
-                Explore our hand-crafted East African safari experiences.
-            </p>
-        </div>
-
-        <!-- ================= KENYA SAFARIS ================= -->
-        <section id="kenya" class="package-section">
-
-            <h2 class="section-title">Kenya Safaris</h2>
-
-            <div class="package-grid">
-
-                <!-- CARD 1 -->
-                <div class="package-card">
-
-                    <div class="card-image">
-                        <img src="../assets/images/migration 1.jpg" alt="Masai Mara Safari">
-                        <span class="badge">BESTSELLER</span>
+                        <span>
+                            <i class="fas fa-compass" aria-hidden="true"></i>
+                            East Africa Tours
+                        </span>
                     </div>
 
-                    <div class="package-info">
+                    <div class="results-count-wrap">
+                        <span class="results-count-icon">
+                            <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+                        </span>
 
-                        <div class="package-top">
-                            <h3>3 Days Masai Mara Safari</h3>
-                            <span class="location">Kenya • Masai Mara</span>
-                        </div>
-
-                        <p>
-                            Experience the Big Five in Kenya’s most iconic wildlife reserve with expert guides.
+                        <p id="resultsCount" class="results-count" aria-live="polite">
+                            Explore our safari packages
                         </p>
-
-                        <div class="package-meta">
-                            <span>🗓 3 Days</span>
-                            <span>👥 2–6 People</span>
-                            <span>🚙 Game Drives</span>
-                        </div>
-
-                        <div class="package-footer">
-                            <div class="price">
-                                <small>From</small>
-                                <h4>$650</h4>
-                            </div>
-
-                            <a href="../Packages-HTML/3-days-mara.html" class="card-btn">
-                                View Details →
-                            </a>
-                        </div>
-
                     </div>
 
                 </div>
 
-                <!-- CARD 2 -->
-                <div class="package-card">
+                <div class="results-header-decoration" aria-hidden="true">
+                    <span class="decoration-ring ring-one"></span>
+                    <span class="decoration-ring ring-two"></span>
+                    <i class="fas fa-compass decoration-compass"></i>
+                </div>
+            </header>
 
-                    <div class="card-image">
-                        <img src="../assets/images/lion surrounded .jpg" alt="Kenya Wildlife Safari">
-                        <span class="badge">POPULAR</span>
-                    </div>
 
-                    <div class="package-info">
+            <!-- =====================================
+                 SEARCH AND FILTERS
+            ====================================== -->
 
-                        <div class="package-top">
-                            <h3> 7 Days Kenya Wildlife Safari</h3>
-                            <span class="location">Kenya • Safari Circuit</span>
-                        </div>
+            <form id="safariFilterForm" class="safari-filter-form">
 
-                        <p>
-                            Explore Masai Mara, Lake Nakuru and Amboseli in one unforgettable wildlife journey.
-                        </p>
+                <div class="search-field">
+                    <label for="packageSearch">Search safari packages</label>
 
-                        <div class="package-meta">
-                            <span>🗓 7 Days</span>
-                            <span>👥 2–60 People</span>
-                            <span>🚙 Full Circuit</span>
-                        </div>
-
-                        <div class="package-footer">
-                            <div class="price">
-                                <small>From</small>
-                                <h4>$2285</h4>
-                            </div>
-
-                            <a href="../Packages-HTML/7-days-kenya-wildlife-safari.html" class="card-btn">
-                                View Details →
-                            </a>
-                        </div>
-
-                    </div>
-
+                    <input
+                        type="search"
+                        id="packageSearch"
+                        name="packageSearch"
+                        placeholder="Search by package, destination, or activity..."
+                    >
                 </div>
 
-                <!-- CARD 3-->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/amboseli1.jpg"
-             alt="5 Days Kenya Budget Camping Safari">
-
-        <span class="badge">
-
-            BUDGET SAFARI
-
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-
-                5 Days Kenya Budget 4X4 Jeep Camping Safari
-
-            </h3>
-
-            <span class="location">
-
-                Kenya • Masai Mara • Lake Nakuru • Lake Naivasha
-
-            </span>
-
-        </div>
-
-        <p>
-
-            Explore Kenya's top safari destinations on an affordable camping
-            adventure in a 4x4 Land Cruiser. 
-
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 5 Days</span>
-
-            <span>👥 2–60 People</span>
-
-            <span>🏕 Camping Safari</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>
-
-                    From
-
-                </small>
-
-                <h4>
-
-                    $1,370
-
-                </h4>
-
-            </div>
-
-            <a href="../Packages-HTML/5-days-kenya-budget-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- CARD -->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/potraite1.jpg"
-             alt="4 Days Kenya Budget 4x4 Safari">
-
-        <span class="badge">
-
-            BUDGET
-
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-
-                4 Days Kenya Budget 4x4 Safari
-
-            </h3>
-
-            <span class="location">
-
-                Kenya • Masai Mara • Lake Nakuru
-
-            </span>
-
-        </div>
-
-        <p>
-
-            Experience Kenya's famous savannahs and soda lakes on an affordable
-            4-day safari featuring thrilling game drives in Masai Mara and
-            rhino tracking in Lake Nakuru National Park.
-
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 4 Days</span>
-
-            <span>👥 2–60 People</span>
-
-            <span>🚙 4x4 Land Cruiser</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>From</small>
-
-                <h4>$1,300</h4>
-
-            </div>
-
-            <a href="../Packages-HTML/4-days-kenya-budget-4x4-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- CARD -->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/potraitc1.jpg"
-             alt="8 Days Kenya Luxury Lodge Safari">
-
-        <span class="badge">
-
-            LUXURY
-
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-
-                8 Days Kenya Luxury Lodge Safari
-
-            </h3>
-
-            <span class="location">
-
-                Kenya • Amboseli • Aberdare • Nakuru • Masai Mara
-
-            </span>
-
-        </div>
-
-        <p>
-
-            Discover Kenya's premier wildlife destinations while staying in
-            luxury safari lodges. Experience Amboseli, Aberdare, Lake Nakuru
-            and the world-famous Masai Mara on an unforgettable safari.
-
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 8 Days</span>
-
-            <span>👥 2–60 People</span>
-
-            <span>🏨 Luxury Lodges</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>From</small>
-
-                <h4>$4,850</h4>
-
-            </div>
-
-            <a href="../Packages-HTML/8-days-kenya-luxury-lodge-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- CARD 6 -->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/PotraitElephants.jpg"
-             alt="The Essence of Kenya Luxury Safari">
-
-        <span class="badge">
-            LUXURY
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                The Essence of Kenya: 10 Days of Luxury Safari & Adventure
-            </h3>
-
-            <span class="location">
-                Kenya • Nairobi • Amboseli • Mt Kenya • Nakuru • Naivasha • Masai Mara
-            </span>
-
-        </div>
-
-        <p>
-            Discover Kenya in ultimate comfort with luxury lodges, spectacular wildlife,
-            breathtaking landscapes, the Big Five, flamingo-filled lakes and unforgettable
-            safari adventures across Kenya's finest national parks.
-        </p>
-
-        <div class="package-meta">
-            <span>🗓 10 Days</span>
-            <span>👥 Private/Group Safari</span>
-            <span>🏨 Luxury Lodges</span>
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-                <small>From</small>
-                <h4>$5,650</h4>
-            </div>
-
-            <a href="../Packages-HTML/10-days-essence-of-kenya.html"
-               class="card-btn">
-                View Details →
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-</div> <!-- END OF FIRST package-grid -->
-
-
-<!-- VIEW MORE BUTTON -->
-
-<div class="view-more-wrapper">
-
-    <button id="viewMoreKenya" class="view-more-btn">
-
-        View More Kenya Safaris
-
-        <i class="fa-solid fa-chevron-down"></i>
-
-    </button>
-
-</div>
-
-
-<!-- SECOND GRID -->
-
-<div id="moreKenyaSafaris" class="package-grid hidden-packages">
-
-    <!-- CARD 7 -->
-
-    <div class="package-card">
-
-        <div class="card-image">
-
-            <img src="../assets/images/potraitg1.jpg"
-                 alt="6 Days Kenya Budget 4X4 Camping Group Safari">
-
-            <span class="badge">
-                GROUP CAMPING
-            </span>
-
-        </div>
-
-        <div class="package-info">
-
-            <div class="package-top">
-
-                <h3>
-                    6 Days Kenya Budget 4X4 Camping Group Safari
-                </h3>
-
-                <span class="location">
-                    Kenya • Masai Mara • Lake Nakuru • Amboseli
-                </span>
-
-            </div>
-
-            <p>
-                Discover Kenya's most famous wildlife destinations on an exciting
-                group camping safari. Travel in a 4x4 Land Cruiser while exploring
-                Masai Mara, Lake Nakuru and Amboseli National Park.
-            </p>
-
-            <div class="package-meta">
-
-                <span>🗓 6 Days</span>
-                <span>👥 Group Safari</span>
-                <span>🏕 Camping</span>
-
-            </div>
-
-            <div class="package-footer">
-
-                <div class="price">
-
-                    <small>From</small>
-
-                    <h4>$1,950</h4>
-
+                <div class="filter-field">
+                    <label for="destinationFilter">Destination</label>
+
+                    <select id="destinationFilter" name="destination">
+                        <option value="all">All destinations</option>
+                        <option value="kenya">Kenya</option>
+                        <option value="tanzania">Tanzania</option>
+                        <option value="mountain">Mountain trekking</option>
+                    </select>
                 </div>
 
-                <a href="../Packages-HTML/6-days-kenya-budget-camping-group.html"
-                   class="card-btn">
+                <div class="filter-field">
+                    <label for="budgetFilter">Budget</label>
 
-                    View Details →
+                    <select id="budgetFilter" name="budget">
+                        <option value="all">Any budget</option>
+                        <option value="1000">$500 – $1,000</option>
+                        <option value="2000">$1,001 – $2,000</option>
+                        <option value="2001">Over $2,000</option>
+                    </select>
+                </div>
 
-                </a>
+                <button type="reset" class="reset-filters">
+                    Clear filters
+                </button>
 
+            </form>
+
+
+            
+<section class="package-section" id="all-packages">
+    <div class="package-grid">
+
+        <!-- 1. Three Days Masai Mara Safari -->
+        <article class="package-card" data-price="650">
+            <div class="card-image">
+                <img src="../assets/images/migration 1.jpg" alt="Wildlife safari in the Masai Mara" loading="lazy">
+                <span class="badge">Bestseller</span>
             </div>
-
-        </div>
-
-    </div>
-
-    <!-- CARD -->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/PotraitH1.jpg"
-             alt="7-Day Highlights of Kenya 4x4 Safari Adventure">
-
-        <span class="badge">
-            HIGHLIGHTS
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                7-Day Highlights of Kenya: 4x4 Safari Adventure
-            </h3>
-
-            <span class="location">
-                Kenya • Nairobi • Shaba • Lake Nakuru • Masai Mara
-            </span>
-
-        </div>
-
-        <p>
-
-            Experience Kenya's iconic safari circuit in a 4x4 Land Cruiser, 
-            visiting Shaba, Lake Nakuru, and the Masai Mara while staying in 
-            premium safari lodges.
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 7 Days</span>
-
-            <span>👥 Private Safari</span>
-
-            <span>🚙 4x4 Land Cruiser</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>From</small>
-
-                <h4>$3,780</h4>
-
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>3 Days Masai Mara Safari</h3>
+                    <span class="location">Kenya · Masai Mara</span>
+                </div>
+                <p>Experience the Big Five in Kenya’s most iconic wildlife reserve with expert guides.</p>
+                <div class="package-meta">
+                    <span>3 Days</span>
+                    <span>2–6 People</span>
+                    <span>Game Drives</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$650</h4>
+                    </div>
+                    <a href="../Packages-HTML/3-days-mara.html" class="card-btn">View Details →</a>
+                </div>
             </div>
+        </article>
 
-            <a href="../Packages-HTML/7-day-highlights-of-kenya.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- ================= PACKAGE CARD ================= -->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p2.jpg"
-             alt="3 Days Amboseli Safari">
-
-        <span class="badge">
-            Group Safari
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                3 Days Amboseli Safari
-            </h3>
-
-            <span class="location">
-                Amboseli National Park
-            </span>
-
-            <p>
-                Discover Amboseli National Park on a 3-day safari with exciting
-                game drives, breathtaking views of Mount Kilimanjaro and excellent
-                chances of spotting elephants, lions, giraffes and other wildlife.
-            </p>
-
-        </div>
-
-        <div class="package-meta">
-
-            <span>3 Days</span>
-
-            <span>4x4 Land Cruiser</span>
-
-            <span>Group Safari</span>
-
-        </div>
-
-        <!-- PRICE OPTIONS -->
-
-        <div class="package-prices">
-
-            <div class="price-option">
-                <span>Budget</span>
-                <strong>USD $650</strong>
+        <!-- 2. Seven Days Kenya Wildlife Safari -->
+        <article class="package-card" data-price="2285">
+            <div class="card-image">
+                <img src="../assets/images/lion surrounded .jpg" alt="Lion on a Kenya wildlife safari" loading="lazy">
+                <span class="badge">Popular</span>
             </div>
-
-            <div class="price-option">
-                <span>Mid-Range</span>
-                <strong>From USD $1,150</strong>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>7 Days Kenya Wildlife Safari</h3>
+                    <span class="location">Kenya · Safari Circuit</span>
+                </div>
+                <p>Explore Masai Mara, Lake Nakuru and Amboseli in one unforgettable wildlife journey.</p>
+                <div class="package-meta">
+                    <span>7 Days</span>
+                    <span>2–60 People</span>
+                    <span>Full Circuit</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$2,285</h4>
+                    </div>
+                    <a href="../Packages-HTML/7-days-kenya-wildlife-safari.html" class="card-btn">View Details →</a>
+                </div>
             </div>
+        </article>
 
-            <div class="price-option">
-                <span>Luxury</span>
-                <strong>From USD $2,650</strong>
+        <!-- 3. Five Days Kenya Budget Camping Safari -->
+        <article class="package-card" data-price="1370">
+            <div class="card-image">
+                <img src="../assets/images/amboseli1.jpg" alt="Kenya budget camping safari" loading="lazy">
+                <span class="badge">Budget Safari</span>
             </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>5 Days Kenya Budget 4X4 Jeep Camping Safari</h3>
+                    <span class="location">Masai Mara · Lake Nakuru · Lake Naivasha</span>
+                </div>
+                <p>Explore Kenya's top safari destinations on an affordable camping adventure in a 4x4 Land Cruiser.</p>
+                <div class="package-meta">
+                    <span>5 Days</span>
+                    <span>2–60 People</span>
+                    <span>Camping Safari</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$1,370</h4>
+                    </div>
+                    <a href="../Packages-HTML/5-days-kenya-budget-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
 
-        </div>
+        <!-- 4. Four Days Kenya Budget Safari -->
+        <article class="package-card" data-price="1300">
+            <div class="card-image">
+                <img src="../assets/images/potraite1.jpg" alt="Four-day Kenya budget 4x4 safari" loading="lazy">
+                <span class="badge">Budget</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>4 Days Kenya Budget 4x4 Safari</h3>
+                    <span class="location">Masai Mara · Lake Nakuru</span>
+                </div>
+                <p>Discover Kenya's savannahs and soda lakes with game drives in the Masai Mara and rhino tracking opportunities in Lake Nakuru.</p>
+                <div class="package-meta">
+                    <span>4 Days</span>
+                    <span>2–60 People</span>
+                    <span>4x4 Land Cruiser</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$1,300</h4>
+                    </div>
+                    <a href="../Packages-HTML/4-days-kenya-budget-4x4-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
 
-        <div class="package-footer">
+        <!-- 5. Eight Days Kenya Luxury Lodge Safari -->
+        <article class="package-card" data-price="4850">
+            <div class="card-image">
+                <img src="../assets/images/potraitc1.jpg" alt="Luxury lodge safari in Kenya" loading="lazy">
+                <span class="badge">Luxury</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>8 Days Kenya Luxury Lodge Safari</h3>
+                    <span class="location">Amboseli · Aberdare · Nakuru · Masai Mara</span>
+                </div>
+                <p>Discover Kenya's premier wildlife destinations while staying in luxury safari lodges.</p>
+                <div class="package-meta">
+                    <span>8 Days</span>
+                    <span>Private/Group</span>
+                    <span>Luxury Lodges</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$4,850</h4>
+                    </div>
+                    <a href="../Packages-HTML/8-days-kenya-luxury-lodge-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
 
-            <a href="../Packages-HTML/3-days-amboseli-budget-group-safari.html" class="card-btn">
-                View Details
-            </a>
+        <!-- 6. Ten Days Essence of Kenya -->
+        <article class="package-card" data-price="5650">
+            <div class="card-image">
+                <img src="../assets/images/PotraitElephants.jpg" alt="Elephants on a luxury Kenya safari" loading="lazy">
+                <span class="badge">Luxury</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>The Essence of Kenya: 10 Days of Luxury Safari &amp; Adventure</h3>
+                    <span class="location">Nairobi · Amboseli · Mount Kenya · Nakuru · Naivasha · Masai Mara</span>
+                </div>
+                <p>Enjoy luxury lodges, spectacular wildlife, breathtaking landscapes and unforgettable adventures across Kenya's finest parks.</p>
+                <div class="package-meta">
+                    <span>10 Days</span>
+                    <span>Private/Group</span>
+                    <span>Luxury Lodges</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$5,650</h4>
+                    </div>
+                    <a href="../Packages-HTML/10-days-essence-of-kenya.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
 
-        </div>
+        <!-- 7. Six Days Kenya Budget Camping Group Safari -->
+        <article class="package-card" data-price="1950">
+            <div class="card-image">
+                <img src="../assets/images/potraitg1.jpg" alt="Kenya budget 4x4 camping group safari" loading="lazy">
+                <span class="badge">Group Camping</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>6 Days Kenya Budget 4X4 Camping Group Safari</h3>
+                    <span class="location">Masai Mara · Lake Nakuru · Amboseli</span>
+                </div>
+                <p>Explore Kenya's famous wildlife destinations on a group camping safari in a 4x4 Land Cruiser.</p>
+                <div class="package-meta">
+                    <span>6 Days</span>
+                    <span>Group Safari</span>
+                    <span>Camping</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$1,950</h4>
+                    </div>
+                    <a href="../Packages-HTML/6-days-kenya-budget-camping-group.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 8. Seven-Day Highlights of Kenya -->
+        <article class="package-card" data-price="3780">
+            <div class="card-image">
+                <img src="../assets/images/PotraitH1.jpg" alt="Highlights of Kenya 4x4 safari" loading="lazy">
+                <span class="badge">Highlights</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>7-Day Highlights of Kenya: 4x4 Safari Adventure</h3>
+                    <span class="location">Nairobi · Shaba · Lake Nakuru · Masai Mara</span>
+                </div>
+                <p>Visit Kenya's iconic safari destinations in a 4x4 Land Cruiser while staying in premium safari lodges.</p>
+                <div class="package-meta">
+                    <span>7 Days</span>
+                    <span>Private Safari</span>
+                    <span>4x4 Land Cruiser</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$3,780</h4>
+                    </div>
+                    <a href="../Packages-HTML/7-day-highlights-of-kenya.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 9. Three Days Amboseli Safari -->
+        <article class="package-card" data-price="650">
+            <div class="card-image">
+                <img src="../assets/images/p2.jpg" alt="Amboseli National Park safari" loading="lazy">
+                <span class="badge">Group Safari</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>3 Days Amboseli Safari</h3>
+                    <span class="location">Amboseli National Park</span>
+                </div>
+                <p>Enjoy game drives, views of Mount Kilimanjaro and opportunities to spot elephants, lions, giraffes and other wildlife.</p>
+                <div class="package-meta">
+                    <span>3 Days</span>
+                    <span>4x4 Land Cruiser</span>
+                    <span>Group Safari</span>
+                </div>
+                <div class="package-prices">
+                    <div class="price-option">
+                        <span>Budget</span>
+                        <strong>$650</strong>
+                    </div>
+                    <div class="price-option">
+                        <span>Mid-Range</span>
+                        <strong>From $1,150</strong>
+                    </div>
+                    <div class="price-option">
+                        <span>Luxury</span>
+                        <strong>From $2,650</strong>
+                    </div>
+                </div>
+                <div class="package-footer">
+                    <a href="../Packages-HTML/3-days-amboseli-budget-group-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 10. Three Days Samburu Safari -->
+        <article class="package-card" data-price="840">
+            <div class="card-image">
+                <img src="../assets/images/p1.jpg" alt="Samburu National Reserve safari" loading="lazy">
+                <span class="badge">Group Safari</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>3 Days Samburu Safari</h3>
+                    <span class="location">Samburu National Reserve</span>
+                </div>
+                <p>Explore Samburu's unique wildlife, seek out the Samburu Special Five and stay at Samburu Simba Lodge.</p>
+                <div class="package-meta">
+                    <span>3 Days</span>
+                    <span>4x4 Land Cruiser</span>
+                    <span>Group Safari</span>
+                </div>
+                <div class="package-prices">
+                    <div class="price-option">
+                        <span>Budget</span>
+                        <strong>$840</strong>
+                    </div>
+                    <div class="price-option">
+                        <span>Mid-Range</span>
+                        <strong>From $1,150</strong>
+                    </div>
+                    <div class="price-option">
+                        <span>Luxury</span>
+                        <strong>From $2,890</strong>
+                    </div>
+                </div>
+                <div class="package-footer">
+                    <a href="../Packages-HTML/3-days-samburu-budget-group-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 11. Five-Day Kenya Migration Safari -->
+        <article class="package-card" data-price="1390">
+            <div class="card-image">
+                <img src="../assets/images/p4.jpg" alt="Masai Mara migration safari" loading="lazy">
+                <span class="badge">Migration</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>5-Day Kenya 4x4 Migration Safari Adventure: Into the Wild</h3>
+                    <span class="location">Kenya · Masai Mara</span>
+                </div>
+                <p>Experience Kenya's spectacular wildlife and migration landscapes in a comfortable 4x4 safari vehicle.</p>
+                <div class="package-meta">
+                    <span>5 Days</span>
+                    <span>Small Group</span>
+                    <span>4x4 Safari</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$1,390</h4>
+                    </div>
+                    <a href="../Packages-HTML/5-days-4x4-migration-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 12. Six-Day Kenya Big Five Safari -->
+        <article class="package-card" data-price="2380">
+            <div class="card-image">
+                <img src="../assets/images/p5.jpg" alt="Kenya Big Five 4x4 safari" loading="lazy">
+                <span class="badge">Big Five Safari</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>Kenya's Big 5 Adventure: 6-Day 4x4 Safari Tour</h3>
+                    <span class="location">Kenya · Masai Mara · Amboseli</span>
+                </div>
+                <p>Explore Kenya's wildlife destinations in search of the legendary Big Five and other incredible African wildlife.</p>
+                <div class="package-meta">
+                    <span>6 Days</span>
+                    <span>Small Group</span>
+                    <span>4x4 Safari</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$2,380</h4>
+                    </div>
+                    <a href="../Packages-HTML/6-days-kenya-big-5-adventure-4x4-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 13. Seven Days Kenya and Tanzania Safari -->
+        <article class="package-card" data-price="3550">
+            <div class="card-image">
+                <img src="../assets/images/lion surrounded .jpg" alt="East African cross-border wildlife safari" loading="lazy">
+                <span class="badge premium">Premium</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>7 Days Kenya &amp; Tanzania Safari</h3>
+                    <span class="location">Kenya · Tanzania Circuit</span>
+                </div>
+                <p>Explore the Serengeti, Ngorongoro Crater and Masai Mara in one cross-border safari experience.</p>
+                <div class="package-meta">
+                    <span>7 Days</span>
+                    <span>Small Group</span>
+                    <span>Cross-border</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$3,550</h4>
+                    </div>
+                    <a href="../Packages-HTML/7-days-kenya-tz-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 14. Twelve Days Kenya and Tanzania Circuit -->
+        <article class="package-card" data-price="4847">
+            <div class="card-image">
+                <img src="../assets/images/p3.jpg" alt="Kenya and Tanzania circuit group safari" loading="lazy">
+                <span class="badge">Group Safari</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>12 Days Kenya &amp; Tanzania Circuit Group Safari</h3>
+                    <span class="location">Kenya · Tanzania</span>
+                </div>
+                <p>Experience an unforgettable 12-day safari through East Africa's iconic wildlife destinations.</p>
+                <div class="package-meta">
+                    <span>12 Days</span>
+                    <span>4x4 Land Cruiser</span>
+                    <span>Group Safari</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$4,847</h4>
+                    </div>
+                    <a href="../Packages-HTML/12-days-kenya-tanzania-circuit.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 15. Thirteen Days Kenya and Tanzania 4x4 Safari -->
+        <article class="package-card" data-price="6180">
+            <div class="card-image">
+                <img src="../assets/images/p6.jpg" alt="Kenya and Tanzania 4x4 jeep safari" loading="lazy">
+                <span class="badge">4x4 Safari</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>13-Day Kenya &amp; Tanzania 4x4 Jeep Safari: From Savannah to Serengeti</h3>
+                    <span class="location">Masai Mara · Amboseli · Ngorongoro · Serengeti · Tarangire</span>
+                </div>
+                <p>Journey through Kenya's legendary savannahs and Tanzania's spectacular wilderness on a 13-day adventure.</p>
+                <div class="package-meta">
+                    <span>13 Days</span>
+                    <span>4x4 Jeep Safari</span>
+                    <span>Two Countries</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$6,180</h4>
+                    </div>
+                    <a href="../Packages-HTML/13-days-kenya-tanzania-4x4-jeep-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 16. Eleven Days Kenya and Tanzania Classic Safari -->
+        <article class="package-card" data-price="4290">
+            <div class="card-image">
+                <img src="../assets/images/p7.jpg" alt="Kenya and Tanzania mid-range jeep safari" loading="lazy">
+                <span class="badge">Mid-Range</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>11 Days Kenya &amp; Tanzania Classic Mid-Range Jeep Safari</h3>
+                    <span class="location">Masai Mara · Lake Nakuru · Amboseli · Serengeti · Ngorongoro</span>
+                </div>
+                <p>Discover iconic national parks and rich wildlife landscapes on an 11-day mid-range 4x4 safari.</p>
+                <div class="package-meta">
+                    <span>11 Days</span>
+                    <span>4x4 Jeep Safari</span>
+                    <span>Mid-Range Stays</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$4,290</h4>
+                    </div>
+                    <a href="../Packages-HTML/11-days-kenya-tanzania-classic-mid-range-jeep-safari.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 17. Four Days Mount Kenya Trek -->
+        <article class="package-card" data-price="1350">
+            <div class="card-image">
+                <img src="../assets/images/Mt1.jpg" alt="Sirimon Route Mount Kenya trek" loading="lazy">
+                <span class="badge premium">Moderate Trek</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>Sirimon Summit: 4-Day Mount Kenya Trekking Adventure</h3>
+                    <span class="location">Mount Kenya National Park</span>
+                </div>
+                <p>Trek the scenic Sirimon Route on a four-day adventure through Mount Kenya National Park.</p>
+                <div class="package-meta">
+                    <span>4 Days</span>
+                    <span>Sirimon Route</span>
+                    <span>Guided Trek</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$1,350</h4>
+                    </div>
+                    <a href="../Packages-HTML/4-day-mount-kenya-trekking-adventure.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- 18. Five Days Mount Kenya Trek -->
+        <article class="package-card" data-price="1550">
+            <div class="card-image">
+                <img src="../assets/images/Mt2.jpg" alt="Mount Kenya Sirimon Chogoria trekking route" loading="lazy">
+                <span class="badge premium">Moderate Trek</span>
+            </div>
+            <div class="package-info">
+                <div class="package-top">
+                    <h3>Conquer Mount Kenya: 5-Day Trek via Sirimon–Chogoria Route</h3>
+                    <span class="location">Mount Kenya</span>
+                </div>
+                <p>Summit Point Lenana, ascending via Sirimon and descending through the scenic Chogoria route.</p>
+                <div class="package-meta">
+                    <span>5 Days</span>
+                    <span>Sirimon–Chogoria</span>
+                    <span>Guided Trek</span>
+                </div>
+                <div class="package-footer">
+                    <div class="price">
+                        <small>From</small>
+                        <h4>$1,550</h4>
+                    </div>
+                    <a href="../Packages-HTML/5-day-trek-sirimon-chogoria.html" class="card-btn">View Details →</a>
+                </div>
+            </div>
+        </article>
 
     </div>
-
-</div>
-
-<!-- ================= PACKAGE CARD ================= -->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p1.jpg"
-             alt="3 Days Samburu Safari">
-
-        <span class="badge">
-            Group Safari
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                3 Days Samburu Safari
-            </h3>
-
-            <span class="location">
-                Samburu National Reserve
-            </span>
-
-            <p>
-                Explore the rugged beauty of Samburu National Reserve on a
-                3-day safari. Encounter the unique Samburu Special Five,
-                enjoy thrilling game drives and stay at the comfortable
-                Samburu Simba Lodge.
-            </p>
-
-        </div>
-
-        <div class="package-meta">
-
-            <span>3 Days</span>
-
-            <span>4x4 Land Cruiser</span>
-
-            <span>Group Safari</span>
-
-        </div>
-
-        <!-- PRICE OPTIONS -->
-
-        <div class="package-prices">
-
-            <div class="price-option">
-                <span>Budget</span>
-                <strong>USD $840</strong>
-            </div>
-
-            <div class="price-option">
-                <span>Mid-Range</span>
-                <strong>From USD $1,150</strong>
-            </div>
-
-            <div class="price-option">
-                <span>Luxury</span>
-                <strong>From USD $2,890</strong>
-            </div>
-
-        </div>
-
-        <div class="package-footer">
-
-            <a href="../Packages-HTML/3-days-samburu-budget-group-safari.html"
-               class="card-btn">
-                View Details 
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!--======5-days-Kenya 4x4 Migration====-->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p4.jpg"
-             alt="5-Day Kenya 4x4 Migration Safari Adventure">
-
-        <span class="badge">
-            MIGRATION
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                5-Day Kenya 4x4 Migration Safari Adventure:
-                Into the Wild
-            </h3>
-
-            <span class="location">
-                Kenya • Masai Mara
-            </span>
-
-        </div>
-
-        <p>
-            Experience Kenya's spectacular wildlife and follow the migration
-            adventure through the wild landscapes of the Masai Mara in a
-            comfortable 4x4 safari vehicle.
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 5 Days</span>
-
-            <span>👥 Small Group</span>
-
-            <span>🚙 4x4 Safari</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>From</small>
-
-                <h4>$1,390</h4>
-
-            </div>
-
-            <a href="../Packages-HTML/5-days-4x4-migration-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-<!--=========================================
-6 DAYS KENYA'S BIG 5 ADVENTURE
-==========================================-->
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p5.jpg"
-             alt="Kenya's Big 5 Adventure 6-Day 4x4 Safari Tour">
-
-        <span class="badge">
-            BIG 5 SAFARI
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                Kenya's Big 5 Adventure:
-                6-Day 4x4 Safari Tour
-            </h3>
-
-            <span class="location">
-                Kenya • Masai Mara • Amboseli
-            </span>
-
-        </div>
-
-        <p>
-            Set out on an unforgettable 4x4 safari adventure through Kenya's
-            spectacular wildlife destinations in search of the legendary Big Five
-            and other incredible African wildlife.
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 6 Days</span>
-
-            <span>👥 Small Group</span>
-
-            <span>🚙 4x4 Safari</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>From</small>
-
-                <h4>$2,380</h4>
-
-            </div>
-
-            <a href="../Packages-HTML/6-days-kenya-big-5-adventure-4x4-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-</div> <!-- END OF SECOND GRID -->
-
 </section>
 
-        <!-- ================= KENYA - TANZANIA ================= -->
-        <section id="tanzania" class="package-section">
 
-            <h2 class="section-title">
-                Kenya - Tanzania Safaris
-            </h2>
+            <!-- =====================================
+                 NO RESULTS MESSAGE
+            ====================================== -->
 
-            <div class="package-grid">
-
-                <div class="package-card">
-
-                    <div class="card-image">
-                        <img src="../assets/images/lion surrounded .jpg" alt="Cross-border Safari">
-                        <span class="badge premium">PREMIUM</span>
-                    </div>
-
-                    <div class="package-info">
-
-                        <div class="package-top">
-                            <h3>7 Days Kenya & Tanzania Safari</h3>
-                            <span class="location">
-                                Kenya • Tanzania Circuit
-                            </span>
-                        </div>
-
-                        <p>
-                            Cross Serengeti, Ngorongoro Crater and Masai Mara in one epic safari experience.
-                        </p>
-
-                        <div class="package-meta">
-                            <span>🗓 7 Days</span>
-                            <span>👥 Small Group</span>
-                            <span>🌍 Cross-border</span>
-                        </div>
-
-                        <div class="package-footer">
-
-                            <div class="price">
-                                <small>From</small>
-                                <h4>$3,550 </h4>
-                            </div>
-
-                            <a href="../Packages-HTML/7-days-kenya-tz-safari.html" class="card-btn">
-                                View Details →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p3.jpg"
-             alt="12 Days Kenya and Tanzania Circuit Group Safari">
-
-        <span class="badge">
-            Group Safari
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                12 Days Kenya & Tanzania Circuit
-                Group Safari
-            </h3>
-
-            <span class="location">
-                Kenya • Tanzania
-            </span>
-
-            <p>
-              Experience an unforgettable 12-day safari through Kenya and Tanzania, 
-              exploring East Africa’s iconic wildlife destinations.
+            <p id="noResults" class="no-results" hidden aria-live="polite">
+                No packages match your search. Try another keyword or filter.
             </p>
 
-        </div>
-
-
-        <div class="package-meta">
-
-            <span>
-                <i class="fa-regular fa-calendar"></i>
-                12 Days
-            </span>
-
-            <span>
-                <i class="fa-solid fa-car"></i>
-                4x4 Land Cruiser
-            </span>
-
-            <span>
-                <i class="fa-solid fa-users"></i>
-                Group Safari
-            </span>
+            <!--
+                Keep pagination managed by your existing JavaScript.
+                It should be inserted after the final package section.
+            -->
 
         </div>
+    </main>
 
+    <div id="footer"></div>
 
-        <!-- PRICE -->
-
-        <div class="package-price">
-
-            <span>
-                From
-            </span>
-
-            <h4>
-                USD $4,847
-            </h4>
-
-        </div>
-
-
-        <div class="package-footer">
-
-            <a href="../Packages-HTML/12-days-kenya-tanzania-circuit.html"
-               class="card-btn">
-
-                View Details
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p6.jpg"
-             alt="13-Day Kenya and Tanzania 4x4 Jeep Safari">
-
-        <span class="badge">
-            4x4 SAFARI
-        </span>
-
-    </div>
-
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                13-Day Kenya & Tanzania 4x4 Jeep Safari:
-                From Savannah to Serengeti
-            </h3>
-
-            <span class="location">
-                Kenya • Maasai Mara • Lake Nakuru • Amboseli •
-                Tanzania • Ngorongoro • Serengeti • Tarangire
-            </span>
-
-        </div>
-
-
-        <p>
-            Journey from Kenya's legendary savannahs into Tanzania's
-            spectacular wilderness on an unforgettable 13-day 4x4 safari
-            featuring Maasai Mara, Amboseli, Serengeti, Ngorongoro and
-            Tarangire.
-        </p>
-
-
-        <div class="package-meta">
-
-            <span>
-                🗓 13 Days
-            </span>
-
-            <span>
-                🚙 4x4 Jeep Safari
-            </span>
-
-            <span>
-                🦁 Kenya & Tanzania
-            </span>
-
-        </div>
-
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>
-                    From
-                </small>
-
-                <h4>
-                    $6,180
-                </h4>
-
-            </div>
-
-
-            <a href="../Packages-HTML/13-days-kenya-tanzania-4x4-jeep-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="package-card">
-
-    <div class="card-image">
-
-        <img src="../assets/images/p7.jpg"
-             alt="11-Day Kenya and Tanzania Classic Mid-Range Jeep Safari">
-
-        <span class="badge">
-            MID-RANGE
-        </span>
-
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-
-            <h3>
-                11 Days Kenya & Tanzania Classic Mid-Range Jeep Safari
-            </h3>
-
-            <span class="location">
-                Kenya • Tanzania • Maasai Mara • Lake Nakuru • Amboseli •
-                Serengeti • Ngorongoro
-            </span>
-
-        </div>
-
-        <p>
-            Experience the best of Kenya and Tanzania on an unforgettable
-            11-day mid-range 4x4 safari through spectacular landscapes,
-            iconic national parks and some of East Africa's richest
-            wildlife destinations.
-        </p>
-
-        <div class="package-meta">
-
-            <span>🗓 11 Days</span>
-
-            <span>🚙 4x4 Jeep Safari</span>
-
-            <span>🏨 Mid-Range Accommodation</span>
-
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-
-                <small>
-                    From
-                </small>
-
-                <h4>
-                    $4,290
-                </h4>
-
-            </div>
-
-            <a href="../Packages-HTML/11-days-kenya-tanzania-classic-mid-range-jeep-safari.html"
-               class="card-btn">
-
-                View Details →
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-            </div>
-
-        </section>
-
-        <!-- ================= MOUNTAIN-TREKKING TOURS================= -->
-        <section id="mountain-trekking" class="package-section">
-
-            <h2 class="section-title">
-                Mountain Trekking Tours
-                </h2>
-
-                <div class="package-grid">
-
-                <div class="package-card">
-
-    <div class="card-image">
-        <img src="../assets/images/Mt1.jpg" alt="Sirimon Summit: 4-Day Mount Kenya Trekking Adventure">
-        <span class="badge premium">MODERATE TREK</span>
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-            <h3>Sirimon Summit: 4-Day Mount Kenya Trekking Adventure</h3>
-            <span class="location">
-                Kenya • Mount Kenya National Park
-            </span>
-        </div>
-
-        <p>
-            Trek the scenic Sirimon Route on a 4-day adventure through Mount Kenya National Park, Africa's second-highest peak.
-        </p>
-
-        <div class="package-meta">
-            <span>🗓 4 Days</span>
-            <span>👥 All Ages Welcome</span>
-            <span>🥾 Sirimon Route</span>
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-                <small>From</small>
-                <h4>$1,350</h4>
-            </div>
-
-            <a href="../Packages-HTML/4-day-mount-kenya-trekking-adventure.html" class="card-btn">
-                View Details →
-            </a>
-
-        </div>
-
-    </div>
-
-                </div>
-
-<div class="package-card">
-
-    <div class="card-image">
-        <img src="../assets/images/Mt2.jpg" alt="Conquer Mount Kenya: 5-Day Trek via Sirimon–Chogoria Route">
-        <span class="badge premium">MODERATE TREK</span>
-    </div>
-
-    <div class="package-info">
-
-        <div class="package-top">
-            <h3>Conquer Mount Kenya: 5-Day Trek via Sirimon–Chogoria Route</h3>
-            <span class="location">
-                Kenya • Mount Kenya
-            </span>
-        </div>
-
-        <p>
-            Summit Point Lenana on this 5-day traverse of Mount Kenya, ascending via the Sirimon route and descending through the scenic Chogoria route.
-        </p>
-
-        <div class="package-meta">
-            <span>🗓 5 Days</span>
-            <span>👥 All Ages Welcome</span>
-            <span>🥾 Sirimon–Chogoria Route</span>
-        </div>
-
-        <div class="package-footer">
-
-            <div class="price">
-                <small>From</small>
-                <h4>$1,550</h4>
-            </div>
-
-            <a href="../Packages-HTML/5-day-trek-sirimon-chogoria.html" class="card-btn">
-                View Details →
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-                </div>
-
-</section>
-                </div>
-
-            </div> <!-- end .package-grid -->
-
-        </section>
-
-<!-- ================= FOOTER ================= -->
-<div id="footer"></div>
-
-<script src="../assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 
 </body>
 </html>

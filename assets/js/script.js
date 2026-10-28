@@ -1,7 +1,5 @@
 // =======================================================
-// EAGLE PAM EXPEDITIONS
-// Shared JavaScript
-// Version 2.0
+// EAGLE PAM EXPEDITIONs
 // =======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initSidebar();
     initNavbarFooter();
     initItinerary();
+    initPackagesPage();
 
 });
 
@@ -360,27 +359,18 @@ function initNavbarFooter() {
 
     }
 
-    if (footer) {
-
+        if (footer) {
         fetch(BASE_PATH + "includes/footer.html")
             .then(res => {
-
                 if (!res.ok) {
-
                     throw new Error("Footer not found");
-
                 }
-
                 return res.text();
-
             })
-
             .then(data => {
-
                 footer.innerHTML = data;
 
                 footer.querySelectorAll("a[href]").forEach(link => {
-
                     const href = link.getAttribute("href");
 
                     if (
@@ -392,19 +382,13 @@ function initNavbarFooter() {
                     ) return;
 
                     link.setAttribute("href", BASE_PATH + href);
-
                 });
-
             })
-                .catch(err => {
-
-                 console.error("Footer load error:", err);
-
+            .catch(err => {
+                console.error("Footer load error:", err);
             });
-
-        }   // closes if (footer)
-
-    }   // closes initNavbarFooter()
+    }
+} // End initNavbarFooter()
 
 // =======================================================
 // ITINERARY
@@ -514,26 +498,258 @@ function initItinerary() {
 
 }
 
-const btn = document.getElementById("viewMoreKenya");
-const hidden = document.getElementById("moreKenyaSafaris");
 
-if (btn && hidden) {
 
-    btn.addEventListener("click", () => {
 
-        hidden.classList.toggle("show");
-        btn.classList.toggle("active");
 
-        if (hidden.classList.contains("show")) {
 
-            btn.innerHTML = 'Show Less <i class="fa-solid fa-chevron-up"></i>';
+/* ======================================================
+   PACKAGES PAGE — SEARCH, FILTERS AND PAGINATION
+====================================================== */
 
-        } else {
+function initPackagesPage() {
+    const layout = document.querySelector(".safari-layout");
+    if (!layout) return;
 
-            btn.innerHTML = 'View More Kenya Safaris <i class="fa-solid fa-chevron-down"></i>';
+    const destination = document.getElementById("destinationFilter");
+    const budget = document.getElementById("budgetFilter");
+    const searchInput = document.getElementById("packageSearch");
+    const form = document.getElementById("safariFilterForm");
+    const resultsCount = document.getElementById("resultsCount");
+    const noResults = document.getElementById("noResults");
+    const results = layout.querySelector(".safari-results");
 
+    if (!results) return;
+
+    // Collect every package from the single grid or any existing sections.
+    const allCards = [
+        ...results.querySelectorAll(".package-card")
+    ];
+
+    if (!allCards.length) return;
+
+    const PAGE_SIZE = 12;
+    let currentPage = 1;
+
+    // Create pagination inside the results container.
+    let pagination = document.getElementById("packagePagination");
+
+    if (!pagination) {
+        pagination = document.createElement("nav");
+        pagination.id = "packagePagination";
+        pagination.setAttribute(
+            "aria-label",
+            "Safari package pagination"
+        );
+        results.appendChild(pagination);
+    }
+
+    // Destination filtering for the combined package grid.
+    function matchesDestination(card) {
+        const selected = destination?.value || "all";
+
+        if (selected === "all") return true;
+
+        // Preferred: add data-destination="kenya", "tanzania",
+        // "mountain", or multiple space-separated values to each card.
+        const destinations = (card.dataset.destination || "")
+            .toLowerCase()
+            .split(/\s+/)
+            .filter(Boolean);
+
+        if (destinations.length) {
+            return destinations.includes(selected);
         }
 
+        // Fallback for cards that don't yet have data-destination.
+        const title = card.querySelector("h3")?.textContent.toLowerCase() || "";
+        const location = card.querySelector(".location")?.textContent.toLowerCase() || "";
+        const text = `${title} ${location}`;
+
+        const isMountain =
+            /mount kenya|mountain trekking|trekking|sirimon|chogoria/.test(text);
+
+        if (selected === "mountain") {
+            return isMountain;
+        }
+
+        if (selected === "tanzania") {
+            return /tanzania|serengeti|ngorongoro|tarangire/.test(text);
+        }
+
+        if (selected === "kenya") {
+            return !isMountain &&
+                /kenya|masai mara|amboseli|samburu|lake nakuru|lake naivasha|shaba/.test(text);
+        }
+
+        return true;
+    }
+
+    // Filter by price.
+    function matchesBudget(card) {
+        const selected = budget?.value || "all";
+        if (selected === "all") return true;
+
+        const price = Number(card.dataset.price);
+        if (!Number.isFinite(price)) return false;
+
+        if (selected === "1000") {
+            return price >= 500 && price <= 1000;
+        }
+
+        if (selected === "2000") {
+            return price > 1000 && price <= 2000;
+        }
+
+        if (selected === "2001") {
+            return price > 2000;
+        }
+
+        return true;
+    }
+
+    // Search title, description, location, image alt text and links.
+    function matchesSearch(card) {
+        const query = (searchInput?.value || "")
+            .trim()
+            .toLowerCase();
+
+        if (!query) return true;
+
+        const searchableText = [
+            card.textContent,
+            ...[...card.querySelectorAll("img")].map(img => img.alt || ""),
+            ...[...card.querySelectorAll("a")].map(link => link.href || "")
+        ].join(" ").toLowerCase();
+
+        return searchableText.includes(query);
+    }
+
+    function getFilteredCards() {
+        return allCards.filter(card =>
+            matchesDestination(card) &&
+            matchesBudget(card) &&
+            matchesSearch(card)
+        );
+    }
+
+    function renderPagination(totalPages) {
+        pagination.replaceChildren();
+        pagination.hidden = totalPages <= 1;
+
+        if (totalPages <= 1) return;
+
+        function addButton(label, page, disabled = false, active = false) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = label;
+            button.disabled = disabled;
+
+            if (active) {
+                button.classList.add("active");
+                button.setAttribute("aria-current", "page");
+            }
+
+            button.addEventListener("click", () => {
+                currentPage = page;
+                updatePackages();
+
+                results.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+
+            pagination.appendChild(button);
+        }
+
+        addButton("← Previous", currentPage - 1, currentPage === 1);
+
+        for (let page = 1; page <= totalPages; page++) {
+            addButton(
+                String(page),
+                page,
+                false,
+                page === currentPage
+            );
+        }
+
+        addButton(
+            "Next →",
+            currentPage + 1,
+            currentPage === totalPages
+        );
+
+        const info = document.createElement("div");
+        info.className = "package-page-info";
+        info.textContent = `Page ${currentPage} of ${totalPages}`;
+        pagination.appendChild(info);
+    }
+
+    function updatePackages() {
+        const filteredCards = getFilteredCards();
+        const totalPages = Math.ceil(filteredCards.length / PAGE_SIZE);
+
+        currentPage = Math.max(
+            1,
+            Math.min(currentPage, Math.max(totalPages, 1))
+        );
+
+        const start = (currentPage - 1) * PAGE_SIZE;
+        const end = Math.min(start + PAGE_SIZE, filteredCards.length);
+        const visibleCards = new Set(filteredCards.slice(start, end));
+
+        allCards.forEach(card => {
+            card.hidden = !visibleCards.has(card);
+        });
+
+        // Only hide sections that are actually empty.
+        results.querySelectorAll(".package-section").forEach(section => {
+            const hasVisibleCard = [
+                ...section.querySelectorAll(".package-card")
+            ].some(card => visibleCards.has(card));
+
+            section.hidden = !hasVisibleCard;
+        });
+
+        if (resultsCount) {
+            resultsCount.textContent = filteredCards.length
+                ? `Showing ${start + 1}–${end} of ${filteredCards.length} packages`
+                : "No packages found";
+        }
+
+        if (noResults) {
+            noResults.hidden = filteredCards.length > 0;
+        }
+
+        renderPagination(totalPages);
+    }
+
+    searchInput?.addEventListener("input", () => {
+        currentPage = 1;
+        updatePackages();
     });
 
+    destination?.addEventListener("change", () => {
+        currentPage = 1;
+        updatePackages();
+    });
+
+    budget?.addEventListener("change", () => {
+        currentPage = 1;
+        updatePackages();
+    });
+
+    form?.addEventListener("submit", event => {
+        event.preventDefault();
+        currentPage = 1;
+        updatePackages();
+    });
+
+    form?.addEventListener("reset", () => {
+        currentPage = 1;
+        window.setTimeout(updatePackages, 0);
+    });
+
+    updatePackages();
 }
