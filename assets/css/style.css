@@ -2856,3 +2856,134 @@ textarea:focus {
         padding: 8px;
     }
 }
+
+
+/* FEATURED SAFARIS — MOBILE CLEANUP */
+@media (max-width: 600px) {
+
+    .tours {
+        padding: 32px 12px;
+    }
+
+    /* Two neat cards per row */
+    .tours .tours-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+        scroll-snap-type: none;
+    }
+
+    .tours .tour-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        margin: 0;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+
+    /* Compact landscape image */
+    .tours .tour-image {
+        height: 125px;
+        overflow: hidden;
+    }
+
+    .tours .tour-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Less padding */
+    .tours .tour-info {
+        padding: 10px;
+        min-width: 0;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    /* Keep the title */
+    .tours .tour-info h3 {
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 5px 0 8px;
+        overflow-wrap: anywhere;
+    }
+
+    /* Hide long descriptions */
+    .tours .tour-info p {
+        display: none;
+    }
+
+    /* Keep metadata compact */
+    .tours .tour-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 4px;
+    }
+
+    .tours .tour-meta span {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+    /* Keep price and action */
+    .tours .tour-footer {
+        margin-top: auto;
+        padding-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .tours .tour-footer h4 {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .tours .tour-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 9px 6px;
+        font-size: 11px;
+        text-align: center;
+        white-space: normal;
+    }
+
+    /* Keep badges readable without covering the image */
+    .tours .tour-badge {
+        top: 6px;
+        left: 6px;
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+}
+
+/* Extra-small phones */
+@media (max-width: 360px) {
+    .tours .tours-container {
+        gap: 8px;
+    }
+
+    .tours .tour-image {
+        height: 105px;
+    }
+
+    .tours .tour-info {
+        padding: 8px;
+    }
+
+    .tours .tour-info h3 {
+        font-size: 13px;
+    }
+}
