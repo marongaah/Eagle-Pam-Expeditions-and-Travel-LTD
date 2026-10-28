@@ -2138,3 +2138,114 @@ select:focus-visible {
         gap: 20px;
     }
 }
+
+
+/* =========================================
+   SAFARI PACKAGES — TYPOGRAPHY REFRESH
+   Match the Featured Safaris design
+========================================= */
+
+/* Consistent typography and colors */
+.safari-layout {
+    font-family: 'Poppins', sans-serif;
+    color: #2f3b31;
+    background: linear-gradient(135deg, #fcfbf6 0%, #f8f7f2 100%);
+}
+
+.safari-layout h1,
+.safari-layout h2,
+.safari-layout h3,
+.safari-layout h4,
+.safari-layout p,
+.safari-layout a,
+.safari-layout button,
+.safari-layout input,
+.safari-layout select,
+.safari-layout label {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Main page heading */
+.safari-layout h1 {
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: #1e5631;
+}
+
+/* Section headings */
+.safari-layout h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: #1e5631;
+}
+
+/* Package card titles */
+.safari-layout .package-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: #1e5631;
+}
+
+/* Body text and package descriptions */
+.safari-layout p,
+.safari-layout .package-description {
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: #55625a;
+}
+
+/* Price emphasis */
+.safari-layout .package-price,
+.safari-layout .price,
+.safari-layout .package-card h4 {
+    color: #b8860b;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Search, filters and form labels */
+.safari-layout input,
+.safari-layout select,
+.safari-layout button,
+.safari-layout label {
+    font-size: 0.9rem;
+}
+
+.safari-layout input,
+.safari-layout select {
+    color: #2f3b31;
+    border-radius: 12px;
+}
+
+/* Primary action buttons */
+.safari-layout .package-card a,
+.safari-layout button {
+    font-weight: 500;
+}
+
+/* Keep card typography readable on phones */
+@media (max-width: 600px) {
+    .safari-layout h1 {
+        font-size: 2rem;
+    }
+
+    .safari-layout h2 {
+        font-size: 1.55rem;
+    }
+
+    .safari-layout .package-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .safari-layout p,
+    .safari-layout .package-description {
+        font-size: 0.87rem;
+        line-height: 1.65;
+    }
+}
