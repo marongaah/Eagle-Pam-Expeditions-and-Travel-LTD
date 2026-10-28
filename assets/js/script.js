@@ -537,3 +537,27 @@ if (btn && hidden) {
     });
 
 }
+
+<script>
+(function () {
+    var chips = document.querySelectorAll('#featured-safaris .tour-chip');
+    var cards = document.querySelectorAll('#featured-safaris .tour-card');
+
+    chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            var filter = chip.getAttribute('data-filter');
+
+            chips.forEach(function (c) {
+                var on = c === chip;
+                c.classList.toggle('active', on);
+                c.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+
+            cards.forEach(function (card) {
+                var regions = (card.getAttribute('data-regions') || '').split(' ');
+                card.hidden = !(filter === 'all' || regions.indexOf(filter) !== -1);
+            });
+        });
+    });
+})();
+</script>

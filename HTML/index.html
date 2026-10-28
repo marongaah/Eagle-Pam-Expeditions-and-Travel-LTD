@@ -220,129 +220,285 @@
 
 </section>
 
-<!-- ================= TOURS ================= -->
-<section class="tours">
+<!-- =================FEATURED SAFARIS ================================= -->
 
-    <h2 class="section-title">
-        Featured Safari Experiences
-    </h2>
+<section class="tours" id="featured-safaris">
+
+    <span class="tours-tag">HAND-PICKED FOR YOU</span>
+
+    <h2 class="section-title">Featured Safari Experiences</h2>
 
     <p class="tours-subtitle">
-        Carefully crafted adventures across Kenya and East Africa,
+        Carefully crafted adventures across Kenya, Tanzania and Uganda,
         designed to deliver unforgettable wildlife encounters and authentic cultural experiences.
     </p>
+
+    <!-- Filter chips -->
+    <div class="tour-filters" role="group" aria-label="Filter safaris by country">
+        <button type="button" class="tour-chip active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="tour-chip" data-filter="kenya" aria-pressed="false">Kenya</button>
+        <button type="button" class="tour-chip" data-filter="tanzania" aria-pressed="false">Tanzania</button>
+        <button type="button" class="tour-chip" data-filter="uganda" aria-pressed="false">Uganda</button>
+    </div>
 
     <div class="tours-container">
 
         <!-- TOUR 1 -->
-        <div class="tour-card">
+        <article class="tour-card" data-regions="kenya">
 
             <div class="tour-image">
-                <img src="../assets/images/tour1.jpg" alt="Masai Mara Safari">
+                <img src="../assets/images/tour1.jpg"
+                     alt="Safari vehicle on a game drive across the Masai Mara plains"
+                     width="800" height="520" loading="lazy">
                 <span class="tour-badge">BESTSELLER</span>
+                <span class="tour-location"><i class="fas fa-location-dot"></i> Masai Mara · Kenya</span>
             </div>
 
             <div class="tour-info">
-                <span class="tour-location">MASAI MARA • KENYA</span>
 
                 <h3>3 Days Masai Mara Safari</h3>
 
+                <div class="tour-rating"><i class="fas fa-star"></i> 4.9 <span>(12 reviews on TourRadar)</span></div>
+
                 <div class="tour-meta">
-                    <span>3 Days</span>
+                    <span><i class="far fa-clock"></i> 3 days</span>
+                    <span><i class="far fa-calendar"></i> Best: Jul – Oct</span>
                     <span>Big Five</span>
                 </div>
 
                 <p>
-                    Experience Kenya's most famous wildlife reserve and witness incredible game drives in search of the Big Five.
+                    Kenya's most famous wildlife reserve, with game drives in search of the Big Five.
                 </p>
+
+                <!-- TODO: confirm these inclusions match this package -->
+                <ul class="tour-includes" aria-label="What's included">
+                    <li><i class="fas fa-bed"></i> Lodging</li>
+                    <li><i class="fas fa-ticket"></i> Park fees</li>
+                    <li><i class="fas fa-van-shuttle"></i> Game drives</li>
+                    <li><i class="fas fa-utensils"></i> Meals</li>
+                </ul>
 
                 <div class="tour-footer">
                     <div>
                         <small>From</small>
                         <h4>$650</h4>
+                        <small>per person</small>
                     </div>
 
-                    <a href="../Packages-HTML/3-days-mara.html" class="tour-btn">View Tour</a>
+                    <span class="tour-actions">
+                        <a href="https://wa.me/254111932279?text=Hi%20Eagle%20Pam%2C%20I%27m%20interested%20in%20the%203%20Days%20Masai%20Mara%20Safari."
+                           class="tour-wa" target="_blank" rel="noopener"
+                           aria-label="Enquire about the 3 Days Masai Mara Safari on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="../Packages-HTML/3-days-mara.html" class="tour-btn">View itinerary</a>
+                    </span>
                 </div>
             </div>
 
-        </div>
+        </article>
 
         <!-- TOUR 2 -->
-        <div class="tour-card">
+        <article class="tour-card" data-regions="kenya">
 
             <div class="tour-image">
-                <img src="../assets/images/tour2.jpg" alt="Kenya Wildlife Safari">
+                <img src="../assets/images/tour2.jpg"
+                     alt="Elephants walking in front of Mount Kilimanjaro in Amboseli"
+                     width="800" height="520" loading="lazy">
                 <span class="tour-badge">POPULAR</span>
+                <span class="tour-location"><i class="fas fa-location-dot"></i> Kenya Circuit</span>
             </div>
 
             <div class="tour-info">
-                <span class="tour-location">KENYA CIRCUIT</span>
 
                 <h3>7 Days Kenya Wildlife Safari</h3>
 
                 <div class="tour-meta">
-                    <span>7 Days</span>
-                    <span>Wildlife</span>
+                    <span><i class="far fa-clock"></i> 7 days</span>
+                    <span><i class="far fa-calendar"></i> Best: Year-round</span>
+                    <span>3 parks</span>
                 </div>
 
                 <p>
-                    Discover Masai Mara, Lake Nakuru and Amboseli National Park on one unforgettable adventure.
+                    Masai Mara, Lake Nakuru and Amboseli National Park on one unforgettable adventure.
                 </p>
+
+                <ul class="tour-includes" aria-label="What's included">
+                    <li><i class="fas fa-bed"></i> Lodging</li>
+                    <li><i class="fas fa-ticket"></i> Park fees</li>
+                    <li><i class="fas fa-van-shuttle"></i> Game drives</li>
+                    <li><i class="fas fa-utensils"></i> Meals</li>
+                </ul>
 
                 <div class="tour-footer">
                     <div>
                         <small>From</small>
                         <h4>$2,285</h4>
+                        <small>per person</small>
                     </div>
 
-                    <a href="../Packages-HTML/7-days-kenya-wildlife-safari.html" class="tour-btn">View Tour</a>
+                    <span class="tour-actions">
+                        <a href="https://wa.me/254111932279?text=Hi%20Eagle%20Pam%2C%20I%27m%20interested%20in%20the%207%20Days%20Kenya%20Wildlife%20Safari."
+                           class="tour-wa" target="_blank" rel="noopener"
+                           aria-label="Enquire about the 7 Days Kenya Wildlife Safari on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="../Packages-HTML/7-days-kenya-wildlife-safari.html" class="tour-btn">View itinerary</a>
+                    </span>
                 </div>
             </div>
 
-        </div>
+        </article>
 
         <!-- TOUR 3 -->
-        <div class="tour-card">
+        <article class="tour-card" data-regions="kenya tanzania">
 
             <div class="tour-image">
-                <img src="../assets/images/tour3.jpg" alt="Kenya Tanzania Safari">
-                <span class="tour-badge">PREMIUM</span>
+                <img src="../assets/images/tour3.jpg"
+                     alt="Wildebeest herd crossing the Serengeti plains"
+                     width="800" height="520" loading="lazy">
+                <span class="tour-badge">GREAT MIGRATION</span>
+                <span class="tour-location"><i class="fas fa-location-dot"></i> Kenya &amp; Tanzania</span>
             </div>
 
             <div class="tour-info">
-                <span class="tour-location">KENYA & TANZANIA</span>
 
-                <h3>7 Days Kenya & Tanzania Safari</h3>
+                <h3>7 Days Kenya &amp; Tanzania Safari</h3>
 
                 <div class="tour-meta">
-                    <span>7 Days</span>
-                    <span>Cross Border</span>
+                    <span><i class="far fa-clock"></i> 7 days</span>
+                    <span><i class="far fa-calendar"></i> Best: Jul – Oct</span>
+                    <span>2 countries</span>
                 </div>
 
                 <p>
-                    Explore Serengeti, Ngorongoro Crater and Masai Mara on the ultimate East African safari.
+                    Serengeti, Ngorongoro Crater and Masai Mara on the ultimate East African safari.
                 </p>
+
+                <ul class="tour-includes" aria-label="What's included">
+                    <li><i class="fas fa-bed"></i> Lodging</li>
+                    <li><i class="fas fa-ticket"></i> Park fees</li>
+                    <li><i class="fas fa-van-shuttle"></i> Game drives</li>
+                    <li><i class="fas fa-utensils"></i> Meals</li>
+                </ul>
 
                 <div class="tour-footer">
                     <div>
                         <small>From</small>
                         <h4>$1,450</h4>
+                        <small>per person</small>
                     </div>
 
-                    <a href="../Packages-HTML/7-days-kenya-tz-safari.html" class="tour-btn">View Tour</a>
+                    <span class="tour-actions">
+                        <a href="https://wa.me/254111932279?text=Hi%20Eagle%20Pam%2C%20I%27m%20interested%20in%20the%207%20Days%20Kenya%20%26%20Tanzania%20Safari."
+                           class="tour-wa" target="_blank" rel="noopener"
+                           aria-label="Enquire about the 7 Days Kenya and Tanzania Safari on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="../Packages-HTML/7-days-kenya-tz-safari.html" class="tour-btn">View itinerary</a>
+                    </span>
                 </div>
             </div>
 
-        </div>
+        </article>
+
+        <!-- TOUR 4 (new): Uganda gorilla trekking
+             TODO: create/replace the image, page link and details with your real package -->
+        <article class="tour-card" data-regions="uganda">
+
+            <div class="tour-image">
+                <img src="../assets/images/tour4.jpg"
+                     alt="Mountain gorilla resting in the forest of Bwindi, Uganda"
+                     width="800" height="520" loading="lazy">
+                <span class="tour-badge">BUCKET LIST</span>
+                <span class="tour-location"><i class="fas fa-location-dot"></i> Kenya · Tanzania</span>
+            </div>
+
+            <div class="tour-info">
+
+                <h3>12 Days Kenya & Tanzania Circuit Group Safari</h3>
+
+                <div class="tour-meta">
+                    <span><i class="far fa-clock"></i> 12 days</span>
+                    <span><i class="far fa-calendar"></i> Best: Jun – Sep</span>
+                    <span>2 Countries</span>
+                </div>
+
+                <p>
+                    Experience an unforgettable 12-day safari through Kenya and Tanzania, exploring East Africa’s iconic wildlife destinations.
+                </p>
+
+                <ul class="tour-includes" aria-label="What's included">
+                    <li><i class="fas fa-bed"></i> Lodging</li>
+                    <li><i class="fas fa-ticket"></i> Game Drives</li>
+                    <li><i class="fas fa-van-shuttle"></i> Transport</li>
+                    <li><i class="fas fa-utensils"></i> Meals</li>
+                </ul>
+
+                <div class="tour-footer">
+                    <div>
+                        <small>From</small>
+                        <h4 class="on-request">$4,850</h4>
+                        <small>Per Person</small>
+                    </div>
+
+                    <span class="tour-actions">
+                        <a href="https://wa.me/254111932279?text=Hi%20Eagle%20Pam%2C%20I%27d%20like%20a%20quote%20for%20Uganda%20Gorilla%20Trekking."
+                           class="tour-wa" target="_blank" rel="noopener"
+                           aria-label="Ask for a Uganda gorilla trekking quote on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="../Packages-HTML/12-days-kenya-tanzania-circuit.html" class="tour-btn">View Itinerary</a>
+                    </span>
+                </div>
+            </div>
+
+        </article>
 
     </div>
 
     <div class="view-all">
-        <a href="../HTML/packages.html" class="view-all-btn">View All Safaris →</a>
+        <a href="../HTML/packages.html" class="view-all-btn">View all 50+ safaris →</a>
     </div>
 
 </section>
+
+
+<!-- Structured data so Google can show price in results.
+     (No ratings included on purpose - add aggregateRating only with your real, verifiable numbers.) -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": "3 Days Masai Mara Safari",
+    "description": "Three-day game drive safari in Kenya's Masai Mara in search of the Big Five.",
+    "touristType": "Wildlife safari",
+    "provider": { "@id": "https://www.eaglepamexpeditionsandtravel.com/#organization" },
+    "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD", "url": "https://www.eaglepamexpeditionsandtravel.com/Packages-HTML/3-days-mara.html" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": "7 Days Kenya Wildlife Safari",
+    "description": "Seven-day safari covering Masai Mara, Lake Nakuru and Amboseli National Park.",
+    "touristType": "Wildlife safari",
+    "provider": { "@id": "https://www.eaglepamexpeditionsandtravel.com/#organization" },
+    "offers": { "@type": "Offer", "price": "2285", "priceCurrency": "USD", "url": "https://www.eaglepamexpeditionsandtravel.com/Packages-HTML/7-days-kenya-wildlife-safari.html" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": "7 Days Kenya & Tanzania Safari",
+    "description": "Seven-day cross-border safari through the Serengeti, Ngorongoro Crater and Masai Mara.",
+    "touristType": "Wildlife safari",
+    "provider": { "@id": "https://www.eaglepamexpeditionsandtravel.com/#organization" },
+    "offers": { "@type": "Offer", "price": "1450", "priceCurrency": "USD", "url": "https://www.eaglepamexpeditionsandtravel.com/Packages-HTML/7-days-kenya-tz-safari.html" }
+  }
+]
+</script>
+
+
 
 <!--========Destinations=============-->
 <section class="destinations">
