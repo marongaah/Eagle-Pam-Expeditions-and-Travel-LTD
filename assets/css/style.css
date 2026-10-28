@@ -2576,3 +2576,283 @@ textarea:focus {
         transform: none;
     }
 }
+
+
+/* =========================================
+   FINAL FIX — TOUR CARDS IN A NEAT GRID
+========================================= */
+
+/* Desktop: 3 cards per row */
+.tours .tours-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* Keep cards equal and prevent content overflow */
+.tours .tour-card {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Keep the card body and footer aligned */
+.tours .tour-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tours .tour-footer {
+    margin-top: auto;
+}
+
+/* Tablets: 2 columns */
+@media (min-width: 481px) and (max-width: 992px) {
+    .tours .tours-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Phones: 2 cards per row, no horizontal carousel */
+@media (max-width: 480px) {
+    .tours {
+        padding: 40px 12px;
+    }
+
+    .tours .tours-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        overflow: visible;
+        margin: 0;
+        padding: 0;
+        scroll-snap-type: none;
+    }
+
+    .tours .tour-card {
+        flex: initial;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        margin: 0;
+        transform: none;
+    }
+
+    .tours .tour-card:hover {
+        transform: none;
+    }
+
+    .tours .tour-image img {
+        width: 100%;
+        height: 125px;
+        object-fit: cover;
+    }
+
+    .tours .tour-info {
+        padding: 10px;
+    }
+
+    .tours .tour-info h3 {
+        font-size: 15px;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    .tours .tour-info p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .tours .tour-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .tours .tour-meta span {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+    .tours .tour-footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 10px;
+    }
+
+    .tours .tour-footer h4 {
+        font-size: 15px;
+    }
+
+    .tours .tour-btn {
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .tours .tour-badge {
+        top: 7px;
+        left: 7px;
+        padding: 4px 7px;
+        font-size: 9px;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 360px) {
+    .tours .tours-container {
+        gap: 8px;
+    }
+
+    .tours .tour-image img {
+        height: 105px;
+    }
+
+    .tours .tour-info {
+        padding: 8px;
+    }
+}
+
+
+/* WIDE SAFARI CARDS */
+.tours .tours-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: visible;
+}
+
+/* Allow each card to fill its column */
+.tours .tour-card {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    flex: initial;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Large landscape images like your reference */
+.tours .tour-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.tours .tour-image img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+/* Spacious card content */
+.tours .tour-info {
+    flex: 1;
+    min-width: 0;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tours .tour-info h3 {
+    font-size: 23px;
+    line-height: 1.35;
+}
+
+.tours .tour-info p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.tours .tour-footer {
+    margin-top: auto;
+}
+
+/* Tablet: two wide cards */
+@media (min-width: 481px) and (max-width: 992px) {
+    .tours .tours-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .tours .tour-image img {
+        height: 260px;
+    }
+}
+
+/* Mobile: two cards side by side */
+@media (max-width: 480px) {
+    .tours {
+        padding: 30px 12px;
+    }
+
+    .tours .tours-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        overflow: visible;
+        scroll-snap-type: none;
+    }
+
+    .tours .tour-image img {
+        height: 145px;
+    }
+
+    .tours .tour-info {
+        padding: 12px;
+    }
+
+    .tours .tour-info h3 {
+        font-size: 16px;
+        line-height: 1.35;
+    }
+
+    .tours .tour-info p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .tours .tour-footer h4 {
+        font-size: 16px;
+    }
+
+    .tours .tour-btn {
+        max-width: 100%;
+        white-space: normal;
+        font-size: 11px;
+        padding: 8px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    .tours .tours-container {
+        gap: 8px;
+    }
+
+    .tours .tour-image img {
+        height: 110px;
+    }
+
+    .tours .tour-info {
+        padding: 8px;
+    }
+}
