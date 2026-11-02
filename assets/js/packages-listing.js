@@ -97,7 +97,7 @@
         var feats = p.feats.map(function (f) { return "<li>" + ICON_CHECK + "<span>" + esc(f) + "</span></li>"; }).join("");
         var nights = p.d - 1;
         return '<article class="pk-card"><a class="pk-card-link" href="' + BASE + "Packages-HTML/" + p.href + '">' +
-            '<div class="pk-card-img"><img src="' + img + '" alt="' + esc(p.t) + '" loading="lazy"></div>' +
+            '<div class="pk-card-img"><img src="' + img + '" alt="' + esc(p.t) + '" loading="lazy"><span class="pk-badge">' + esc(p.badge) + "</span></div>" +
             '<div class="pk-card-body">' + pill +
             '<div class="pk-loc">' + esc(p.loc) + "</div>" +
             '<h3 class="pk-title">' + esc(p.t) + "</h3>" +
@@ -106,7 +106,7 @@
             '<div class="pk-card-foot">' +
             '<div><span class="pk-label">From</span><span class="pk-big">' + money(p.p) + '</span><span class="pk-sub">' + (p.note || "per person") + "</span></div>" +
             '<div><span class="pk-label">Duration</span><span class="pk-big">' + p.d + ' days</span><span class="pk-sub">' + nights + " nights</span></div>" +
-            '<span class="pk-badge">' + esc(p.badge) + "</span></div>" +
+            "</div>" +
             "</div></a></article>";
     }
 

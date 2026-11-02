@@ -2393,7 +2393,7 @@ select:focus-visible {
 }
 .pk-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(30, 25, 10, .12); }
 .pk-card-link { color: inherit; text-decoration: none; display: flex; flex-direction: column; height: 100%; }
-.pk-card-img { aspect-ratio: 16 / 10; overflow: hidden; background: #ddd5c3; }
+.pk-card-img { aspect-ratio: 16 / 10; overflow: hidden; background: #ddd5c3; position: relative; }
 .pk-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
 .pk-card:hover .pk-card-img img { transform: scale(1.05); }
 .pk-card-body { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 20px; }
@@ -2426,8 +2426,9 @@ select:focus-visible {
 .pk-big { display: block; font-size: 30px; font-weight: 700; line-height: 1.15; margin-top: 2px; }
 .pk-sub { font-size: 13px; color: var(--pk-muted); }
 .pk-badge {
-    position: absolute; right: 0; bottom: 0; background: var(--pk-accent); color: #111;
+    position: absolute; top: 14px; left: 14px; background: var(--pk-accent); color: #111;
     font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 6px 14px;
+    border-radius: 999px;
 }
 
 /* ---------- Empty / pager ---------- */
