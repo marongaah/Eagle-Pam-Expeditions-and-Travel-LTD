@@ -550,12 +550,22 @@ function initNavbarFooter() {
         const currentPath = normalizeHref(window.location.pathname);
 
         const targetPath = normalizeHref(linkHref);
+        const currentLeaf = currentPath.substring(currentPath.lastIndexOf("/") + 1);
+        const targetLeaf = targetPath.substring(targetPath.lastIndexOf("/") + 1);
 
-        const currentLeaf =
-            currentPath.substring(currentPath.lastIndexOf("/") + 1);
+        if (
+            currentPath.includes("/Destination Pages HTML/") &&
+            targetLeaf === "destinations.html"
+        ) {
+            return true;
+        }
 
-        const targetLeaf =
-            targetPath.substring(targetPath.lastIndexOf("/") + 1);
+        if (
+            currentPath.includes("/Packages-HTML/") &&
+            targetLeaf === "packages.html"
+        ) {
+            return true;
+        }
 
         if (currentLeaf === targetLeaf) return true;
 
@@ -581,18 +591,41 @@ function initNavbarFooter() {
         const navItems =
             document.querySelectorAll(".nav-links a[data-nav-link]");
 
-                    menuToggle?.addEventListener("click", () => {
+        const closeMenu = (restoreFocus = false) => {
+            navLinks?.classList.remove("active");
+            menuToggle?.setAttribute("aria-expanded", "false");
+            menuToggle?.setAttribute("aria-label", "Open navigation menu");
 
-            navLinks?.classList.toggle("active");
+            if (restoreFocus) menuToggle?.focus();
+        };
 
-            const expanded =
-                menuToggle.getAttribute("aria-expanded") === "true";
-
+        menuToggle?.addEventListener("click", () => {
+            const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+            navLinks?.classList.toggle("active", !expanded);
+            menuToggle.setAttribute("aria-expanded", String(!expanded));
             menuToggle.setAttribute(
-                "aria-expanded",
-                String(!expanded)
+                "aria-label",
+                expanded ? "Open navigation menu" : "Close navigation menu"
             );
+        });
 
+        document.addEventListener("click", (event) => {
+            if (
+                navLinks?.classList.contains("active") &&
+                !event.target.closest(".navbar")
+            ) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && navLinks?.classList.contains("active")) {
+                closeMenu(true);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 900) closeMenu();
         });
 
         navItems.forEach(link => {
@@ -608,23 +641,20 @@ function initNavbarFooter() {
             ) return;
 
             if (isActivePage(href)) {
-
                 link.classList.add("active");
-
+                link.setAttribute("aria-current", "page");
             }
 
             link.addEventListener("click", () => {
-
-                navLinks?.classList.remove("active");
-
-                menuToggle?.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
+                closeMenu();
             });
 
         });
+
+        const bookingLink = document.querySelector(".btn-book");
+        if (bookingLink && isActivePage(bookingLink.getAttribute("href"))) {
+            bookingLink.setAttribute("aria-current", "page");
+        }
 
     };
 

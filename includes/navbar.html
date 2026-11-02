@@ -1,36 +1,27 @@
 <header class="header">
-    <nav class="navbar">
-
-      <a href="HTML/index.html" class="logo" aria-label="Eagle Pam Expeditions home">
-    <img src="../assets/images/EPlogo2.jpg" alt="Eagle Pam Expeditions">
-</a>
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="HTML/index.html" class="logo" aria-label="Eagle Pam Expeditions home">
+            <img src="../assets/images/EPlogo2.jpg" alt="Eagle Pam Expeditions">
+        </a>
 
         <button class="menu-toggle"
                 type="button"
-                aria-label="Toggle navigation"
+                aria-label="Open navigation menu"
+                aria-controls="primary-navigation"
                 aria-expanded="false">
-
             <span></span>
             <span></span>
             <span></span>
-
         </button>
 
-        <ul class="nav-links">
-
+        <ul class="nav-links" id="primary-navigation">
             <li><a href="HTML/index.html" data-nav-link>Home</a></li>
-
             <li><a href="HTML/packages.html" data-nav-link>Safari Packages</a></li>
-
             <li><a href="HTML/destinations.html" data-nav-link>Destinations</a></li>
-
             <li><a href="HTML/About Us.html" data-nav-link>About</a></li>
-
             <li><a href="HTML/Contact Us.html" data-nav-link>Contact</a></li>
-
         </ul>
 
-        <a href="book.html" class="btn-book">Book Now</a>
-
+        <a href="book.html" class="btn-book">Plan your safari</a>
     </nav>
 </header>
