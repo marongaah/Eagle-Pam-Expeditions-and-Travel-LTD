@@ -3461,3 +3461,93 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
         padding-block: 54px;
     }
 }
+
+/* Balance the overview and price cards without repeating secondary claims. */
+.overview-grid {
+    align-items: stretch;
+    gap: clamp(24px, 4vw, 50px);
+}
+
+.overview-content,
+.booking-card {
+    min-width: 0;
+    height: 100%;
+}
+
+.booking-card {
+    align-self: stretch;
+}
+
+.price-box {
+    padding: 26px 26px 22px;
+}
+
+.booking-details {
+    padding: 0 20px;
+}
+
+.booking-details > .detail {
+    gap: 14px;
+    padding: 11px 0;
+}
+
+.booking-details > .detail:last-child,
+.booking-features,
+.booking-note {
+    display: none;
+}
+
+.booking-details > .detail i {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+}
+
+.booking-details > .detail strong {
+    margin-bottom: 2px;
+    font-size: .9rem;
+    line-height: 1.35;
+}
+
+.booking-details > .detail span {
+    font-size: .88rem;
+    line-height: 1.45;
+}
+
+.include-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(18px, 3vw, 32px);
+}
+
+.include-card {
+    min-width: 0;
+    height: 100%;
+    padding: clamp(24px, 3vw, 38px);
+}
+
+.include-card ul li {
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+.include-card ul li::before {
+    content: "\2713";
+}
+
+.include-card:nth-child(2) ul li::before {
+    color: #b4483e;
+    content: "\2715";
+}
+
+@media (max-width: 768px) {
+    .overview-content,
+    .booking-card,
+    .include-card {
+        height: auto;
+    }
+
+    .include-grid {
+        grid-template-columns: 1fr;
+    }
+}
