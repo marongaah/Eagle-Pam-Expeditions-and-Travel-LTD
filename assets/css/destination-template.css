@@ -76,46 +76,82 @@ body {
     transform: translateY(-2px);
 }
 
-.detail-hero {
-    display: flex;
-    min-height: 85vh;
+.destination-intro {
+    position: relative;
+    overflow: hidden;
+    padding: 104px 8% 24px;
+    border-bottom: 1px solid rgba(30, 86, 49, .1);
+    background:
+        radial-gradient(ellipse at 92% 0, rgba(212, 160, 23, .14), transparent 34%),
+        linear-gradient(135deg, #f8f7f2, #fff);
+}
+
+.destination-intro::after {
+    position: absolute;
+    right: 8%;
+    bottom: -34px;
+    width: 140px;
+    height: 70px;
+    border: 1px solid rgba(212, 160, 23, .22);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.destination-intro-content {
+    display: grid;
+    max-width: 1320px;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, .75fr);
     align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    background-image:
-        linear-gradient(rgba(0, 0, 0, .58), rgba(0, 0, 0, .58)),
-        var(--destination-hero, url("../images/aberdare4.jpg"));
-    background-position: center;
-    background-size: cover;
-    color: white;
-    text-align: center;
+    column-gap: clamp(24px, 5vw, 72px);
+    margin: 0 auto;
 }
 
-.detail-hero-content {
-    max-width: 850px;
-    animation: fadeUp 1s ease;
-}
-
-.detail-hero-content span {
-    color: var(--gold-500);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 3px;
+.destination-intro-content span {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 9px;
+    grid-column: 1 / -1;
+    margin-bottom: 8px;
+    padding: 6px 12px;
+    border: 1px solid rgba(212, 160, 23, .32);
+    border-radius: 999px;
+    background: #fffaf0;
+    color: #8a6611;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    line-height: 1.4;
     text-transform: uppercase;
 }
 
-.detail-hero-content h1 {
-    margin: 20px 0;
-    font-family: "Playfair Display", serif;
-    font-size: clamp(2.3rem, 4.6vw, 4.3rem);
-    line-height: 1.1;
+.destination-intro-content span::before {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold-500);
+    content: "";
 }
 
-.detail-hero-content p {
-    max-width: 720px;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    opacity: .92;
+.destination-intro-content h1 {
+    margin: 0;
+    color: var(--sage-800);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.12;
+    text-wrap: balance;
+}
+
+.destination-intro-content p {
+    max-width: 520px;
+    margin: 0;
+    padding-left: 22px;
+    border-left: 2px solid rgba(212, 160, 23, .55);
+    color: var(--ink-500);
+    font-size: .95rem;
+    line-height: 1.7;
 }
 
 .detail-overview {
@@ -457,105 +493,76 @@ body {
 }
 
 body[data-destination="aberdare"] {
-    --destination-hero: url("../images/aberdare4.jpg");
     --destination-cta: url("../images/aberdare1.jpg");
 }
 
 body[data-destination="amboseli"] {
-    --destination-hero: url("../images/hero-amboseli.jpg");
     --destination-cta: url("../images/amboseli4.jpg");
 }
 
 body[data-destination="kilimanjaro"] {
-    --destination-hero: url("../images/kilimanjaro1.jpg");
     --destination-cta: url("../images/kilimanjaro4.jpg");
 }
 
 body[data-destination="manyara"] {
-    --destination-hero: url("../images/manyara1.jpg");
     --destination-cta: url("../images/manyara4.jpg");
 }
 
 body[data-destination="masai-mara"] {
-    --destination-hero: url("../images/lion%20surrounded%20.jpg");
     --destination-cta: url("../images/tour1.jpg");
 }
 
 body[data-destination="meru"] {
-    --destination-hero: url("../images/meru4.jpg");
     --destination-cta: url("../images/meru1.jpg");
 }
 
 body[data-destination="mount-kenya"] {
-    --destination-hero: url("../images/mtkenya1.jpg");
     --destination-cta: url("../images/mtkenya4.jpg");
 }
 
 body[data-destination="lake-nakuru"] {
-    --destination-hero: url("../images/nakuru1.jpg");
     --destination-cta: url("../images/nakuru2.jpg");
 }
 
 body[data-destination="ngorongoro"] {
-    --destination-hero: url("../images/ngorongoro1.jpg");
     --destination-cta: url("../images/ngorongoro4.jpg");
 }
 
 body[data-destination="north-coast"] {
-    --destination-hero: url("../images/north1.jpg");
     --destination-cta: url("../images/north4.jpg");
 }
 
 body[data-destination="samburu"] {
-    --destination-hero: url("../images/samburu-hero.jpg");
     --destination-cta: url("../images/tour2.jpg");
 }
 
 body[data-destination="serengeti"] {
-    --destination-hero: url("../images/serengeti1.jpg");
     --destination-cta: url("../images/serengeti4.jpg");
 }
 
 body[data-destination="south-coast"] {
-    --destination-hero: url("../images/south1.jpg");
     --destination-cta: url("../images/south4.jpg");
 }
 
 body[data-destination="tarangire"] {
-    --destination-hero: url("../images/tarangire1.jpg");
     --destination-cta: url("../images/tarangire4.jpg");
 }
 
 body[data-destination="tsavo-east"] {
-    --destination-hero: url("../images/tsavo-east1.jpg");
     --destination-cta: url("../images/tsavo-east2.jpg");
 }
 
 body[data-destination="tsavo-west"] {
-    --destination-hero: url("../images/tsavo-west1.jpg");
     --destination-cta: url("../images/tsavo-east2.jpg");
 }
 
 body[data-destination="zanzibar"] {
-    --destination-hero: url("../images/zanzibar1.jpg");
     --destination-cta: url("../images/zanzibar4.jpg");
 }
 
 body[data-destination="amboseli"] .highlight-card,
 body[data-destination="samburu"] .highlight-card {
     padding: 40px 25px;
-}
-
-body[data-destination="amboseli"] .detail-hero {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, .58), rgba(0, 0, 0, .58)),
-        var(--destination-hero);
-}
-
-body[data-destination="samburu"] .detail-hero {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
-        var(--destination-hero);
 }
 
 body[data-destination="masai-mara"] .detail-overview,
@@ -618,8 +625,13 @@ body[data-destination="serengeti"] .btn-primary:hover {
         grid-template-columns: 1fr;
     }
 
-    .detail-hero-content h1 {
-        font-size: 38px;
+    .destination-intro {
+        padding-right: 6%;
+        padding-left: 6%;
+    }
+
+    .destination-intro-content h1 {
+        font-size: clamp(1.9rem, 5vw, 2.5rem);
     }
 
     .featured-safari-grid {
@@ -664,11 +676,32 @@ body[data-destination="serengeti"] .btn-primary:hover {
         grid-template-columns: 1fr;
     }
 
-    .detail-hero-content p {
-        font-size: 1.05rem;
-    }
-
     .overview-text p {
         font-size: 1rem;
+    }
+
+    @media (max-width: 600px) {
+        .destination-intro {
+            padding: 82px 6% 16px;
+        }
+
+        .destination-intro-content {
+            grid-template-columns: 1fr;
+            row-gap: 9px;
+        }
+
+        .destination-intro-content span {
+            margin-bottom: 0;
+        }
+
+        .destination-intro-content h1 {
+            font-size: clamp(1.65rem, 7vw, 2.1rem);
+        }
+
+        .destination-intro-content p {
+            padding-left: 12px;
+            font-size: .84rem;
+            line-height: 1.55;
+        }
     }
 }
