@@ -275,10 +275,6 @@ CARD (FIXED + PREMIUM FEEL)
     line-height: 1.2;
 }
 
-.destination-info span + span {
-    display: none;
-}
-
 .destination-info h3 {
     display: -webkit-box;
     min-height: 60px;
