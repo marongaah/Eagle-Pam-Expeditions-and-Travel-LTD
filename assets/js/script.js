@@ -183,7 +183,7 @@ function initTourSelection() {
 
 function initPackageBookingCta() {
 
-    const hero = document.querySelector(".package-hero");
+    const hero = document.querySelector(".package-intro");
 
     if (!hero) return;
 
