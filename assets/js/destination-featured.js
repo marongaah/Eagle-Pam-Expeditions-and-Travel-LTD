@@ -217,7 +217,7 @@
     var key = document.body.getAttribute("data-destination");
     var destination = destinations[key];
     var footer = document.getElementById("footer");
-    var heading = document.querySelector(".detail-hero h1");
+    var heading = document.querySelector(".destination-intro h1, .detail-hero h1");
 
     if (!destination || destination.packages.length < 3 || !footer || !heading) {
         console.error("Destination featured safaris could not be rendered.", { destination: key, footer: footer, heading: heading });
