@@ -16,48 +16,156 @@ body {
 }
 
 /* =====================================
-HERO
+DESTINATION SEARCH
 ===================================== */
 
-.destinations-hero {
-    height: 85vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.destination-search-section {
+    padding: 52px 24px 36px;
+    border-bottom: 1px solid #e7e1d4;
+    background: linear-gradient(135deg, #fcfbf6, #f8f7f2);
+}
+
+.destination-search-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
     text-align: center;
-    color: white;
-    padding: 0 20px;
-
-    background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url('../images/discover1.jpg');
-
-    background-size: cover;
-    background-position: center;
 }
 
-.hero-content {
-    max-width: 850px;
-    animation: fadeUp 1s ease;
+.destination-search-wrap > .section-tag {
+    margin-bottom: 8px;
 }
 
-.hero-content span {
-    color: #d4a017;
-    letter-spacing: 3px;
+.destination-search-wrap h1 {
+    margin: 0 0 8px;
+    color: #1b1b18;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+}
+
+.destination-search-wrap > p:not(.section-tag):not(.destination-search-count):not(.destination-search-empty) {
+    margin: 0 auto;
+    color: #6d6a62;
+    font-size: 16px;
+}
+
+.destination-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 980px;
+    margin: 26px auto 0;
+    padding: 6px 8px 6px 20px;
+    border: 1px solid #e7e1d4;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(30, 25, 10, .05);
+    text-align: left;
+}
+
+.destination-search-field,
+.destination-category-field {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+}
+
+.destination-search-field {
+    flex: 1;
+    gap: 10px;
+}
+
+.destination-category-field {
+    padding-left: 18px;
+    border-left: 1px solid #e7e1d4;
+}
+
+.destination-search-field svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    fill: none;
+    stroke: #6d6a62;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.destination-search input,
+.destination-search select {
+    width: 100%;
+    padding: 12px 4px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #1b1b18;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.destination-search select {
+    min-width: 190px;
+    cursor: pointer;
+}
+
+.destination-search input::placeholder {
+    color: #6d6a62;
+}
+
+.destination-search-btn {
+    flex: none;
+    padding: 14px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 16px;
     font-weight: 600;
-    font-size: 13px;
+    transition: background .2s;
 }
 
-.hero-content h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 6vw, 75px);
-    line-height: 1.1;
-    margin: 20px 0;
+.destination-search-btn:hover {
+    background: #1e5631;
 }
 
-.hero-content p {
-    font-size: 18px;
-    opacity: 0.9;
+.destination-search-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.destination-search-count {
+    min-height: 24px;
+    margin: 14px 0 0;
+    color: #6d6a62;
+    font-size: 14px;
+}
+
+.destination-search-empty {
+    margin: 22px 0 0;
+    color: #6d6a62;
+}
+
+.destination-search-empty button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #1e5631;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.destination-card[hidden],
+.destination-section[hidden] {
+    display: none !important;
 }
 
 /* =====================================
@@ -313,8 +421,38 @@ RESPONSIVE
 ===================================== */
 
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 36px;
+    .destination-search-section {
+        padding: 36px 20px 24px;
+    }
+
+    .destination-search {
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 10px 14px;
+        border-radius: 20px;
+    }
+
+    .destination-search-field {
+        flex-basis: 100%;
+        padding: 0 2px 8px;
+    }
+
+    .destination-category-field {
+        flex: 1 1 100%;
+        padding: 0;
+        border: 0;
+    }
+
+    .destination-search select {
+        width: 100%;
+        min-width: 0;
+        padding-left: 4px;
+    }
+
+    .destination-search-btn {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
     }
 
     .destination-section {

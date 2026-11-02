@@ -28,28 +28,43 @@
 <!-- ================= HEADER ================= -->
 <div id="navbar"></div>
 
-<!-- ================= HERO ================= -->
+<section class="destination-search-section" aria-labelledby="destination-search-title">
+    <div class="destination-search-wrap">
+        <span class="section-tag">EXPLORE EAST AFRICA</span>
+        <h1 id="destination-search-title">Find your next destination</h1>
+        <p>Search national parks, beaches, and mountain adventures across Kenya and Tanzania.</p>
 
-<section class="destinations-hero">
+        <form class="destination-search" id="destinationSearch" role="search">
+            <label class="destination-search-field">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+                <span class="destination-search-sr-only">Search destinations</span>
+                <input id="destinationQuery" type="search" placeholder="Where would you like to go? Mara, beach, mountain…" autocomplete="off">
+            </label>
 
-    <div class="hero-content">
+            <label class="destination-category-field">
+                <span class="destination-search-sr-only">Filter by experience</span>
+                <select id="destinationCategory">
+                    <option value="all">All experiences</option>
+                    <option value="wildlife">Wildlife safaris</option>
+                    <option value="beach">Coast & beaches</option>
+                    <option value="adventure">Mountains & trekking</option>
+                </select>
+            </label>
 
-        <span>EXPLORE EAST AFRICA</span>
+            <button type="submit" class="destination-search-btn">Find destinations</button>
+        </form>
 
-        <h1>Discover Africa’s Most Incredible Destinations</h1>
-
-        <p>
-            From iconic wildlife safaris to pristine beaches and mountain adventures,
-            explore the best of Kenya, Tanzania, and beyond.
+        <p id="destinationSearchCount" class="destination-search-count" aria-live="polite"></p>
+        <p id="destinationSearchEmpty" class="destination-search-empty" hidden>
+            No destinations match your search.
+            <button type="button" id="destinationSearchClear">Clear filters</button>
         </p>
-
     </div>
-
 </section>
 
 <!-- ================= WILDLIFE ================= -->
 
-<section class="destination-section">
+<section class="destination-section" data-category="wildlife">
 
     <span class="section-tag">WILDLIFE SAFARIS</span>
 
@@ -202,7 +217,7 @@
 </section>
 
 <!-- ================= BEACH ================= -->
-<section class="destination-section light">
+<section class="destination-section light" data-category="beach">
 
     <span class="section-tag">COAST & BEACHES</span>
 
@@ -252,7 +267,7 @@
 </section>
 
 <!-- ================= ADVENTURE ================= -->
-<section class="destination-section">
+<section class="destination-section" data-category="adventure">
 
     <span class="section-tag">ADVENTURE</span>
 
@@ -346,6 +361,7 @@
 <button id="topBtn">↑</button>
 
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/destinations-listing.js"></script>
 
 </body>
 </html>
