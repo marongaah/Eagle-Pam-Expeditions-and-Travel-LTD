@@ -143,54 +143,21 @@ function initSafariForm() {
         ].join("\n");
     };
 
-    safariForm.addEventListener("submit", async function (event) {
+    safariForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
         if (!safariForm.reportValidity()) return;
 
-        const submitButton = safariForm.querySelector('button[type="submit"]');
         const status = document.getElementById("bookingFormStatus");
-        const originalButtonText = submitButton?.textContent.trim() || "Send enquiry to our team";
-        const payload = Object.fromEntries(new FormData(safariForm).entries());
-        const travellerName = String(payload.name || "").trim();
+        const subject = `Safari planning enquiry | ${document.getElementById("destination")?.value.trim() || "Custom safari"}`;
+        const body = buildInquiryMessage();
 
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending your enquiry…";
+        if (status) {
+            status.classList.add("is-success");
+            status.textContent = "Your email app should open with your enquiry ready. Please review it and press Send to contact our team.";
         }
-        if (status) status.textContent = "";
 
-        try {
-            const response = await fetch("/api/send-enquiry", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.error || "Your enquiry could not be sent.");
-            }
-
-            safariForm.reset();
-            if (status) {
-                status.classList.add("is-success");
-                status.textContent = `Thank you${travellerName ? `, ${travellerName}` : ""}. Your enquiry has been sent to our safari team. This is not a confirmed booking; our team will contact you to discuss your plans.`;
-            }
-        } catch (error) {
-            console.error("Booking enquiry submission failed.", error);
-            if (status) {
-                status.classList.remove("is-success");
-                status.textContent = error instanceof Error
-                    ? error.message
-                    : "We could not send your enquiry. Please try again or contact us by WhatsApp.";
-            }
-        } finally {
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            }
-        }
+        window.location.href = `mailto:info@eaglepamexpeditionsandtravel.com?${new URLSearchParams({ subject, body })}`;
     });
 
     document.getElementById("bookingWhatsApp")?.addEventListener("click", () => {
