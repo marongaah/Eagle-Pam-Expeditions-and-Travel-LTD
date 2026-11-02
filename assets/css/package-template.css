@@ -3524,11 +3524,31 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
         flex: 0 0 min(82vw, 320px);
         scroll-snap-align: start;
     }
+
+    .accommodation-section .accommodation-grid {
+        display: flex;
+        gap: 16px;
+        margin-right: -16px;
+        margin-left: -16px;
+        padding: 4px 16px 18px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(31, 94, 59, .45) transparent;
+    }
+
+    .accommodation-section .accommodation-card {
+        flex: 0 0 min(82vw, 320px);
+        scroll-snap-align: start;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .highlights .highlight-grid,
-    .highlights-section .highlights-grid {
+    .highlights-section .highlights-grid,
+    .accommodation-section .accommodation-grid {
         scroll-behavior: auto;
     }
 }
