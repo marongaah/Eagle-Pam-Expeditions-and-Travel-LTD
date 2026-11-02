@@ -1,5 +1,3 @@
-const nodemailer = require("nodemailer");
-
 const STAFF_EMAIL = "info@eaglepamexpeditionsandtravel.com";
 
 function text(value, maxLength) {
@@ -8,6 +6,16 @@ function text(value, maxLength) {
 
 function isValidEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function escapeHtml(value) {
+    return value.replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+    })[character]);
 }
 
 module.exports = async function handler(req, res) {
@@ -50,16 +58,15 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: "Please check the travel date, trip length, and group size." });
     }
 
-    const smtpUser = process.env.ZOHO_SMTP_USER || process.env.ZOHO_USER;
-    const smtpPassword = process.env.ZOHO_SMTP_APP_PASSWORD || process.env.ZOHO_PASS;
+    const apiToken = process.env.ZEPTOMAIL_API_TOKEN;
+    const sender = process.env.ZEPTOMAIL_FROM || process.env.ZOHO_SMTP_USER || process.env.ZOHO_USER;
+    const recipient = process.env.ENQUIRY_TO || STAFF_EMAIL;
 
-    if (!smtpUser || !smtpPassword) {
-        console.error("Booking email is not configured: Zoho SMTP sender or password environment variable is missing.");
+    if (!apiToken || !sender) {
+        console.error("Booking email is not configured: ZeptoMail API token or verified sender is missing.");
         return res.status(503).json({ error: "Enquiry email is temporarily unavailable. Please contact us by WhatsApp." });
     }
 
-    const smtpPort = Number(process.env.ZOHO_SMTP_PORT || 465);
-    const smtpHost = process.env.ZOHO_SMTP_HOST || process.env.ZOHO_HOST || "smtp.zoho.com";
     const formattedDate = new Intl.DateTimeFormat("en", {
         day: "numeric",
         month: "long",
@@ -87,28 +94,62 @@ module.exports = async function handler(req, res) {
         message || "No additional requests provided."
     ].join("\n");
 
-    const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpPort === 465,
-        auth: {
-            user: smtpUser,
-            pass: smtpPassword
-        }
-    });
+    const htmlText = (value) => escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>");
+    const htmlBody = [
+        "<h2>New safari planning enquiry</h2>",
+        "<h3>Trip preferences</h3>",
+        `<p><strong>Safari or destination:</strong> ${escapeHtml(destination || "Not selected yet")}</p>`,
+        `<p><strong>Preferred departure date:</strong> ${escapeHtml(formattedDate)}</p>`,
+        `<p><strong>Trip duration:</strong> ${escapeHtml(tripDays ? `${tripDays} days` : "Flexible / not specified")}</p>`,
+        `<p><strong>Group size:</strong> ${escapeHtml(`${travelerCount} ${travelerCount === 1 ? "traveller" : "travellers"}`)}</p>`,
+        `<p><strong>Preferred travel style:</strong> ${escapeHtml(budget || "No preference selected")}</p>`,
+        "<h3>Traveller contact details</h3>",
+        `<p><strong>Full name:</strong> ${escapeHtml(name)}</p>`,
+        `<p><strong>Email address:</strong> ${escapeHtml(email)}</p>`,
+        `<p><strong>Phone / WhatsApp:</strong> ${escapeHtml(phone)}</p>`,
+        "<h3>Additional requests</h3>",
+        `<p>${htmlText(message || "No additional requests provided.")}</p>`
+    ].join("");
 
     try {
-        await transporter.sendMail({
-            from: `Eagle Pam Expeditions <${smtpUser}>`,
-            to: STAFF_EMAIL,
-            replyTo: email,
-            subject: `Safari planning enquiry | ${subjectDestination}`,
-            text: emailText
+        const response = await fetch("https://api.zeptomail.com/v1.1/email", {
+            method: "POST",
+            headers: {
+                Authorization: `Zoho-enczapikey ${apiToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                from: {
+                    address: sender,
+                    name: "Eagle Pam Expeditions"
+                },
+                to: [{
+                    email_address: {
+                        address: recipient,
+                        name: "Eagle Pam Expeditions Enquiries"
+                    }
+                }],
+                reply_to: [{
+                    address: email,
+                    name
+                }],
+                subject: `Safari planning enquiry | ${subjectDestination}`,
+                textbody: emailText,
+                htmlbody: htmlBody
+            }),
+            signal: AbortSignal.timeout(15000)
         });
+
+        if (!response.ok) {
+            console.error("ZeptoMail rejected a booking enquiry.", {
+                status: response.status
+            });
+            return res.status(502).json({ error: "We could not send your enquiry just now. Please try again or contact us by WhatsApp." });
+        }
     } catch (error) {
-        console.error("Zoho SMTP failed to send a booking enquiry.", {
-            code: error && error.code,
-            responseCode: error && error.responseCode
+        console.error("ZeptoMail request failed to send a booking enquiry.", {
+            name: error && error.name,
+            code: error && error.cause && error.cause.code
         });
         return res.status(502).json({ error: "We could not send your enquiry just now. Please try again or contact us by WhatsApp." });
     }

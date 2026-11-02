@@ -1,28 +1,28 @@
-# Booking enquiry email setup
+# Safari booking enquiry email setup
 
-The booking form submits to the Vercel serverless endpoint at `/api/send-enquiry`.
-The endpoint sends a formatted enquiry to `info@eaglepamexpeditionsandtravel.com`
-using Zoho Mail SMTP. The visitor stays on the booking page and can reply directly
-to the email address they provided.
+The safari booking form submits to the Vercel serverless endpoint at
+`/api/send-enquiry`. The endpoint sends a formatted trip and contact overview to
+`info@eaglepamexpeditionsandtravel.com` through the ZeptoMail HTTPS API. Visitors
+stay on the booking page; their email address is set as the reply-to address.
 
-Configure one of these sender/password pairs in the Vercel project settings for
-each environment (Preview and Production). The booking endpoint accepts either
-the `ZOHO_SMTP_*` names or the shared contact-form `ZOHO_*` names:
+Configure these Vercel environment variables for Production (and Preview if
+needed):
 
-- `ZOHO_SMTP_USER` or `ZOHO_USER`: the verified Zoho mailbox used as the sender
-- `ZOHO_SMTP_APP_PASSWORD` or `ZOHO_PASS`: an app-specific password for that mailbox; never commit it
-- `ZOHO_SMTP_HOST`: optional SMTP hostname for the Zoho account's region; defaults to `smtp.zoho.com`
-- `ZOHO_SMTP_PORT`: optional; defaults to `465` (use `587` for STARTTLS)
-- `ZOHO_HOST`: optional regional SMTP hostname, used if `ZOHO_SMTP_HOST` is unset
+- `ZEPTOMAIL_API_TOKEN`: ZeptoMail send-mail API token; keep it private
+- `ZEPTOMAIL_FROM`: verified sender address in ZeptoMail
+- `ENQUIRY_TO`: optional recipient; defaults to `info@eaglepamexpeditionsandtravel.com`
 
-After adding or changing environment variables, redeploy the project. The SMTP
-password must only exist in Vercel's encrypted environment settings, never in the
-browser code or repository.
+`ZOHO_SMTP_USER` or `ZOHO_USER` can be used as the sender if `ZEPTOMAIL_FROM`
+isn't set. The sender must be verified/configured in ZeptoMail. This endpoint
+uses HTTPS rather than an SMTP connection.
+
+After adding or changing Vercel environment variables, redeploy the project.
+Never put the ZeptoMail token in browser code or commit it to the repository.
 
 ## Contact page enquiries
 
 The Contact page form posts JSON to `/api/enquiry`; it does not open the visitor's
-email application. Nodemailer is already included as a project dependency.
+email application. That separate endpoint continues to use Zoho SMTP.
 
 Configure these Vercel environment variables for the Production environment
 (and Preview too, if you want contact submissions to work on preview deployments):
