@@ -12,8 +12,10 @@
 }
 
 body {
+    font-family: "Poppins", sans-serif;
     color: var(--ink-700);
     background: linear-gradient(135deg, var(--cream-50), var(--cream-100));
+    font-size: 17px;
     line-height: 1.7;
 }
 
@@ -96,7 +98,7 @@ body {
 
 .detail-hero-content span {
     color: var(--gold-500);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -110,7 +112,9 @@ body {
 }
 
 .detail-hero-content p {
-    font-size: 1.03rem;
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 1.2rem;
     opacity: .92;
 }
 
@@ -140,6 +144,7 @@ body {
 .overview-text p {
     margin-bottom: 15px;
     color: #555;
+    font-size: 1.05rem;
     line-height: 1.8;
 }
 
@@ -163,7 +168,7 @@ body {
 .overview-box li {
     margin-bottom: 10px;
     color: #444;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .highlights,
@@ -206,6 +211,13 @@ body {
 
 .highlight-card h3 {
     margin-bottom: 10px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+}
+
+.highlight-card p {
+    color: #4b514c;
+    font-size: 1rem;
 }
 
 .gallery-grid {
@@ -277,7 +289,7 @@ body {
 }
 
 .featured-safari-inner {
-    max-width: 1120px;
+    max-width: 1320px;
     margin: 0 auto;
 }
 
@@ -300,20 +312,25 @@ body {
     font-size: clamp(1.8rem, 3vw, 2.5rem);
 }
 
+.featured-safari-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
 .featured-safari-card {
     display: grid;
-    grid-template-columns: minmax(240px, .9fr) 1.1fr;
+    grid-template-rows: 190px 1fr;
     overflow: hidden;
     border: 1px solid rgba(30, 86, 49, .12);
-    border-radius: 24px;
+    border-radius: 18px;
     background: var(--cream-50);
     box-shadow: var(--shadow-soft);
 }
 
 .featured-safari-card img {
     width: 100%;
-    height: 100%;
-    min-height: 280px;
+    height: 190px;
     object-fit: cover;
 }
 
@@ -321,13 +338,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 32px;
+    padding: 24px;
 }
 
 .featured-safari-label {
     margin-bottom: 10px;
     color: var(--sage-700);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -336,13 +353,14 @@ body {
 .featured-safari-content h3 {
     margin-bottom: 12px;
     font-family: "Playfair Display", serif;
-    font-size: 1.65rem;
+    font-size: 1.4rem;
     line-height: 1.25;
 }
 
 .featured-safari-content p {
     margin-bottom: 22px;
     color: #555;
+    font-size: 1rem;
 }
 
 .featured-safari-link {
@@ -352,6 +370,7 @@ body {
     background: var(--sage-700);
     color: white;
     font-weight: 600;
+    font-size: 1rem;
     text-decoration: none;
     transition: background .2s, transform .2s;
 }
@@ -534,12 +553,12 @@ body[data-destination="serengeti"] .btn-primary:hover {
         font-size: 38px;
     }
 
-    .featured-safari-card {
-        grid-template-columns: 1fr;
+    .featured-safari-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .featured-safari-card img {
-        max-height: 320px;
+        height: 180px;
     }
 }
 
@@ -566,5 +585,17 @@ body[data-destination="serengeti"] .btn-primary:hover {
 
     .featured-safari-content {
         padding: 24px;
+    }
+
+    .featured-safari-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-hero-content p {
+        font-size: 1.05rem;
+    }
+
+    .overview-text p {
+        font-size: 1rem;
     }
 }
