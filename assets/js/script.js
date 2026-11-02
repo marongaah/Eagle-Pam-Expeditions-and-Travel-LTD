@@ -157,7 +157,7 @@ function initSafariForm() {
             status.textContent = "Your email app should open with your enquiry ready. Please review it and press Send to contact our team.";
         }
 
-        window.location.href = `mailto:info@eaglepamexpeditionsandtravel.com?${new URLSearchParams({ subject, body })}`;
+        window.location.href = `mailto:info@eaglepamexpeditionsandtravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 
     document.getElementById("bookingWhatsApp")?.addEventListener("click", () => {
