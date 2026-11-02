@@ -236,7 +236,7 @@
     <div class="tours-container">
 
         <!-- TOUR 1 -->
-        <article class="tour-card" data-regions="kenya">
+        <article class="tour-card" data-regions="kenya" data-trip-regions="kenya" data-trip-days="3" data-trip-price="650" data-trip-style="wildlife">
 
             <div class="tour-image">
                 <img src="../assets/images/tour1.jpg"
@@ -291,7 +291,7 @@
         </article>
 
         <!-- TOUR 2 -->
-        <article class="tour-card" data-regions="kenya">
+        <article class="tour-card" data-regions="kenya" data-trip-regions="kenya" data-trip-days="7" data-trip-price="2285" data-trip-style="wildlife">
 
             <div class="tour-image">
                 <img src="../assets/images/tour2.jpg"
@@ -344,7 +344,7 @@
         </article>
 
         <!-- TOUR 3 -->
-        <article class="tour-card" data-regions="kenya tanzania">
+        <article class="tour-card" data-regions="kenya tanzania" data-trip-regions="cross-border" data-trip-days="7" data-trip-price="1450" data-trip-style="migration">
 
             <div class="tour-image">
                 <img src="../assets/images/tour3.jpg"
@@ -397,7 +397,7 @@
         </article>
 
         <!-- TOUR 4 -->
-        <article class="tour-card">
+        <article class="tour-card" data-trip-regions="cross-border" data-trip-days="12" data-trip-price="4850" data-trip-style="group">
 
             <div class="tour-image">
                 <img src="../assets/images/tour4.jpg"
@@ -450,7 +450,7 @@
 
 
         <!-- TOUR 5 -->
-        <article class="tour-card" data-regions="kenya tanzania">
+        <article class="tour-card" data-regions="kenya tanzania" data-trip-regions="cross-border" data-trip-days="11" data-trip-price="4290" data-trip-style="wildlife">
             <div class="tour-image">
                 <img src="../assets/images/Hero10.jpg"
                      alt="Classic 4x4 jeep safari across Kenya and Tanzania"
@@ -499,7 +499,7 @@
         </article>
 
         <!-- TOUR 6 -->
-        <article class="tour-card" data-regions="kenya">
+        <article class="tour-card" data-regions="kenya" data-trip-regions="kenya" data-trip-days="5" data-trip-price="1550" data-trip-style="mountain">
             <div class="tour-image">
                 <img src="../assets/images/mtkenya6.jpg"
                      alt="Hikers trekking through the scenic Mount Kenya highlands"
@@ -591,6 +591,63 @@
 </script>
 
 
+
+<!-- ================= PERSONALIZED TRIP FINDER ================= -->
+<section class="trip-finder" id="trip-finder" aria-labelledby="trip-finder-title">
+    <div class="trip-finder-heading">
+        <span class="trip-finder-tag">A GOOD PLACE TO START</span>
+        <h2 class="section-title" id="trip-finder-title">Find a safari that feels like yours</h2>
+        <p>Choose what matters most. We’ll match your preferences to real itineraries from our collection.</p>
+    </div>
+
+    <form class="trip-finder-form" id="tripFinderForm">
+        <div class="trip-finder-field">
+            <label for="finder-region">Where would you like to go?</label>
+            <select id="finder-region" name="region">
+                <option value="any">I’m open to ideas</option>
+                <option value="kenya">Kenya</option>
+                <option value="tanzania">Tanzania</option>
+                <option value="cross-border">Kenya &amp; Tanzania</option>
+            </select>
+        </div>
+        <div class="trip-finder-field">
+            <label for="finder-duration">How much time do you have?</label>
+            <select id="finder-duration" name="duration">
+                <option value="any">Any trip length</option>
+                <option value="short">Up to 3 days</option>
+                <option value="week">4–7 days</option>
+                <option value="extended">8 days or more</option>
+            </select>
+        </div>
+        <div class="trip-finder-field">
+            <label for="finder-budget">Approx. budget per person (USD)</label>
+            <select id="finder-budget" name="budget">
+                <option value="any">Any budget</option>
+                <option value="up-to-1000">Up to $1,000</option>
+                <option value="1001-2000">$1,001–$2,000</option>
+                <option value="over-2000">Over $2,000</option>
+            </select>
+        </div>
+        <div class="trip-finder-field">
+            <label for="finder-style">What kind of trip sounds right?</label>
+            <select id="finder-style" name="style">
+                <option value="any">Show me a mix</option>
+                <option value="wildlife">Wildlife &amp; game drives</option>
+                <option value="migration">Great Migration</option>
+                <option value="group">Group safari</option>
+                <option value="mountain">Mountain trekking</option>
+            </select>
+        </div>
+        <button class="trip-finder-submit" type="submit">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i> Find my safari
+        </button>
+    </form>
+    <p class="trip-finder-note">Prices shown are starting rates per person. Final pricing depends on your dates, group size and itinerary details.</p>
+
+    <div class="trip-finder-results" id="tripFinderResults" aria-live="polite" aria-atomic="true" tabindex="-1">
+        <p class="trip-finder-hint">Your suggested itineraries will appear here.</p>
+    </div>
+</section>
 
 <!--========Destinations=============-->
 <section class="destinations">
@@ -861,16 +918,12 @@
 <!--===========Review Section===================-->
 <section class="reviews">
 
-    <span class="reviews-tag">
-        TRUSTED BY TRAVELERS
-    </span>
+    <span class="reviews-tag">REAL GUEST FEEDBACK · VERIFIED ON TOURRADAR</span>
 
-    <h2 class="section-title">
-        What Our Travelers Say
-    </h2>
+    <h2 class="section-title">Stories from the trail</h2>
 
     <p class="reviews-subtitle">
-        Read genuine reviews from guests who have explored East Africa with Eagle Pam Expeditions.
+        Explore guest reviews published on TourRadar. Read the original feedback and more trip experiences directly on the review platform.
     </p>
 
     <div class="reviews-container">
@@ -881,22 +934,24 @@
             <link href="https://www.tourradar.com/include/css/operator_badge_widget.css" rel="stylesheet" type="text/css">
 
             <div id="operator_badge_widget_medium">
-                <a href="https://www.tourradar.com/" target="_blank">
+                <a href="https://www.tourradar.com/" target="_blank" rel="noopener noreferrer">
                     <div class="logo-trust">
                         <div class="logo"></div>
                         <span class="trust">Trusted Partner</span>
                     </div>
                 </a>
 
-                <a href="https://www.tourradar.com/o/eagle-pam-expeditions-and-travel-ltd" target="_blank">
+                <a href="https://www.tourradar.com/o/eagle-pam-expeditions-and-travel-ltd" target="_blank" rel="noopener noreferrer">
                     <div class="partner-reviews">
                         <p class="partner">Eagle Pam Expeditions and Travel Ltd</p>
 
                         <div class="reviews">
                             <iframe
                                 src="https://www.tourradar.com/iframes/operator_widget_bg/12222/en/2"
+                                title="Eagle Pam Expeditions guest rating on TourRadar"
                                 height="12"
                                 frameborder="0"
+                                loading="lazy"
                                 scrolling="no">
                             </iframe>
                         </div>
@@ -917,7 +972,7 @@
                 <div id="operator-tr">
 
                     <div id="name-tr">
-                        <a href="https://www.tourradar.com/t/198005" target="_blank">
+                        <a href="https://www.tourradar.com/t/198005" target="_blank" rel="noopener noreferrer">
                             12 Day Best of Kenya and Tanzania Circuit Group Safari Reviews
                         </a>
                     </div>
@@ -929,12 +984,14 @@
                     width="100%"
                     height="275"
                     frameborder="0"
+                    title="Guest reviews for the 12 Day Best of Kenya and Tanzania Circuit on TourRadar"
+                    loading="lazy"
                     scrolling="no">
                 </iframe>
 
                 <div class="badge-bottom-links">
                     Reviewed on
-                    <a href="https://www.tourradar.com/t/198005" target="_blank">
+                    <a href="https://www.tourradar.com/t/198005" target="_blank" rel="noopener noreferrer">
                         TourRadar
                     </a>
                 </div>
@@ -944,29 +1001,40 @@
         </div>
 
     </div>
+    <a class="reviews-all-link" href="https://www.tourradar.com/o/eagle-pam-expeditions-and-travel-ltd" target="_blank" rel="noopener noreferrer">
+        Read more guest reviews on TourRadar <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
 
 </section>
 
-<!-- ================= PLANNER ================= -->
-<section class="planner">
-
-    <div class="planner-left">
-
-        <span>★ CUSTOM SAFARI PLANNER</span>
-
-        <h2>
-            Tell us your dream safari.<br>
-            We'll build the perfect trip.
-        </h2>
-
-        <p>
-            Answer a few quick questions and receive a personalized safari itinerary.
-        </p>
-
-        <a href="../book.html" class="planner-btn">Start Planning</a>
-
+<!-- ================= ENQUIRY PROCESS ================= -->
+<section class="enquiry-journey" aria-labelledby="enquiry-journey-title">
+    <div class="enquiry-journey-heading">
+        <span>FROM FIRST IDEA TO OPEN ROAD</span>
+        <h2 id="enquiry-journey-title">Planning your safari, made personal</h2>
+        <p>A simple, collaborative process with our safari team—before you decide to book.</p>
     </div>
-
+    <div class="enquiry-steps">
+        <article class="enquiry-step">
+            <span class="enquiry-step-number">01</span>
+            <div class="enquiry-step-icon"><i class="fa-regular fa-comment-dots" aria-hidden="true"></i></div>
+            <h3>Tell us what matters</h3>
+            <p>Share your dates, travel style, group size, budget and the moments you hope to experience.</p>
+        </article>
+        <article class="enquiry-step">
+            <span class="enquiry-step-number">02</span>
+            <div class="enquiry-step-icon"><i class="fa-solid fa-map" aria-hidden="true"></i></div>
+            <h3>Explore your options</h3>
+            <p>Our team will review your enquiry and help shape a suitable itinerary and clear quotation.</p>
+        </article>
+        <article class="enquiry-step">
+            <span class="enquiry-step-number">03</span>
+            <div class="enquiry-step-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+            <h3>Refine your plans</h3>
+            <p>Ask questions, adjust the details and decide when you’re comfortable with the plan.</p>
+        </article>
+    </div>
+    <a href="../book.html" class="enquiry-journey-cta">Start planning with our team <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
 </section>
 
 <!-- ================= CTA ================= -->

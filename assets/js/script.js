@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPackageGallery();
     initHomeDestinationCarousel();
     initHomeCardNavigation();
+    initHomeTripFinder();
 
 });
 
@@ -353,6 +354,95 @@ function initHomeCardNavigation() {
 
             window.location.assign(destinationLink.href);
         });
+    });
+}
+
+function initHomeTripFinder() {
+    const form = document.getElementById("tripFinderForm");
+    const results = document.getElementById("tripFinderResults");
+    const tourCards = [...document.querySelectorAll(".tours .tour-card[data-trip-days]")];
+
+    if (!form || !results || !tourCards.length) return;
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const preferences = new FormData(form);
+        const region = preferences.get("region");
+        const duration = preferences.get("duration");
+        const budget = preferences.get("budget");
+        const style = preferences.get("style");
+
+        const matches = tourCards.filter((card) => {
+            const days = Number(card.dataset.tripDays);
+            const price = Number(card.dataset.tripPrice);
+
+            const matchesDuration = duration === "any" ||
+                (duration === "short" && days <= 3) ||
+                (duration === "week" && days >= 4 && days <= 7) ||
+                (duration === "extended" && days >= 8);
+            const matchesBudget = budget === "any" ||
+                (budget === "up-to-1000" && price <= 1000) ||
+                (budget === "1001-2000" && price > 1000 && price <= 2000) ||
+                (budget === "over-2000" && price > 2000);
+
+            const tripRegion = card.dataset.tripRegions;
+            const matchesRegion = region === "any" ||
+                tripRegion === region ||
+                (tripRegion === "cross-border" && ["kenya", "tanzania"].includes(region));
+
+            return matchesRegion &&
+                matchesDuration &&
+                matchesBudget &&
+                (style === "any" || card.dataset.tripStyle === style);
+        }).slice(0, 3);
+
+        const heading = document.createElement("h3");
+        heading.className = "trip-finder-results-title";
+
+        if (!matches.length) {
+            heading.textContent = "No exact match yet — let’s shape one together.";
+            const message = document.createElement("p");
+            message.textContent = "Tell our safari team where you’d like to go and what you have in mind.";
+            const link = document.createElement("a");
+            link.href = "../book.html";
+            link.className = "trip-finder-custom-link";
+            link.textContent = "Plan a custom safari";
+            results.replaceChildren(heading, message, link);
+            return;
+        }
+
+        heading.textContent = matches.length === 1
+            ? "A safari to start with"
+            : "Your safari matches";
+
+        const list = document.createElement("div");
+        list.className = "trip-finder-match-list";
+
+        matches.forEach((card) => {
+            const itineraryLink = card.querySelector(".tour-btn");
+            const title = card.querySelector("h3")?.textContent.trim();
+            if (!itineraryLink || !title) return;
+
+            const matchLink = document.createElement("a");
+            matchLink.className = "trip-finder-match";
+            matchLink.href = itineraryLink.href;
+
+            const matchTitle = document.createElement("strong");
+            matchTitle.textContent = title;
+
+            const details = document.createElement("span");
+            details.textContent = `${card.dataset.tripDays} days · From ${card.querySelector(".tour-footer h4")?.textContent.trim() || "See itinerary"} per person`;
+
+            const arrow = document.createElement("i");
+            arrow.className = "fa-solid fa-arrow-right";
+            arrow.setAttribute("aria-hidden", "true");
+
+            matchLink.append(matchTitle, details, arrow);
+            list.appendChild(matchLink);
+        });
+
+        results.replaceChildren(heading, list);
     });
 }
 
