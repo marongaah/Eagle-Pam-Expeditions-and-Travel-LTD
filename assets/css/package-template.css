@@ -2571,3 +2571,102 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
         .booking-badge{
         display:none;
     }
+
+/* Consistent booking presentation across safari detail pages */
+.package-hero .hero-content {
+    width: min(900px, 92%);
+}
+
+.hero-content h1,
+.hero-content h2 {
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    text-wrap: balance;
+}
+
+.hero-content > p {
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.hero-buttons .btn-primary,
+.book-now {
+    min-height: 54px;
+    box-shadow: 0 12px 28px rgba(200, 155, 60, .28);
+}
+
+.booking-card {
+    border-color: rgba(31, 94, 59, .12);
+    box-shadow: 0 20px 55px rgba(19, 45, 28, .12);
+}
+
+.booking-card .price-box h2 {
+    margin: 0;
+}
+
+.booking-card .detail {
+    border-color: rgba(31, 94, 59, .1);
+}
+
+.booking-card .detail strong {
+    color: var(--primary-dark);
+}
+
+.timeline-content,
+.overview-content,
+.include-card,
+.highlight-card,
+.related-card {
+    border: 1px solid rgba(31, 94, 59, .08);
+}
+
+.package-mobile-booking {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    body.has-package-mobile-booking {
+        padding-bottom: calc(86px + env(safe-area-inset-bottom));
+    }
+
+    .section-heading h2,
+    .section-title h2 {
+        max-width: 100%;
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+        line-height: 1.15;
+        text-wrap: balance;
+    }
+
+    .package-mobile-booking {
+        position: fixed;
+        z-index: 1100;
+        right: 16px;
+        bottom: max(14px, env(safe-area-inset-bottom));
+        left: 16px;
+        display: flex;
+        min-height: 54px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border: 1px solid rgba(255, 255, 255, .18);
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 12px 30px rgba(15, 44, 26, .28);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background .2s ease, transform .2s ease;
+    }
+
+    .package-mobile-booking:hover,
+    .package-mobile-booking:focus-visible {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+    }
+
+    .package-mobile-booking:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+    }
+}

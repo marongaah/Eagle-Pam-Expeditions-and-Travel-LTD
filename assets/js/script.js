@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavbarFooter();
     initItinerary();
     initPackagesPage();
+    initPackageBookingCta();
 
 });
 
@@ -103,7 +104,7 @@ function initSafariForm() {
             `Name: ${name}`,
             `Email: ${email}`,
             `Phone: ${phone}`,
-            `Destination: ${destination}`,
+            `Safari package / destination: ${destination || "Not specified"}`,
             `Travel Date: ${date}`,
             `Trip Length: ${days ? `${days} days` : "Not specified"}`,
             `Travelers: ${travelers}`,
@@ -164,6 +165,57 @@ function initTourSelection() {
         destinationField.value = tour;
 
     }
+
+    const travelDate = document.getElementById("date");
+
+    if (travelDate) {
+        const today = new Date();
+        const localToday = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+
+        travelDate.min = localToday;
+    }
+
+}
+
+function initPackageBookingCta() {
+
+    const hero = document.querySelector(".package-hero");
+
+    if (!hero) return;
+
+    const bookingLink = hero.querySelector('a[href*="book.html"]');
+    const packageTitle = hero.querySelector("h1, h2")?.textContent.trim().replace(/\s+/g, " ");
+
+    if (!bookingLink || !packageTitle) {
+        console.error("Package booking button could not be initialized.");
+        return;
+    }
+
+    const bookingUrl = new URL(bookingLink.href);
+    bookingUrl.search = "";
+    bookingUrl.searchParams.set("tour", packageTitle);
+    bookingUrl.hash = "booking-form";
+    bookingLink.href = bookingUrl.toString();
+
+    const mobileBookingLink = document.createElement("a");
+    mobileBookingLink.className = "package-mobile-booking";
+    mobileBookingLink.href = bookingUrl.toString();
+    mobileBookingLink.setAttribute("aria-label", `Choose dates and book ${packageTitle}`);
+
+    const icon = document.createElement("i");
+    icon.className = "fa-solid fa-calendar-check";
+    icon.setAttribute("aria-hidden", "true");
+
+    const text = document.createElement("span");
+    text.textContent = "Choose dates & book";
+
+    mobileBookingLink.append(icon, text);
+    document.body.append(mobileBookingLink);
+    document.body.classList.add("has-package-mobile-booking");
 
 }
 
