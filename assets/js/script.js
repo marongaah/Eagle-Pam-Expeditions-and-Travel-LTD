@@ -88,12 +88,10 @@ function initSafariForm() {
 
     if (!safariForm) return;
 
-    safariForm.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
+    const buildInquiryMessage = () => {
         const name = document.getElementById("name")?.value || "";
         const email = document.getElementById("email")?.value || "";
+        const phone = document.getElementById("phone")?.value || "";
         const destination = document.getElementById("destination")?.value || "";
         const date = document.getElementById("date")?.value || "";
         const days = document.getElementById("days")?.value || "";
@@ -101,18 +99,40 @@ function initSafariForm() {
         const budget = document.getElementById("budget")?.value || "";
         const message = document.getElementById("message")?.value || "";
 
-        const whatsappMessage = [
-            "Hello Eagle Pam Expeditions,",
-            "",
-            `My Name: ${name}`,
+        return [
+            `Name: ${name}`,
             `Email: ${email}`,
-            `Phone: ${document.getElementById("phone")?.value || ""}`,
+            `Phone: ${phone}`,
             `Destination: ${destination}`,
             `Travel Date: ${date}`,
             `Trip Length: ${days ? `${days} days` : "Not specified"}`,
             `Travelers: ${travelers}`,
             `Travel Style: ${budget}`,
             `Message: ${message}`
+        ].join("\n");
+    };
+
+    safariForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const subject = document.getElementById("destination")?.value
+            ? `Safari inquiry - ${document.getElementById("destination").value}`
+            : "Safari inquiry - Eagle Pam Expeditions";
+        const mailto = `mailto:info@eaglepamexpeditions.com?${new URLSearchParams({
+            subject,
+            body: buildInquiryMessage()
+        })}`;
+
+        window.location.href = mailto;
+    });
+
+    document.getElementById("bookingWhatsApp")?.addEventListener("click", () => {
+        if (!safariForm.reportValidity()) return;
+
+        const whatsappMessage = [
+            "Hello Eagle Pam Expeditions,",
+            "",
+            buildInquiryMessage()
         ].join("\n");
 
         window.open(

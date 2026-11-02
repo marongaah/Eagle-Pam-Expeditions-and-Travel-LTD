@@ -303,7 +303,8 @@
     resize: vertical;
 }
 
-.booking-submit {
+.booking-submit,
+.booking-whatsapp-submit {
     display: flex;
     width: 100%;
     min-height: 52px;
@@ -329,7 +330,22 @@
     box-shadow: 0 14px 26px rgba(30, 86, 49, .24);
 }
 
+.booking-whatsapp-submit {
+    min-height: 48px;
+    margin-top: 12px;
+    border: 1px solid #cfe1d2;
+    background: #f3f8f3;
+    color: var(--booking-green);
+}
+
+.booking-whatsapp-submit:hover {
+    transform: translateY(-1px);
+    border-color: #9dc5a5;
+    background: #eaf4eb;
+}
+
 .booking-submit:focus-visible,
+.booking-whatsapp-submit:focus-visible,
 .booking-contact a:focus-visible,
 .booking-hero-link:focus-visible {
     outline: 3px solid var(--booking-gold);
