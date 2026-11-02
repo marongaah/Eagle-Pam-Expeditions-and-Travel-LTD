@@ -277,6 +277,7 @@ function initPackageBookingCta() {
                 days: 7,
                 price: 3550,
                 badge: "Cross-border",
+                category: "tanzania",
                 format: "Small group",
                 image: "lion surrounded .jpg",
                 href: "7-days-kenya-tz-safari.html",
@@ -310,6 +311,7 @@ function initPackageBookingCta() {
                 days: 12,
                 price: 4847,
                 badge: "Cross-border",
+                category: "tanzania",
                 format: "Group tour",
                 image: "p3.jpg",
                 href: "12-days-kenya-tanzania-circuit.html",
@@ -321,6 +323,7 @@ function initPackageBookingCta() {
                 days: 13,
                 price: 6180,
                 badge: "4x4 safari",
+                category: "tanzania",
                 format: "Private tour",
                 image: "p6.jpg",
                 href: "13-days-kenya-tanzania-4x4-jeep-safari.html",
@@ -332,6 +335,7 @@ function initPackageBookingCta() {
                 days: 11,
                 price: 4290,
                 badge: "Mid-range",
+                category: "tanzania",
                 format: "Group tour",
                 image: "p7.jpg",
                 href: "11-days-kenya-tanzania-classic-mid-range-jeep-safari.html",
@@ -343,6 +347,7 @@ function initPackageBookingCta() {
                 days: 4,
                 price: 1350,
                 badge: "Guided trek",
+                category: "mountain",
                 format: "Sirimon route",
                 image: "Mt1.jpg",
                 href: "4-day-mount-kenya-trekking-adventure.html",
@@ -354,6 +359,7 @@ function initPackageBookingCta() {
                 days: 5,
                 price: 1550,
                 badge: "Guided trek",
+                category: "mountain",
                 format: "Summit adventure",
                 image: "Mt2.jpg",
                 href: "5-day-trek-sirimon-chogoria.html",
@@ -362,14 +368,16 @@ function initPackageBookingCta() {
         ];
 
         const currentPage = window.location.pathname.split("/").pop();
-        const isTanzaniaCircuit = /tanzania/i.test(currentPage);
-        const isMountainTrek = /mount-kenya|trek-sirimon/i.test(currentPage);
+        const currentPackage = packages.find((item) => item.href === currentPage);
+        const currentCategory = currentPackage?.category || "kenya";
         const recommendations = packages.filter((item) => item.href !== currentPage);
-        const preferred = isMountainTrek
-            ? recommendations.filter((item) => /mount-kenya|trek-sirimon/i.test(item.href))
-            : isTanzaniaCircuit
-                ? recommendations.filter((item) => /tanzania/i.test(item.href))
-                : recommendations.filter((item) => !/tanzania|mount-kenya|trek-sirimon/i.test(item.href));
+        const preferred = recommendations.filter((item) =>
+            currentCategory === "mountain"
+                ? item.category === "mountain"
+                : currentCategory === "tanzania"
+                    ? item.category === "tanzania"
+                    : !item.category
+        );
         const selected = [...preferred, ...recommendations.filter((item) => !preferred.includes(item))]
             .slice(0, 3);
 
