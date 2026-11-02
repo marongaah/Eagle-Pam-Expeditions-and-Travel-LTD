@@ -42,48 +42,65 @@ GLOBAL SECTION SYSTEM (CORE FIX)
 }
 
 /* =====================================
-ABOUT HERO
+COMPACT ABOUT INTRO
 ===================================== */
 
-.about-hero {
-    height: 80vh;
+.about-intro {
+    position: relative;
+    overflow: hidden;
+    padding: 106px 8% 30px;
+    border-bottom: 1px solid rgba(30, 86, 49, .1);
     background:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-        url('../images/about1.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
+        radial-gradient(ellipse at 92% 0, rgba(212, 160, 23, .14), transparent 34%),
+        linear-gradient(135deg, #f8f7f2, #fff);
+}
+
+.about-intro-content {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.about-intro-content span {
+    display: inline-flex;
     align-items: center;
-    text-align: center;
-    color: white;
-    padding: 0 20px;
+    gap: 9px;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border: 1px solid rgba(212, 160, 23, .32);
+    border-radius: 999px;
+    background: #fffaf0;
+    color: #8a6611;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
 }
 
-.about-content {
+.about-intro-content span::before {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d4a017;
+    content: "";
+}
+
+.about-intro-content h1 {
     max-width: 850px;
-}
-
-.about-content span {
-    display: block;
-    color: #d4a017;
-    letter-spacing: 3px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.about-content h1 {
+    margin-bottom: 10px;
+    color: #163f24;
     font-family: 'Playfair Display', serif;
-    font-size: 72px;
-    line-height: 1.1;
-    margin-bottom: 25px;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.12;
+    text-wrap: balance;
 }
 
-.about-content p {
-    font-size: 19px;
-    line-height: 1.8;
-    color: rgba(255,255,255,.92);
+.about-intro-content p {
+    max-width: 720px;
+    margin: 0;
+    padding-left: 16px;
+    border-left: 2px solid rgba(212, 160, 23, .55);
+    color: #55625a;
+    font-size: 1rem;
+    line-height: 1.7;
 }
 
 /* =====================================
@@ -390,7 +407,7 @@ ANIMATION
     }
 }
 
-.about-hero,
+.about-intro,
 .our-story,
 .mission-card,
 .why-box,
@@ -412,27 +429,30 @@ RESPONSIVE
         grid-template-columns: 1fr;
     }
 
-    .about-content h1 {
-        font-size: 58px;
+    .about-intro {
+        padding-right: 6%;
+        padding-left: 6%;
     }
 }
 
 @media (max-width: 768px) {
-    .about-hero {
-        height: 70vh;
+    .about-intro {
+        padding-top: 92px;
+        padding-bottom: 24px;
     }
 
-    .about-content h1 {
-        font-size: 42px;
+    .about-intro-content h1 {
+        font-size: clamp(1.8rem, 7vw, 2.4rem);
     }
 
-    .about-content p {
-        font-size: 16px;
+    .about-intro-content p {
+        font-size: .92rem;
     }
 }
 
 @media (max-width: 480px) {
-    .about-content h1 {
-        font-size: 34px;
+    .about-intro {
+        padding-top: 84px;
+        padding-bottom: 20px;
     }
 }

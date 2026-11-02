@@ -330,6 +330,12 @@
     box-shadow: 0 14px 26px rgba(30, 86, 49, .24);
 }
 
+.booking-submit:disabled {
+    cursor: wait;
+    opacity: .7;
+    transform: none;
+}
+
 .booking-whatsapp-submit {
     min-height: 48px;
     margin-top: 12px;
@@ -358,6 +364,20 @@
     font-size: 11px;
     line-height: 1.6;
     text-align: center;
+}
+
+.booking-form-status {
+    min-height: 0;
+    margin-top: 12px;
+    color: var(--booking-green);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.booking-form-status:empty {
+    display: none;
 }
 
 @media (max-width: 900px) {

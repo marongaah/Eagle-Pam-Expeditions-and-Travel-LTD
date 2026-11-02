@@ -1,0 +1,10 @@
+{
+  "name": "eagle-pam-expeditions",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.3"
+  }
+}

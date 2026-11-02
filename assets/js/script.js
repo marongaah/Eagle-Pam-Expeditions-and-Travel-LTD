@@ -141,19 +141,49 @@ function initSafariForm() {
         ].join("\n");
     };
 
-    safariForm.addEventListener("submit", function (event) {
+    safariForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const destination = document.getElementById("destination")?.value.trim();
-        const subject = destination
-            ? `Safari planning enquiry | ${destination}`
-            : "Safari planning enquiry | Eagle Pam Expeditions";
-        const mailto = `mailto:info@eaglepamexpeditionsandtravel.com?${new URLSearchParams({
-            subject,
-            body: buildInquiryMessage()
-        })}`;
+        if (!safariForm.reportValidity()) return;
 
-        window.location.href = mailto;
+        const submitButton = safariForm.querySelector('button[type="submit"]');
+        const status = document.getElementById("bookingFormStatus");
+        const originalButtonText = submitButton?.textContent.trim() || "Send enquiry to our team";
+        const payload = Object.fromEntries(new FormData(safariForm).entries());
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending your enquiry…";
+        }
+        if (status) status.textContent = "";
+
+        try {
+            const response = await fetch("/api/send-enquiry", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "Your enquiry could not be sent.");
+            }
+
+            safariForm.reset();
+            if (status) status.textContent = "Thank you. Your enquiry has been sent directly to our safari team.";
+        } catch (error) {
+            console.error("Booking enquiry submission failed.", error);
+            if (status) {
+                status.textContent = error instanceof Error
+                    ? error.message
+                    : "We could not send your enquiry. Please try again or contact us by WhatsApp.";
+            }
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
     });
 
     document.getElementById("bookingWhatsApp")?.addEventListener("click", () => {
