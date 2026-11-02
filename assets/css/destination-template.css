@@ -679,29 +679,74 @@ body[data-destination="serengeti"] .btn-primary:hover {
     .overview-text p {
         font-size: 1rem;
     }
+}
 
-    @media (max-width: 600px) {
-        .destination-intro {
-            padding: 82px 6% 16px;
-        }
+@media (max-width: 600px) {
+    .destination-intro {
+        padding: 82px 6% 16px;
+    }
 
-        .destination-intro-content {
-            grid-template-columns: 1fr;
-            row-gap: 9px;
-        }
+    .destination-intro-content {
+        grid-template-columns: 1fr;
+        row-gap: 9px;
+    }
 
-        .destination-intro-content span {
-            margin-bottom: 0;
-        }
+    .destination-intro-content span {
+        margin-bottom: 0;
+    }
 
-        .destination-intro-content h1 {
-            font-size: clamp(1.65rem, 7vw, 2.1rem);
-        }
+    .destination-intro-content h1 {
+        font-size: clamp(1.65rem, 7vw, 2.1rem);
+    }
 
-        .destination-intro-content p {
-            padding-left: 12px;
-            font-size: .84rem;
-            line-height: 1.55;
-        }
+    .destination-intro-content p {
+        padding-left: 12px;
+        font-size: .84rem;
+        line-height: 1.55;
+    }
+}
+
+/* A tighter, shared vertical rhythm keeps destination pages easy to scan. */
+.detail-overview {
+    padding-block: clamp(56px, 6vw, 80px);
+}
+
+.highlights,
+.gallery {
+    padding-block: clamp(56px, 6vw, 80px);
+}
+
+.highlights h2,
+.gallery h2 {
+    margin-bottom: 28px;
+}
+
+.featured-safari {
+    padding-block: clamp(56px, 6vw, 76px);
+}
+
+.featured-safari-heading {
+    margin-bottom: 24px;
+}
+
+.detail-cta {
+    padding-block: clamp(76px, 8vw, 104px);
+}
+
+@media (max-width: 768px) {
+    .featured-safari,
+    .detail-overview,
+    .highlights,
+    .gallery {
+        padding-block: 52px;
+    }
+
+    .highlights h2,
+    .gallery h2 {
+        margin-bottom: 24px;
+    }
+
+    .detail-cta {
+        padding-block: 68px;
     }
 }
