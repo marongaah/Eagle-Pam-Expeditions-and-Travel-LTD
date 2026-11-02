@@ -17,6 +17,10 @@ module.exports = async function handler(req, res) {
     }
 
     const body = req.body && typeof req.body === "object" ? req.body : {};
+    if (text(body.company_website, 200)) {
+        return res.status(400).json({ error: "Please review your enquiry and try again." });
+    }
+
     const name = text(body.name, 120);
     const email = text(body.email, 254);
     const phone = text(body.phone, 50);

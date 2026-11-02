@@ -151,6 +151,7 @@ function initSafariForm() {
         const status = document.getElementById("bookingFormStatus");
         const originalButtonText = submitButton?.textContent.trim() || "Send enquiry to our team";
         const payload = Object.fromEntries(new FormData(safariForm).entries());
+        const travellerName = String(payload.name || "").trim();
 
         if (submitButton) {
             submitButton.disabled = true;
@@ -171,10 +172,14 @@ function initSafariForm() {
             }
 
             safariForm.reset();
-            if (status) status.textContent = "Thank you. Your enquiry has been sent directly to our safari team.";
+            if (status) {
+                status.classList.add("is-success");
+                status.textContent = `Thank you${travellerName ? `, ${travellerName}` : ""}. Your enquiry has been sent to our safari team. This is not a confirmed booking; our team will contact you to discuss your plans.`;
+            }
         } catch (error) {
             console.error("Booking enquiry submission failed.", error);
             if (status) {
+                status.classList.remove("is-success");
                 status.textContent = error instanceof Error
                     ? error.message
                     : "We could not send your enquiry. Please try again or contact us by WhatsApp.";
