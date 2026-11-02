@@ -90,36 +90,62 @@ function initSafariForm() {
     if (!safariForm) return;
 
     const buildInquiryMessage = () => {
-        const name = document.getElementById("name")?.value || "";
-        const email = document.getElementById("email")?.value || "";
-        const phone = document.getElementById("phone")?.value || "";
-        const destination = document.getElementById("destination")?.value || "";
-        const date = document.getElementById("date")?.value || "";
-        const days = document.getElementById("days")?.value || "";
-        const travelers = document.getElementById("travelers")?.value || "";
-        const budget = document.getElementById("budget")?.value || "";
-        const message = document.getElementById("message")?.value || "";
+        const getValue = (id) => document.getElementById(id)?.value.trim() || "";
+        const name = getValue("name");
+        const email = getValue("email");
+        const phone = getValue("phone");
+        const destination = getValue("destination");
+        const date = getValue("date");
+        const days = getValue("days");
+        const travelers = getValue("travelers");
+        const budget = getValue("budget");
+        const message = getValue("message");
+        const formattedDate = date
+            ? new Intl.DateTimeFormat("en", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }).format(new Date(`${date}T00:00:00`))
+            : "Not provided";
 
         return [
-            `Name: ${name}`,
-            `Email: ${email}`,
-            `Phone: ${phone}`,
-            `Safari package / destination: ${destination || "Not specified"}`,
-            `Travel Date: ${date}`,
-            `Trip Length: ${days ? `${days} days` : "Not specified"}`,
-            `Travelers: ${travelers}`,
-            `Travel Style: ${budget}`,
-            `Message: ${message}`
+            "SAFARI PLANNING ENQUIRY",
+            "Eagle Pam Expeditions & Travel",
+            "",
+            "Dear Eagle Pam Expeditions Team,",
+            "",
+            "I would love your help planning the following safari:",
+            "",
+            "TRIP PREFERENCES",
+            `Safari or destination: ${destination || "Not selected yet"}`,
+            `Preferred departure date: ${formattedDate}`,
+            `Trip duration: ${days ? `${days} days` : "Flexible / not specified"}`,
+            `Group size: ${travelers} ${Number(travelers) === 1 ? "traveller" : "travellers"}`,
+            `Preferred travel style: ${budget || "No preference selected"}`,
+            "",
+            "TRAVELLER CONTACT DETAILS",
+            `Full name: ${name}`,
+            `Email address: ${email}`,
+            `Phone / WhatsApp: ${phone}`,
+            "",
+            "ADDITIONAL REQUESTS",
+            message || "No additional requests at this time.",
+            "",
+            "Please share your availability, a tailored itinerary, and a quotation for this trip.",
+            "",
+            "Kind regards,",
+            name
         ].join("\n");
     };
 
     safariForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const subject = document.getElementById("destination")?.value
-            ? `Safari inquiry - ${document.getElementById("destination").value}`
-            : "Safari inquiry - Eagle Pam Expeditions";
-        const mailto = `mailto:info@eaglepamexpeditions.com?${new URLSearchParams({
+        const destination = document.getElementById("destination")?.value.trim();
+        const subject = destination
+            ? `Safari planning enquiry | ${destination}`
+            : "Safari planning enquiry | Eagle Pam Expeditions";
+        const mailto = `mailto:info@eaglepamexpeditionsandtravel.com?${new URLSearchParams({
             subject,
             body: buildInquiryMessage()
         })}`;
