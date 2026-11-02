@@ -430,11 +430,51 @@ function initPackageBookingCta() {
                     <h2 id="featured-safaris-heading">Find your next adventure</h2>
                     <p>Explore more journeys selected by our local safari team.</p>
                 </div>
+                <div class="featured-safaris-controls" aria-label="Featured safari carousel controls">
+                    <span>Swipe to explore</span>
+                    <button class="featured-safaris-control" type="button" data-scroll-direction="-1" aria-label="Show previous safari packages">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    </button>
+                    <button class="featured-safaris-control" type="button" data-scroll-direction="1" aria-label="Show more safari packages">
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
                 <div class="related-grid featured-safaris-grid" aria-label="Featured safari packages">
                     ${cards}
                 </div>
             </div>
         `;
+
+        const track = section.querySelector(".featured-safaris-grid");
+        const controls = [...section.querySelectorAll(".featured-safaris-control")];
+        const updateControls = () => {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            controls.forEach((button) => {
+                const direction = Number(button.dataset.scrollDirection);
+                button.disabled = direction < 0
+                    ? track.scrollLeft <= 1
+                    : track.scrollLeft >= maxScroll - 1;
+            });
+        };
+
+        controls.forEach((button) => {
+            button.addEventListener("click", () => {
+                const card = track.querySelector(".featured-package-card");
+                if (!card) return;
+                const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+                const direction = Number(button.dataset.scrollDirection);
+                track.scrollBy({
+                    left: direction * (card.getBoundingClientRect().width + gap),
+                    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                        ? "auto"
+                        : "smooth"
+                });
+            });
+        });
+
+        track.addEventListener("scroll", updateControls, { passive: true });
+        window.addEventListener("resize", updateControls);
+        requestAnimationFrame(updateControls);
 
         const callToAction = document.querySelector(".package-cta");
         footer.parentNode.insertBefore(section, callToAction || footer);
