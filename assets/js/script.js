@@ -220,6 +220,220 @@ function initPackageBookingCta() {
         return;
     }
 
+    function initFeaturedSafaris() {
+        const existingSections = document.querySelectorAll(".related-section");
+        const footer = document.getElementById("footer");
+
+        if (!footer || !document.querySelector(".package-intro")) return;
+
+        const packages = [
+            {
+                title: "3 Days Masai Mara Safari",
+                location: "Kenya · Masai Mara",
+                days: 3,
+                price: 650,
+                badge: "Bestseller",
+                format: "Small group",
+                image: "migration 1.jpg",
+                href: "3-days-mara.html",
+                description: "Enjoy Big Five game drives and expert-guided wildlife viewing in Kenya's iconic Mara."
+            },
+            {
+                title: "7 Days Kenya Wildlife Safari",
+                location: "Masai Mara · Lake Nakuru · Amboseli",
+                days: 7,
+                price: 2285,
+                badge: "Popular",
+                format: "Group tour",
+                image: "lion surrounded .jpg",
+                href: "7-days-kenya-wildlife-safari.html",
+                description: "Explore three celebrated parks on a memorable journey through Kenya's diverse landscapes."
+            },
+            {
+                title: "5 Days Kenya Budget 4x4 Camping Safari",
+                location: "Masai Mara · Lake Nakuru · Lake Naivasha",
+                days: 5,
+                price: 1370,
+                badge: "Great value",
+                format: "Group tour",
+                image: "amboseli1.jpg",
+                href: "5-days-kenya-budget-safari.html",
+                description: "Discover Kenya's classic wildlife destinations with a 4x4 Land Cruiser and camping stays."
+            },
+            {
+                title: "8 Days Kenya Luxury Lodge Safari",
+                location: "Amboseli · Aberdare · Nakuru · Masai Mara",
+                days: 8,
+                price: 4850,
+                badge: "Luxury",
+                format: "Private or group",
+                image: "potraitc1.jpg",
+                href: "8-days-kenya-luxury-lodge-safari.html",
+                description: "Travel between four premier destinations with the comfort of carefully selected lodges."
+            },
+            {
+                title: "7 Days Kenya & Tanzania Safari",
+                location: "Kenya · Tanzania circuit",
+                days: 7,
+                price: 3550,
+                badge: "Cross-border",
+                format: "Small group",
+                image: "lion surrounded .jpg",
+                href: "7-days-kenya-tz-safari.html",
+                description: "Pair the Masai Mara with Tanzania's Serengeti and Ngorongoro on one classic circuit."
+            },
+            {
+                title: "3 Days Samburu Safari",
+                location: "Samburu National Reserve",
+                days: 3,
+                price: 840,
+                badge: "Northern Kenya",
+                format: "Group tour",
+                image: "p1.jpg",
+                href: "3-days-samburu-budget-group-safari.html",
+                description: "Seek out the Samburu Special Five among dramatic northern landscapes and wildlife."
+            },
+            {
+                title: "3 Days Amboseli Safari",
+                location: "Amboseli National Park",
+                days: 3,
+                price: 650,
+                badge: "Group safari",
+                format: "Group tour",
+                image: "p2.jpg",
+                href: "3-days-amboseli-budget-group-safari.html",
+                description: "See Amboseli's celebrated elephant herds with Mount Kilimanjaro rising beyond the plains."
+            },
+            {
+                title: "12 Days Kenya & Tanzania Circuit",
+                location: "Kenya · Tanzania",
+                days: 12,
+                price: 4847,
+                badge: "Cross-border",
+                format: "Group tour",
+                image: "p3.jpg",
+                href: "12-days-kenya-tanzania-circuit.html",
+                description: "Discover iconic East African parks on an extended Kenya and Tanzania group safari."
+            },
+            {
+                title: "13 Days Kenya & Tanzania 4x4 Jeep Safari",
+                location: "Masai Mara · Amboseli · Serengeti · Ngorongoro",
+                days: 13,
+                price: 6180,
+                badge: "4x4 safari",
+                format: "Private tour",
+                image: "p6.jpg",
+                href: "13-days-kenya-tanzania-4x4-jeep-safari.html",
+                description: "Journey across five legendary parks in two countries on a private 4x4 safari."
+            },
+            {
+                title: "11 Days Kenya & Tanzania Classic Safari",
+                location: "Masai Mara · Amboseli · Serengeti · Ngorongoro",
+                days: 11,
+                price: 4290,
+                badge: "Mid-range",
+                format: "Group tour",
+                image: "p7.jpg",
+                href: "11-days-kenya-tanzania-classic-mid-range-jeep-safari.html",
+                description: "Experience a classic cross-border route with comfortable mid-range stays and game drives."
+            },
+            {
+                title: "4-Day Mount Kenya Trek",
+                location: "Mount Kenya National Park",
+                days: 4,
+                price: 1350,
+                badge: "Guided trek",
+                format: "Sirimon route",
+                image: "Mt1.jpg",
+                href: "4-day-mount-kenya-trekking-adventure.html",
+                description: "Take the scenic Sirimon route on a guided trek through Mount Kenya National Park."
+            },
+            {
+                title: "5-Day Mount Kenya Trek",
+                location: "Mount Kenya · Sirimon–Chogoria route",
+                days: 5,
+                price: 1550,
+                badge: "Guided trek",
+                format: "Summit adventure",
+                image: "Mt2.jpg",
+                href: "5-day-trek-sirimon-chogoria.html",
+                description: "Climb to Point Lenana on a guided trek up the scenic Sirimon and Chogoria routes."
+            }
+        ];
+
+        const currentPage = window.location.pathname.split("/").pop();
+        const isTanzaniaCircuit = /tanzania/i.test(currentPage);
+        const isMountainTrek = /mount-kenya|trek-sirimon/i.test(currentPage);
+        const recommendations = packages.filter((item) => item.href !== currentPage);
+        const preferred = isMountainTrek
+            ? recommendations.filter((item) => /mount-kenya|trek-sirimon/i.test(item.href))
+            : isTanzaniaCircuit
+                ? recommendations.filter((item) => /tanzania/i.test(item.href))
+                : recommendations.filter((item) => !/tanzania|mount-kenya|trek-sirimon/i.test(item.href));
+        const selected = [...preferred, ...recommendations.filter((item) => !preferred.includes(item))]
+            .slice(0, 3);
+
+        if (selected.length < 3) return;
+
+        const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[character]);
+
+        const cards = selected.map((item) => `
+            <article class="package-card featured-package-card">
+                <div class="card-image">
+                    <img src="../assets/images/${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy">
+                    <span class="badge">${escapeHTML(item.badge)}</span>
+                </div>
+                <div class="package-info">
+                    <div class="package-top">
+                        <h3>${escapeHTML(item.title)}</h3>
+                        <span class="location">${escapeHTML(item.location)}</span>
+                    </div>
+                    <p>${escapeHTML(item.description)}</p>
+                    <div class="package-meta">
+                        <span><i class="fa-regular fa-clock" aria-hidden="true"></i> ${item.days} days</span>
+                        <span><i class="fa-solid fa-compass" aria-hidden="true"></i> ${escapeHTML(item.format)}</span>
+                    </div>
+                    <div class="package-footer">
+                        <div class="price">
+                            <small>From per person</small>
+                            <h4>$${item.price.toLocaleString("en-US")}</h4>
+                        </div>
+                        <a class="card-btn" href="${escapeHTML(item.href)}">View safari</a>
+                    </div>
+                </div>
+            </article>
+        `).join("");
+
+        existingSections.forEach((section) => section.remove());
+
+        const section = document.createElement("section");
+        section.className = "related-section featured-safaris-section";
+        section.setAttribute("aria-labelledby", "featured-safaris-heading");
+        section.innerHTML = `
+            <div class="container">
+                <div class="section-heading">
+                    <span>FEATURED SAFARIS</span>
+                    <h2 id="featured-safaris-heading">Find your next adventure</h2>
+                    <p>Explore more journeys selected by our local safari team.</p>
+                </div>
+                <div class="related-grid featured-safaris-grid" aria-label="Featured safari packages">
+                    ${cards}
+                </div>
+            </div>
+        `;
+
+        const callToAction = document.querySelector(".package-cta");
+        footer.parentNode.insertBefore(section, callToAction || footer);
+    }
+
+    initFeaturedSafaris();
+
     const bookingUrl = new URL("../book.html", window.location.href);
     bookingUrl.searchParams.set("tour", packageTitle);
     bookingUrl.hash = "booking-form";
