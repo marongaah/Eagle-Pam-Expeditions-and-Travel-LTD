@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPackageBookingCta();
     initPackageGallery();
     initHomeDestinationCarousel();
+    initHomeCardNavigation();
 
 });
 
@@ -301,6 +302,28 @@ function initHomeDestinationCarousel() {
     track.addEventListener("scroll", updateControls, { passive: true });
     window.addEventListener("resize", updateControls);
     requestAnimationFrame(updateControls);
+}
+
+function initHomeCardNavigation() {
+    const cards = document.querySelectorAll(
+        ".tours .tour-card, .destinations > .destination-grid .destination-card"
+    );
+
+    cards.forEach((card) => {
+        const destinationLink = card.querySelector(".tour-btn, .destination-btn");
+        if (!destinationLink) return;
+
+        card.addEventListener("click", (event) => {
+            if (event.target.closest("a, button, input, select, textarea")) return;
+
+            if (event.metaKey || event.ctrlKey || event.shiftKey) {
+                window.open(destinationLink.href, "_blank", "noopener");
+                return;
+            }
+
+            window.location.assign(destinationLink.href);
+        });
+    });
 }
 
 function initPackageBookingCta() {
