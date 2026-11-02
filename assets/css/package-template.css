@@ -3148,6 +3148,10 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     display: none;
 }
 
+.package-gallery-controls {
+    display: none;
+}
+
 @media (max-width: 900px) {
     .featured-safaris-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3233,6 +3237,77 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     .featured-package-card .package-info {
         padding: 18px;
     }
+
+    .package-gallery-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 9px;
+        margin: 0 0 12px;
+    }
+
+    .package-gallery-controls > span {
+        margin-right: auto;
+        color: #68736b;
+        font-size: 11px;
+    }
+
+    .package-gallery-control {
+        display: inline-grid;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        place-items: center;
+        border: 1px solid rgba(30, 86, 49, .16);
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(20, 54, 31, .08);
+        color: var(--primary);
+        cursor: pointer;
+        transition: background .2s ease, color .2s ease, opacity .2s ease, transform .2s ease;
+    }
+
+    .package-gallery-control:not(:disabled):hover {
+        transform: translateY(-1px);
+        background: var(--primary);
+        color: #fff;
+    }
+
+    .package-gallery-control:disabled {
+        opacity: .38;
+        cursor: default;
+    }
+
+    .gallery-section .gallery-grid {
+        display: flex;
+        width: calc(100% + 16px);
+        gap: 14px;
+        margin: 18px 0 0;
+        padding: 0 16px 14px 0;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scroll-behavior: smooth;
+        scroll-padding-inline: 0 16px;
+        scroll-snap-type: x mandatory;
+        touch-action: pan-x pan-y;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery-section .gallery-grid img {
+        width: auto;
+        height: clamp(190px, 58vw, 240px);
+        flex: 0 0 min(78vw, 320px);
+        border-radius: 16px;
+        object-fit: cover;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .gallery-section .gallery-grid img:hover {
+        transform: none;
+        filter: brightness(1);
+    }
 }
 
 @media (max-width: 480px) {
@@ -3243,6 +3318,15 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
 
     .featured-package-card {
         flex-basis: min(340px, calc(100vw - 48px));
+    }
+
+    .gallery-section .gallery-grid {
+        width: calc(100% + 16px);
+        margin-right: -16px;
+    }
+
+    .gallery-section .gallery-grid img {
+        flex-basis: min(78vw, 320px);
     }
 }
 
@@ -3258,6 +3342,14 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     }
 
     .featured-safaris-control {
+        transition: none;
+    }
+
+    .gallery-section .gallery-grid {
+        scroll-behavior: auto;
+    }
+
+    .package-gallery-control {
         transition: none;
     }
 

@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initItinerary();
     initPackagesPage();
     initPackageBookingCta();
+    initPackageGallery();
 
 });
 
@@ -205,6 +206,63 @@ function initTourSelection() {
         travelDate.min = localToday;
     }
 
+}
+
+function initPackageGallery() {
+    const galleries = document.querySelectorAll(".gallery-section .gallery-grid");
+
+    galleries.forEach((gallery, index) => {
+        const section = gallery.closest(".gallery-section");
+        if (!section) return;
+
+        const controls = document.createElement("div");
+        controls.className = "package-gallery-controls";
+        controls.setAttribute("aria-label", "Photo gallery controls");
+        controls.innerHTML = `
+            <span>Swipe to explore</span>
+            <button class="package-gallery-control" type="button" data-scroll-direction="-1" aria-label="Show previous gallery photos">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <button class="package-gallery-control" type="button" data-scroll-direction="1" aria-label="Show more gallery photos">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        `;
+
+        gallery.id = gallery.id || `package-photo-gallery-${index + 1}`;
+        gallery.setAttribute("aria-label", "Safari photo gallery");
+        gallery.tabIndex = 0;
+        gallery.parentNode.insertBefore(controls, gallery);
+
+        const buttons = [...controls.querySelectorAll(".package-gallery-control")];
+        const updateControls = () => {
+            const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+            buttons.forEach((button) => {
+                const direction = Number(button.dataset.scrollDirection);
+                button.disabled = direction < 0
+                    ? gallery.scrollLeft <= 1
+                    : gallery.scrollLeft >= maxScroll - 1;
+            });
+        };
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const image = gallery.querySelector("img");
+                if (!image) return;
+                const gap = Number.parseFloat(getComputedStyle(gallery).columnGap) || 0;
+                const direction = Number(button.dataset.scrollDirection);
+                gallery.scrollBy({
+                    left: direction * (image.getBoundingClientRect().width + gap),
+                    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                        ? "auto"
+                        : "smooth"
+                });
+            });
+        });
+
+        gallery.addEventListener("scroll", updateControls, { passive: true });
+        window.addEventListener("resize", updateControls);
+        requestAnimationFrame(updateControls);
+    });
 }
 
 function initPackageBookingCta() {
