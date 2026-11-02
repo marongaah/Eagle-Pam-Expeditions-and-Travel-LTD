@@ -187,19 +187,16 @@ function initPackageBookingCta() {
 
     if (!hero) return;
 
-    const bookingLink = hero.querySelector('a[href*="book.html"]');
     const packageTitle = hero.querySelector("h1, h2")?.textContent.trim().replace(/\s+/g, " ");
 
-    if (!bookingLink || !packageTitle) {
+    if (!packageTitle) {
         console.error("Package booking button could not be initialized.");
         return;
     }
 
-    const bookingUrl = new URL(bookingLink.href);
-    bookingUrl.search = "";
+    const bookingUrl = new URL("../book.html", window.location.href);
     bookingUrl.searchParams.set("tour", packageTitle);
     bookingUrl.hash = "booking-form";
-    bookingLink.href = bookingUrl.toString();
 
     const mobileBookingLink = document.createElement("a");
     mobileBookingLink.className = "package-mobile-booking";

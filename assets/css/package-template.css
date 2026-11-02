@@ -506,26 +506,58 @@ border:1px solid #eee;
 
 .price-box{
 
-    padding:35px;
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    padding:38px 30px 32px;
+    background:
+        radial-gradient(circle at 100% 0, rgba(212,160,23,.2), transparent 38%),
+        linear-gradient(145deg, #1f5e3b 0%, #163f2b 100%);
+    color:#fff;
+    text-align:left;
 
-    text-align:center;
+}
 
+.price-box::after{
+    position:absolute;
+    z-index:-1;
+    top:-82px;
+    right:-78px;
+    width:210px;
+    height:210px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:50%;
+    content:"";
+    box-shadow:0 0 0 22px rgba(255,255,255,.035), 0 0 0 44px rgba(255,255,255,.025);
 }
 
 .price-label{
 
     text-transform:uppercase;
 
-    letter-spacing:2px;
+    letter-spacing:2.5px;
 
-    color:#888;
+    color:#f1ce75;
 
-    font-size:14px;
+    font-size:11px;
 
-    margin-bottom:25px;
+    margin-bottom:14px;
 
     display:block;
+    font-weight:700;
 
+}
+
+.price-box > h2{
+    position:relative;
+    margin:0;
+    color:#fff;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(2rem,4vw,2.7rem);
+    font-weight:600;
+    letter-spacing:-.035em;
+    line-height:1.12;
+    text-wrap:balance;
 }
 
 .price-list{
@@ -534,7 +566,7 @@ border:1px solid #eee;
 
     flex-direction:column;
 
-    gap:15px;
+    gap:10px;
 
 }
 
@@ -546,13 +578,13 @@ border:1px solid #eee;
 
     align-items:center;
 
-    padding:18px 22px;
+    padding:14px 17px;
 
-    background:#faf8f3;
+    background:rgba(255,255,255,.96);
 
-    border:1px solid #eee;
+    border:1px solid rgba(255,255,255,.42);
 
-    border-radius:14px;
+    border-radius:13px;
 
     transition:.3s;
 
@@ -568,31 +600,31 @@ border:1px solid #eee;
 
 .price-item span{
 
-    font-size:18px;
+    font-size:14px;
 
     font-weight:600;
 
-    color:#444;
+    color:#46574c;
 
 }
 
 .price-item strong{
 
-    font-size:28px;
+    font-size:clamp(1.15rem,2.3vw,1.45rem);
 
     font-family:"Playfair Display", serif;
 
-    color:#1d6b43;
+    color:#1f5e3b;
 
 }
 
 .price-box p{
 
-    margin-top:25px;
-
-    font-size:18px;
-
-    color:#666;
+    margin:12px 0 0;
+    color:rgba(255,255,255,.77);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.02em;
 
 }
 
@@ -682,82 +714,6 @@ font-size:22px;
 margin-bottom:10px;
 
 color:#c89b3c;
-
-}
-
-.book-now{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:10px;
-
-margin:25px;
-
-padding:18px;
-
-border-radius:14px;
-
-background:#d39b22;
-
-color:white;
-
-font-size:18px;
-
-font-weight:600;
-
-text-decoration:none;
-
-transition:.3s;
-
-}
-
-.book-now:hover{
-
-transform:translateY(-3px);
-
-background:#bb8719;
-
-}
-
-.whatsapp-book{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:10px;
-
-margin:0 25px 25px;
-
-padding:18px;
-
-border-radius:14px;
-
-background:#25D366;
-
-color:white;
-
-font-size:18px;
-
-font-weight:600;
-
-text-decoration:none;
-
-transition:.3s;
-
-}
-
-.whatsapp-book:hover{
-
-background:#1ebf5b;
-
-transform:translateY(-3px);
 
 }
 
@@ -1904,29 +1860,7 @@ BOOKING CARD PREMIUM
 }
 
 .booking-card::before{
-
-    content:"BEST VALUE";
-
-    position:absolute;
-
-    top:20px;
-
-    right:-38px;
-
-    background:var(--gold);
-
-    color:#222;
-
-    padding:8px 45px;
-
-    font-size:.75rem;
-
-    font-weight:700;
-
-    transform:rotate(45deg);
-
-    letter-spacing:1px;
-
+    content:none;
 }
 
 
@@ -2586,12 +2520,6 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
 .hero-content > p {
     max-width: 760px;
     margin-inline: auto;
-}
-
-.hero-buttons .btn-primary,
-.book-now {
-    min-height: 54px;
-    box-shadow: 0 12px 28px rgba(200, 155, 60, .28);
 }
 
 .booking-card {
