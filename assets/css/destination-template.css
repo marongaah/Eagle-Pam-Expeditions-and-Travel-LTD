@@ -1,205 +1,570 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --sage-700: #1e5631;
+    --sage-800: #163f24;
+    --gold-500: #d4a017;
+    --gold-600: #b8860b;
+    --cream-50: #fcfbf6;
+    --cream-100: #f8f7f2;
+    --ink-700: #2f3b31;
+    --ink-500: #55625a;
+    --shadow-soft: 0 18px 45px rgba(20, 54, 31, 0.08);
+    --shadow-strong: 0 30px 60px rgba(20, 54, 31, 0.16);
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    color: #222;
+    color: var(--ink-700);
+    background: linear-gradient(135deg, var(--cream-50), var(--cream-100));
+    line-height: 1.7;
 }
-
-/* ================= NAVBAR ================= */
 
 .header {
     position: fixed;
-    width: 100%;
     top: 0;
-    background: white;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    left: 0;
     z-index: 1000;
+    width: 100%;
+    background: rgba(255, 255, 255, .95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
 }
 
 .navbar {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 18px 8%;
-    align-items: center;
+}
+
+.logo {
+    color: var(--sage-700);
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     list-style: none;
 }
 
 .nav-links a {
-    text-decoration: none;
     color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .3s;
 }
 
-/* ================= HERO ================= */
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold-500);
+}
 
-.hero {
-    height: 80vh;
-    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
-    url('../images/default.jpg');
-    background-size: cover;
+.btn-book {
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: var(--gold-500);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn-book:hover {
+    background: var(--gold-600);
+    transform: translateY(-2px);
+}
+
+.detail-hero {
     display: flex;
+    min-height: 85vh;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color: white;
     padding: 0 20px;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, .58), rgba(0, 0, 0, .58)),
+        var(--destination-hero, url("../images/aberdare4.jpg"));
+    background-position: center;
+    background-size: cover;
+    color: white;
+    text-align: center;
 }
 
-.hero-content h1 {
-    font-size: 60px;
-    font-family: 'Playfair Display', serif;
+.detail-hero-content {
+    max-width: 850px;
+    animation: fadeUp 1s ease;
 }
 
-/* ================= OVERVIEW ================= */
-
-.overview {
-    padding: 100px 8%;
+.detail-hero-content span {
+    color: var(--gold-500);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-.container {
+.detail-hero-content h1 {
+    margin: 20px 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 4.6vw, 4.3rem);
+    line-height: 1.1;
+}
+
+.detail-hero-content p {
+    font-size: 1.03rem;
+    opacity: .92;
+}
+
+.detail-overview {
+    padding: 120px 8%;
+}
+
+.overview-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 40px;
+    align-items: start;
+    gap: 60px;
 }
 
-/* ================= HIGHLIGHTS ================= */
-
-.highlights {
-    padding: 100px 8%;
-    text-align: center;
+.overview-text h2,
+.highlights h2,
+.gallery h2 {
+    margin-bottom: 40px;
+    font-family: "Playfair Display", serif;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+.overview-text h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
 }
 
-.card {
+.overview-text p {
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.overview-box {
     padding: 30px;
-    background: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border-radius: 15px;
+    border: 1px solid rgba(30, 86, 49, .08);
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fff, var(--cream-50));
+    box-shadow: var(--shadow-soft);
 }
 
-/* ================= GALLERY ================= */
+.overview-box h3 {
+    margin-bottom: 15px;
+    color: var(--sage-700);
+}
 
+.overview-box ul {
+    list-style: none;
+}
+
+.overview-box li {
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 14px;
+}
+
+.highlights,
 .gallery {
-    padding: 100px 8%;
+    padding: 120px 8%;
     text-align: center;
 }
 
+.highlights h2,
+.gallery h2 {
+    font-size: 40px;
+}
+
+.highlight-grid,
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+    gap: 30px;
+}
+
+.highlight-card {
+    padding: 40px;
+    border: 1px solid rgba(30, 86, 49, .08);
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fff, var(--cream-50));
+    box-shadow: var(--shadow-soft);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+
+.highlight-card i {
+    margin-bottom: 15px;
+    color: var(--gold-500);
+    font-size: 35px;
+}
+
+.highlight-card h3 {
+    margin-bottom: 10px;
+}
+
+.gallery-grid {
+    gap: 20px;
 }
 
 .gallery-grid img {
     width: 100%;
-    border-radius: 12px;
+    height: 250px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    object-fit: cover;
+    transition: transform .35s ease, box-shadow .35s ease;
 }
 
-/* ================= CTA ================= */
+.gallery-grid img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-strong);
+}
 
-.cta {
-    padding: 100px 8%;
+.detail-cta {
+    padding: 140px 8%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),
+        var(--destination-cta, url("../images/aberdare1.jpg"));
+    background-position: center;
+    background-size: cover;
+    color: white;
     text-align: center;
-    background: #1e5631;
-    color: white;
 }
 
-.btn {
+.detail-cta-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.detail-cta-content h2 {
+    margin-bottom: 15px;
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+}
+
+.detail-cta-content p {
+    margin-bottom: 25px;
+    font-size: 18px;
+    opacity: .9;
+}
+
+.btn-primary {
     display: inline-block;
-    padding: 12px 25px;
-    background: #d4a017;
+    padding: 14px 30px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    box-shadow: 0 15px 35px rgba(212, 160, 23, .25);
     color: white;
-    border-radius: 30px;
+    font-weight: 600;
     text-decoration: none;
+    transition: transform .25s ease, box-shadow .25s ease;
 }
 
-/* ================= FOOTER ================= */
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(212, 160, 23, .32);
+}
+
+.featured-safari {
+    padding: 80px 8%;
+    background: #fff;
+}
+
+.featured-safari-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.featured-safari-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.featured-safari-heading span {
+    color: var(--sage-700);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.featured-safari-heading h2 {
+    margin-top: 8px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.featured-safari-card {
+    display: grid;
+    grid-template-columns: minmax(240px, .9fr) 1.1fr;
+    overflow: hidden;
+    border: 1px solid rgba(30, 86, 49, .12);
+    border-radius: 24px;
+    background: var(--cream-50);
+    box-shadow: var(--shadow-soft);
+}
+
+.featured-safari-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+}
+
+.featured-safari-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+}
+
+.featured-safari-label {
+    margin-bottom: 10px;
+    color: var(--sage-700);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.featured-safari-content h3 {
+    margin-bottom: 12px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.65rem;
+    line-height: 1.25;
+}
+
+.featured-safari-content p {
+    margin-bottom: 22px;
+    color: #555;
+}
+
+.featured-safari-link {
+    margin-top: auto;
+    padding: 11px 20px;
+    border-radius: 999px;
+    background: var(--sage-700);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+}
+
+.featured-safari-link:hover {
+    transform: translateY(-2px);
+    background: var(--sage-800);
+}
 
 .footer {
-    padding: 30px;
-    text-align: center;
-    background: #111;
+    padding: 40px 20px;
+    background: #1e5631;
     color: white;
+    text-align: center;
 }
-@media(max-width:768px){
-    .navbar{
-        position:relative;
-        flex-direction:row;
-        justify-content:space-between;
-        padding:16px 20px;
-    }
-    .menu-toggle{
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        gap:4px;
-        width:44px;
-        height:44px;
-        border:0;
-        background:transparent;
-        padding:0;
-    }
-    .menu-toggle span {
-        display:block;
-        width:24px;
-        height:2px;
-        background:#1e5631;
-        border-radius:999px;
-        transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
-    }
-    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+
+body[data-destination="aberdare"] {
+    --destination-hero: url("../images/aberdare4.jpg");
+    --destination-cta: url("../images/aberdare1.jpg");
+}
+
+body[data-destination="amboseli"] {
+    --destination-hero: url("../images/hero-amboseli.jpg");
+    --destination-cta: url("../images/amboseli4.jpg");
+}
+
+body[data-destination="kilimanjaro"] {
+    --destination-hero: url("../images/kilimanjaro1.jpg");
+    --destination-cta: url("../images/kilimanjaro4.jpg");
+}
+
+body[data-destination="manyara"] {
+    --destination-hero: url("../images/manyara1.jpg");
+    --destination-cta: url("../images/manyara4.jpg");
+}
+
+body[data-destination="masai-mara"] {
+    --destination-hero: url("../images/lion%20surrounded%20.jpg");
+    --destination-cta: url("../images/tour1.jpg");
+}
+
+body[data-destination="meru"] {
+    --destination-hero: url("../images/meru4.jpg");
+    --destination-cta: url("../images/meru1.jpg");
+}
+
+body[data-destination="mount-kenya"] {
+    --destination-hero: url("../images/mtkenya1.jpg");
+    --destination-cta: url("../images/mtkenya4.jpg");
+}
+
+body[data-destination="lake-nakuru"] {
+    --destination-hero: url("../images/nakuru1.jpg");
+    --destination-cta: url("../images/nakuru2.jpg");
+}
+
+body[data-destination="ngorongoro"] {
+    --destination-hero: url("../images/ngorongoro1.jpg");
+    --destination-cta: url("../images/ngorongoro4.jpg");
+}
+
+body[data-destination="north-coast"] {
+    --destination-hero: url("../images/north1.jpg");
+    --destination-cta: url("../images/north4.jpg");
+}
+
+body[data-destination="samburu"] {
+    --destination-hero: url("../images/samburu-hero.jpg");
+    --destination-cta: url("../images/tour2.jpg");
+}
+
+body[data-destination="serengeti"] {
+    --destination-hero: url("../images/serengeti1.jpg");
+    --destination-cta: url("../images/serengeti4.jpg");
+}
+
+body[data-destination="south-coast"] {
+    --destination-hero: url("../images/south1.jpg");
+    --destination-cta: url("../images/south4.jpg");
+}
+
+body[data-destination="tarangire"] {
+    --destination-hero: url("../images/tarangire1.jpg");
+    --destination-cta: url("../images/tarangire4.jpg");
+}
+
+body[data-destination="tsavo-east"] {
+    --destination-hero: url("../images/tsavo-east1.jpg");
+    --destination-cta: url("../images/tsavo-east2.jpg");
+}
+
+body[data-destination="tsavo-west"] {
+    --destination-hero: url("../images/tsavo-west1.jpg");
+    --destination-cta: url("../images/tsavo-east2.jpg");
+}
+
+body[data-destination="zanzibar"] {
+    --destination-hero: url("../images/zanzibar1.jpg");
+    --destination-cta: url("../images/zanzibar4.jpg");
+}
+
+body[data-destination="amboseli"] .highlight-card,
+body[data-destination="samburu"] .highlight-card {
+    padding: 40px 25px;
+}
+
+body[data-destination="amboseli"] .detail-hero {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, .58), rgba(0, 0, 0, .58)),
+        var(--destination-hero);
+}
+
+body[data-destination="samburu"] .detail-hero {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
+        var(--destination-hero);
+}
+
+body[data-destination="masai-mara"] .detail-overview,
+body[data-destination="masai-mara"] .gallery {
+    background: transparent;
+}
+
+body[data-destination="masai-mara"] .overview-text h2 {
+    font-size: 36px;
+}
+
+body[data-destination="masai-mara"] .highlights h2,
+body[data-destination="masai-mara"] .gallery h2 {
+    margin-bottom: 50px;
+}
+
+body[data-destination="masai-mara"] .highlight-card {
+    padding: 40px 25px;
+}
+
+body[data-destination="lake-nakuru"] .highlight-card {
+    padding: 40px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    transition: .3s ease;
+}
+
+body[data-destination="lake-nakuru"] .highlight-card i {
+    color: #ffb703;
+    font-size: 30px;
+}
+
+body[data-destination="serengeti"] .btn-primary {
+    border-radius: 50px;
+    background: var(--gold-500);
+    box-shadow: none;
+    transition: .3s;
+}
+
+body[data-destination="serengeti"] .btn-primary:hover {
+    background: var(--gold-600);
+    box-shadow: none;
+}
+
+@keyframes fadeUp {
+    from {
         opacity: 0;
+        transform: translateY(30px);
     }
-    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    .btn-book{
-        display:none;
+}
+
+@media (max-width: 900px) {
+    .overview-grid {
+        grid-template-columns: 1fr;
     }
-    .nav-links{
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        background:white;
-        flex-direction:column;
-        text-align:center;
-        gap:0;
-        overflow:hidden;
-        max-height:0;
-        opacity:0;
-        padding:0 16px;
-        transition:max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
-        box-shadow:0 12px 30px rgba(0,0,0,.08);
-        border-radius:0 0 16px 16px;
+
+    .detail-hero-content h1 {
+        font-size: 38px;
     }
-    .nav-links.active{
-        max-height:420px;
-        opacity:1;
-        padding:10px 16px 16px;
+
+    .featured-safari-card {
+        grid-template-columns: 1fr;
     }
-    .nav-links li{
-        padding:12px 0;
-        border-bottom:1px solid #f0f0f0;
+
+    .featured-safari-card img {
+        max-height: 320px;
     }
-    .nav-links li:last-child{
-        border-bottom:none;
+}
+
+@media (max-width: 768px) {
+    .highlights h2,
+    .gallery h2 {
+        font-size: 30px;
+    }
+
+    .featured-safari,
+    .detail-overview,
+    .highlights,
+    .gallery {
+        padding: 72px 6%;
+    }
+
+    .detail-cta {
+        padding: 90px 6%;
+    }
+
+    .detail-cta-content h2 {
+        font-size: 34px;
+    }
+
+    .featured-safari-content {
+        padding: 24px;
     }
 }
