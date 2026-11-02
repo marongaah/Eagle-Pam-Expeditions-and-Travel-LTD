@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initAnimations();
     initBackToTop();
     initSafariForm();
+    initContactEnquiryForm();
     initTourSelection();
     initSidebar();
     initNavbarFooter();
@@ -209,6 +210,64 @@ function initSafariForm() {
 
     });
 
+}
+
+function initContactEnquiryForm() {
+    const form = document.getElementById("contactEnquiryForm");
+
+    if (!form) return;
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const status = document.getElementById("contactFormStatus");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const originalButtonText = submitButton?.textContent.trim() || "Send Message";
+        const payload = Object.fromEntries(new FormData(form).entries());
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending…";
+        }
+        if (status) {
+            status.classList.remove("is-success");
+            status.textContent = "";
+        }
+
+        try {
+            const response = await fetch("/api/enquiry", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "We couldn't send your message. Please try again.");
+            }
+
+            form.reset();
+            if (status) {
+                status.classList.add("is-success");
+                status.textContent = "Thank you, we'll reply shortly.";
+            }
+        } catch (error) {
+            console.error("Contact enquiry submission failed.", error);
+            if (status) {
+                status.textContent = error instanceof Error
+                    ? error.message
+                    : "We couldn't send your message. Please try again.";
+            }
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
+    });
 }
 
 // =======================================================

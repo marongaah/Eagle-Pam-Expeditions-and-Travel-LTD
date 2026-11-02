@@ -66,7 +66,7 @@
 
         <h3>Email Us</h3>
 
-        <p><a href="mailto:info@eaglepamexpeditionsandtravel.com">info@eaglepamexpeditionsandtravel.com</a></p>
+        <p>info@eaglepamexpeditionsandtravel.com</p>
 
     </div>
 
@@ -92,25 +92,32 @@
 
         <h2>We're Here To Help</h2>
 
-        <form>
+        <form id="contactEnquiryForm">
 
-            <input type="text" placeholder="Full Name" required>
+            <input type="text" name="name" autocomplete="name" placeholder="Full Name" required>
 
-            <input type="email" placeholder="Email Address" required>
+            <input type="email" name="email" autocomplete="email" placeholder="Email Address" required>
 
-            <input type="tel" placeholder="Phone Number">
+            <input type="tel" name="phone" autocomplete="tel" placeholder="Phone Number">
 
-            <input type="text" placeholder="Country">
+            <input type="text" name="country" autocomplete="country-name" placeholder="Country">
 
             <textarea
+                name="message"
                 rows="6"
                 placeholder="Tell us about your safari plans..."
                 required>
             </textarea>
 
+            <div class="contact-form-honeypot" aria-hidden="true">
+                <label for="contact-website">Leave this field empty</label>
+                <input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
             <button type="submit">
                 Send Message
             </button>
+            <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite" aria-atomic="true"></p>
 
         </form>
 
