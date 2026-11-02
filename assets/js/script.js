@@ -96,23 +96,29 @@ function initSafariForm() {
         const email = document.getElementById("email")?.value || "";
         const destination = document.getElementById("destination")?.value || "";
         const date = document.getElementById("date")?.value || "";
+        const days = document.getElementById("days")?.value || "";
         const travelers = document.getElementById("travelers")?.value || "";
         const budget = document.getElementById("budget")?.value || "";
         const message = document.getElementById("message")?.value || "";
 
-        const whatsappMessage =
-            `Hello Eagle Pam Expeditions,%0A%0A` +
-            `My Name: ${name}%0A` +
-            `Email: ${email}%0A` +
-            `Destination: ${destination}%0A` +
-            `Travel Date: ${date}%0A` +
-            `Travelers: ${travelers}%0A` +
-            `Budget: ${budget}%0A` +
-            `Message: ${message}`;
+        const whatsappMessage = [
+            "Hello Eagle Pam Expeditions,",
+            "",
+            `My Name: ${name}`,
+            `Email: ${email}`,
+            `Phone: ${document.getElementById("phone")?.value || ""}`,
+            `Destination: ${destination}`,
+            `Travel Date: ${date}`,
+            `Trip Length: ${days ? `${days} days` : "Not specified"}`,
+            `Travelers: ${travelers}`,
+            `Travel Style: ${budget}`,
+            `Message: ${message}`
+        ].join("\n");
 
         window.open(
-            `https://wa.me/254111932279?text=${whatsappMessage}`,
-            "_blank"
+            `https://wa.me/254111932279?${new URLSearchParams({ text: whatsappMessage })}`,
+            "_blank",
+            "noopener,noreferrer"
         );
 
     });
@@ -129,11 +135,13 @@ function initTourSelection() {
 
     const tour = params.get("tour");
 
-    const select = document.querySelector("select");
+    const destinationField =
+        document.getElementById("destination") ||
+        document.querySelector("select");
 
-    if (tour && select) {
+    if (tour && destinationField) {
 
-        select.value = tour;
+        destinationField.value = tour;
 
     }
 
