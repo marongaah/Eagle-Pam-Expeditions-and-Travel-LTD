@@ -119,14 +119,34 @@ body {
 }
 
 .detail-overview {
-    padding: 120px 8%;
+    position: relative;
+    padding: clamp(72px, 9vw, 124px) 8%;
+    background:
+        radial-gradient(ellipse at 12% 18%, rgba(212, 160, 23, .08), transparent 34%),
+        linear-gradient(135deg, #f8f7f2, #fffdf8);
 }
 
 .overview-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(0, 1.65fr) minmax(280px, .75fr);
     align-items: start;
-    gap: 60px;
+    gap: clamp(36px, 6vw, 84px);
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.overview-text {
+    padding-top: 8px;
+}
+
+.overview-text::before {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--sage-700);
+    content: "THE EXPERIENCE";
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .16em;
 }
 
 .overview-text h2,
@@ -137,28 +157,54 @@ body {
 }
 
 .overview-text h2 {
-    margin-bottom: 20px;
-    font-size: 36px;
+    margin-bottom: 24px;
+    color: #172d20;
+    font-size: clamp(2.2rem, 3.5vw, 3.1rem);
+    line-height: 1.12;
 }
 
 .overview-text p {
-    margin-bottom: 15px;
-    color: #555;
-    font-size: 1.05rem;
-    line-height: 1.8;
+    max-width: 760px;
+    margin-bottom: 20px;
+    color: #4b554d;
+    font-size: 1.08rem;
+    line-height: 1.9;
+}
+
+.overview-text p:first-of-type {
+    color: #35443a;
+    font-size: 1.16rem;
 }
 
 .overview-box {
-    padding: 30px;
-    border: 1px solid rgba(30, 86, 49, .08);
-    border-radius: 24px;
-    background: linear-gradient(180deg, #fff, var(--cream-50));
-    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+    padding: 32px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 22px;
+    background:
+        radial-gradient(ellipse at 100% 0, rgba(212, 160, 23, .2), transparent 40%),
+        linear-gradient(145deg, #1e5631, #123520);
+    box-shadow: 0 24px 55px rgba(20, 54, 31, .2);
+    color: white;
+}
+
+.overview-box::before {
+    display: block;
+    margin-bottom: 9px;
+    color: #f0cb69;
+    content: "AT A GLANCE";
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
 }
 
 .overview-box h3 {
-    margin-bottom: 15px;
-    color: var(--sage-700);
+    margin-bottom: 22px;
+    color: white;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    line-height: 1.2;
 }
 
 .overview-box ul {
@@ -166,9 +212,32 @@ body {
 }
 
 .overview-box li {
-    margin-bottom: 10px;
-    color: #444;
+    position: relative;
+    margin: 0;
+    padding: 14px 0 14px 18px;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+    color: rgba(255, 255, 255, .96);
     font-size: 1rem;
+    line-height: 1.55;
+}
+
+.overview-box li::before {
+    position: absolute;
+    top: 23px;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f0cb69;
+    content: "";
+}
+
+.overview-box li strong {
+    color: #f0cb69;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
 }
 
 .highlights,
@@ -573,6 +642,10 @@ body[data-destination="serengeti"] .btn-primary:hover {
     .highlights,
     .gallery {
         padding: 72px 6%;
+    }
+
+    .overview-box {
+        padding: 26px;
     }
 
     .detail-cta {
