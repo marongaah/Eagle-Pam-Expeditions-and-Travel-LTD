@@ -749,4 +749,20 @@ body[data-destination="serengeti"] .btn-primary:hover {
     .detail-cta {
         padding-block: 68px;
     }
+
+    .gallery-grid,
+    .featured-safari-grid {
+        display: flex;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+    }
+
+    .gallery-grid img,
+    .featured-safari-card {
+        flex: 0 0 86%;
+        min-width: 0;
+        scroll-snap-align: start;
+    }
 }
