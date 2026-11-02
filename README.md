@@ -5,13 +5,15 @@ The endpoint sends a formatted enquiry to `info@eaglepamexpeditionsandtravel.com
 using Zoho Mail SMTP. The visitor stays on the booking page and can reply directly
 to the email address they provided.
 
-Configure these environment variables in the Vercel project settings for each
-environment (Preview and Production):
+Configure one of these sender/password pairs in the Vercel project settings for
+each environment (Preview and Production). The booking endpoint accepts either
+the `ZOHO_SMTP_*` names or the shared contact-form `ZOHO_*` names:
 
-- `ZOHO_SMTP_USER`: the verified Zoho mailbox used as the sender
-- `ZOHO_SMTP_APP_PASSWORD`: an app-specific password for that mailbox; never commit it
+- `ZOHO_SMTP_USER` or `ZOHO_USER`: the verified Zoho mailbox used as the sender
+- `ZOHO_SMTP_APP_PASSWORD` or `ZOHO_PASS`: an app-specific password for that mailbox; never commit it
 - `ZOHO_SMTP_HOST`: optional SMTP hostname for the Zoho account's region; defaults to `smtp.zoho.com`
 - `ZOHO_SMTP_PORT`: optional; defaults to `465` (use `587` for STARTTLS)
+- `ZOHO_HOST`: optional regional SMTP hostname, used if `ZOHO_SMTP_HOST` is unset
 
 After adding or changing environment variables, redeploy the project. The SMTP
 password must only exist in Vercel's encrypted environment settings, never in the

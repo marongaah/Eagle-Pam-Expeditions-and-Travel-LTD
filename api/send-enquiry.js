@@ -50,16 +50,16 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: "Please check the travel date, trip length, and group size." });
     }
 
-    const smtpUser = process.env.ZOHO_SMTP_USER;
-    const smtpPassword = process.env.ZOHO_SMTP_APP_PASSWORD;
+    const smtpUser = process.env.ZOHO_SMTP_USER || process.env.ZOHO_USER;
+    const smtpPassword = process.env.ZOHO_SMTP_APP_PASSWORD || process.env.ZOHO_PASS;
 
     if (!smtpUser || !smtpPassword) {
-        console.error("Booking email is not configured: Zoho SMTP environment variables are missing.");
+        console.error("Booking email is not configured: Zoho SMTP sender or password environment variable is missing.");
         return res.status(503).json({ error: "Enquiry email is temporarily unavailable. Please contact us by WhatsApp." });
     }
 
     const smtpPort = Number(process.env.ZOHO_SMTP_PORT || 465);
-    const smtpHost = process.env.ZOHO_SMTP_HOST || "smtp.zoho.com";
+    const smtpHost = process.env.ZOHO_SMTP_HOST || process.env.ZOHO_HOST || "smtp.zoho.com";
     const formattedDate = new Intl.DateTimeFormat("en", {
         day: "numeric",
         month: "long",
