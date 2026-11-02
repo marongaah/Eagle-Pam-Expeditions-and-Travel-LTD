@@ -262,5 +262,6 @@
             '<div class="featured-safari-grid">' + cards + '</div>' +
         '</div>';
 
-    footer.parentNode.insertBefore(section, footer);
+    var cta = document.querySelector(".detail-cta");
+    footer.parentNode.insertBefore(section, cta || footer);
 })();
