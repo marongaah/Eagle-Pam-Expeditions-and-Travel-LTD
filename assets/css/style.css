@@ -1913,6 +1913,154 @@ textarea:focus {
 
 }
 
+/* Home page destination carousel */
+.destinations {
+    padding-block: clamp(72px, 8vw, 100px);
+}
+
+.destinations .destination-subtitle {
+    margin-bottom: 24px;
+}
+
+.destination-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0 0 14px;
+}
+
+.destination-carousel-controls > span {
+    margin-right: auto;
+    color: #68736b;
+    font-size: 13px;
+}
+
+.destination-carousel-control {
+    display: inline-grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    place-items: center;
+    border: 1px solid rgba(30, 86, 49, .16);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 5px 16px rgba(20, 54, 31, .08);
+    color: #1e5631;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, opacity .2s ease, transform .2s ease;
+}
+
+.destination-carousel-control:not(:disabled):hover {
+    transform: translateY(-1px);
+    background: #1e5631;
+    color: #fff;
+}
+
+.destination-carousel-control:disabled {
+    opacity: .38;
+    cursor: default;
+}
+
+.destinations > .destination-grid {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 2px 2px 18px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x pan-y;
+    scrollbar-color: rgba(30, 86, 49, .35) transparent;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.destinations > .destination-grid .destination-card {
+    height: 370px;
+    flex: 0 0 min(32%, 330px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.destination-view-all {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 22px;
+    border: 1px solid rgba(30, 86, 49, .2);
+    border-radius: 999px;
+    background: #1e5631;
+    box-shadow: 0 10px 24px rgba(20, 54, 31, .12);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.destination-view-all:hover {
+    transform: translateY(-2px);
+    background: #163f24;
+    box-shadow: 0 14px 28px rgba(20, 54, 31, .18);
+}
+
+.destination-carousel-control:focus-visible,
+.destination-view-all:focus-visible {
+    outline: 3px solid rgba(212, 160, 23, .6);
+    outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .destinations > .destination-grid .destination-card {
+        flex-basis: min(58vw, 360px);
+    }
+}
+
+@media (max-width: 600px) {
+    .destinations {
+        padding-block: 64px;
+    }
+
+    .destination-carousel-controls > span {
+        font-size: 11px;
+    }
+
+    .destination-carousel-control {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+
+    .destinations > .destination-grid {
+        width: calc(100% + 20px);
+        margin-right: -20px;
+        gap: 14px;
+        padding-right: 20px;
+        scroll-padding-inline: 0 20px;
+    }
+
+    .destinations > .destination-grid .destination-card {
+        height: 330px;
+        flex-basis: min(82vw, 330px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .destinations > .destination-grid {
+        scroll-behavior: auto;
+    }
+
+    .destination-carousel-control,
+    .destination-view-all {
+        transition: none;
+    }
+}
+
 .tour-card.show,
 .why-box.show,
 .destination-card.show,

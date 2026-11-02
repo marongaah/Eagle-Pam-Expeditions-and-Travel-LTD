@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPackagesPage();
     initPackageBookingCta();
     initPackageGallery();
+    initHomeDestinationCarousel();
 
 });
 
@@ -263,6 +264,43 @@ function initPackageGallery() {
         window.addEventListener("resize", updateControls);
         requestAnimationFrame(updateControls);
     });
+}
+
+function initHomeDestinationCarousel() {
+    const section = document.querySelector(".destinations");
+    const track = section?.querySelector(".destination-grid");
+    const controls = [...(section?.querySelectorAll(".destination-carousel-control") || [])];
+
+    if (!track || !controls.length) return;
+
+    const updateControls = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        controls.forEach((button) => {
+            const direction = Number(button.dataset.scrollDirection);
+            button.disabled = direction < 0
+                ? track.scrollLeft <= 2
+                : track.scrollLeft >= maxScroll - 2;
+        });
+    };
+
+    controls.forEach((button) => {
+        button.addEventListener("click", () => {
+            const card = track.querySelector(".destination-card");
+            if (!card) return;
+            const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+            const direction = Number(button.dataset.scrollDirection);
+            track.scrollBy({
+                left: direction * (card.getBoundingClientRect().width + gap),
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ? "auto"
+                    : "smooth"
+            });
+        });
+    });
+
+    track.addEventListener("scroll", updateControls, { passive: true });
+    window.addEventListener("resize", updateControls);
+    requestAnimationFrame(updateControls);
 }
 
 function initPackageBookingCta() {

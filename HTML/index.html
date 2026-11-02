@@ -607,7 +607,17 @@
         Discover East Africa's most iconic wildlife destinations and unforgettable safari experiences.
     </p>
 
-    <div class="destination-grid">
+    <div class="destination-carousel-controls" aria-label="Destination carousel controls">
+        <span>Scroll to discover more places</span>
+        <button class="destination-carousel-control" type="button" data-scroll-direction="-1" aria-label="Show previous destinations">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        </button>
+        <button class="destination-carousel-control" type="button" data-scroll-direction="1" aria-label="Show more destinations">
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <div class="destination-grid" aria-label="Featured East Africa destinations">
 
         <!-- Masai Mara -->
         <div class="destination-card">
@@ -701,7 +711,55 @@
 
         </div>
 
+        <!-- Samburu -->
+        <div class="destination-card">
+            <img src="../assets/images/samburu1.jpg" alt="Samburu National Reserve">
+            <div class="destination-overlay">
+                <span>KENYA</span>
+                <h3>Samburu</h3>
+                <p>Discover rare wildlife and the wild landscapes of northern Kenya.</p>
+                <a href="../Destination Pages HTML/samburu.html" class="destination-btn">Explore →</a>
+            </div>
+        </div>
+
+        <!-- Lake Nakuru -->
+        <div class="destination-card">
+            <img src="../assets/images/nakuru1.jpg" alt="Lake Nakuru National Park">
+            <div class="destination-overlay">
+                <span>KENYA</span>
+                <h3>Lake Nakuru</h3>
+                <p>See rhinos, flamingos and beautiful Rift Valley scenery.</p>
+                <a href="../Destination Pages HTML/lake-nakuru.html" class="destination-btn">Explore →</a>
+            </div>
+        </div>
+
+        <!-- Tsavo East -->
+        <div class="destination-card">
+            <img src="../assets/images/tsavo-east1.jpg" alt="Tsavo East National Park">
+            <div class="destination-overlay">
+                <span>KENYA</span>
+                <h3>Tsavo East</h3>
+                <p>Explore vast red-earth plains and iconic elephant country.</p>
+                <a href="../Destination Pages HTML/tsavoE.html" class="destination-btn">Explore →</a>
+            </div>
+        </div>
+
+        <!-- Zanzibar -->
+        <div class="destination-card">
+            <img src="../assets/images/zanzibar1.jpg" alt="Zanzibar Island coastline">
+            <div class="destination-overlay">
+                <span>TANZANIA</span>
+                <h3>Zanzibar</h3>
+                <p>Unwind on white-sand beaches and discover Swahili culture.</p>
+                <a href="../Destination Pages HTML/zanzibar.html" class="destination-btn">Explore →</a>
+            </div>
+        </div>
+
     </div>
+
+    <a class="destination-view-all" href="../HTML/destinations.html">
+        View all destinations <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
 
 </section>
 
