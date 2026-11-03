@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL0B2YVQ67"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZL0B2YVQ67');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your safari quote and send Eagle Pam Expeditions your booking request. No payment is taken on this page.">
+    <meta name="theme-color" content="#163f24">
+    <title>Complete Your Booking Request | Eagle Pam Expeditions</title>
+
+    <link rel="icon" href="/assets/images/egfavicon.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="/assets/images/egfavicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/booking-request.css">
+</head>
+
+<body data-base="">
+    <div id="navbar"></div>
+
+    <main class="booking-request-page">
+        <div class="booking-request-shell">
+            <a class="booking-request-back" href="HTML/packages.html">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back to safari packages
+            </a>
+
+            <ol class="booking-request-steps" aria-label="Booking request progress">
+                <li class="is-current" aria-current="step">
+                    <span>1</span>
+                    <div><small>STEP 1</small><strong>Your details</strong></div>
+                </li>
+                <li>
+                    <span>2</span>
+                    <div><small>STEP 2</small><strong>Staff confirmation</strong></div>
+                </li>
+                <li>
+                    <span>3</span>
+                    <div><small>STEP 3</small><strong>Booking confirmed</strong></div>
+                </li>
+            </ol>
+
+            <div class="booking-request-layout">
+                <section class="booking-request-main" aria-labelledby="booking-request-title">
+                    <span class="booking-request-eyebrow">YOUR SAFARI, YOUR WAY</span>
+                    <h1 id="booking-request-title">Who’s travelling?</h1>
+                    <p class="booking-request-intro">Share your contact details to request this booking. Our team will confirm availability, your final quote, and next steps with you.</p>
+
+                    <form id="bookingRequestForm" class="booking-request-form">
+                        <fieldset>
+                            <legend>Lead traveller</legend>
+                            <p class="booking-request-hint">We’ll use these details to follow up about your safari.</p>
+
+                            <div class="booking-request-fields">
+                                <div class="booking-request-field">
+                                    <label for="requestFirstName">First name <span aria-hidden="true">*</span></label>
+                                    <input id="requestFirstName" name="firstName" type="text" autocomplete="given-name" maxlength="60" required>
+                                </div>
+                                <div class="booking-request-field">
+                                    <label for="requestLastName">Last name <span aria-hidden="true">*</span></label>
+                                    <input id="requestLastName" name="lastName" type="text" autocomplete="family-name" maxlength="60" required>
+                                </div>
+                                <div class="booking-request-field">
+                                    <label for="requestEmail">Email <span aria-hidden="true">*</span></label>
+                                    <input id="requestEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+                                    <small>We’ll send your booking updates here.</small>
+                                </div>
+                                <div class="booking-request-field">
+                                    <label for="requestPhone">Phone / WhatsApp <span aria-hidden="true">*</span></label>
+                                    <input id="requestPhone" name="phone" type="tel" autocomplete="tel" maxlength="50" required>
+                                </div>
+                                <div class="booking-request-field booking-request-field-full">
+                                    <label for="requestLocation">Where do you live? <span>Optional</span></label>
+                                    <input id="requestLocation" name="country" type="text" autocomplete="country-name" maxlength="100" placeholder="City, country">
+                                </div>
+                                <div class="booking-request-field booking-request-field-full">
+                                    <label for="requestNotes">Anything we should know? <span>Optional</span></label>
+                                    <textarea id="requestNotes" name="notes" rows="4" maxlength="2000" placeholder="Transfer requests, dietary needs, special occasions, or questions…"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <label class="booking-request-honeypot" aria-hidden="true">
+                            Leave this field empty
+                            <input name="website" type="text" tabindex="-1" autocomplete="off">
+                        </label>
+
+                        <p class="booking-request-no-payment">
+                            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                            This sends a booking request only. No payment is collected here.
+                        </p>
+                        <button class="booking-request-submit" type="submit">
+                            Send booking request
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                        <p id="bookingRequestStatus" class="booking-request-status" role="status" aria-live="polite"></p>
+                    </form>
+                </section>
+
+                <aside class="booking-request-summary" aria-labelledby="orderSummaryTitle">
+                    <span class="booking-request-summary-eyebrow">ORDER SUMMARY</span>
+                    <div class="booking-request-tour">
+                        <span class="booking-request-tour-icon" aria-hidden="true">
+                            <i class="fa-solid fa-compass"></i>
+                        </span>
+                        <h2 id="bookingRequestTour">Your safari</h2>
+                    </div>
+
+                    <dl class="booking-request-details">
+                        <div><dt>Date</dt><dd id="bookingRequestDate">To be confirmed</dd></div>
+                        <div><dt>Option</dt><dd id="bookingRequestOption">Standard package</dd></div>
+                        <div><dt>Guide language</dt><dd id="bookingRequestLanguage">English</dd></div>
+                        <div><dt>Travellers</dt><dd id="bookingRequestTravelers">To be confirmed</dd></div>
+                    </dl>
+
+                    <div class="booking-request-price">
+                        <span>Estimated trip total</span>
+                        <strong id="bookingRequestTotal">To be confirmed</strong>
+                        <small>Final price and availability are confirmed by our team.</small>
+                    </div>
+
+                    <div class="booking-request-deposit">
+                        <div>
+                            <strong>Estimated 30% deposit</strong>
+                            <small id="bookingRequestBalance">Payment instructions follow after confirmation.</small>
+                        </div>
+                        <strong id="bookingRequestDeposit">To be confirmed</strong>
+                    </div>
+
+                    <p class="booking-request-summary-note">
+                        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                        Your details are sent securely to our safari team. This page does not take payment.
+                    </p>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

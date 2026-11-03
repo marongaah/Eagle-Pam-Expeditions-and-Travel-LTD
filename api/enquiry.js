@@ -49,7 +49,7 @@ module.exports = async function handler(req, res) {
     }
 
     const smtpHost = process.env.ZOHO_HOST || "smtp.zoho.com";
-    const recipient = process.env.ENQUIRY_TO || smtpUser;
+    const recipient = process.env.ENQUIRY_TO || "info@eaglepamexpeditionsandtravel.com";
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safePhone = escapeHtml(phone || "Not provided");

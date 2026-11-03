@@ -2273,26 +2273,23 @@ CTA
 
 .package-booking-button {
     display:inline-flex;
-    min-height:48px;
+    min-height:52px;
     justify-content:center;
     align-items:center;
-    gap:10px;
-    padding:12px 20px;
+    gap:12px;
+    padding:13px 24px;
     border:1px solid transparent;
     border-radius:999px;
     font:inherit;
     font-weight:700;
+    line-height:1.2;
     text-align:center;
     text-decoration:none;
     cursor:pointer;
-    transition:background .2s ease, color .2s ease, transform .2s ease;
+    transition:background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 .package-booking-button[hidden] {
-    display:none;
-}
-
-.package-contact-form[hidden] {
     display:none;
 }
 
@@ -2300,6 +2297,7 @@ CTA
     width:100%;
     border-color:var(--primary);
     background:var(--primary);
+    box-shadow:0 8px 18px rgba(22, 63, 36, .14);
     color:#fff;
 }
 
@@ -2311,8 +2309,10 @@ CTA
 }
 
 .package-final-booking {
+    min-width:240px;
     margin-top:20px;
     background:#f1ce75;
+    box-shadow:0 8px 18px rgba(12, 36, 22, .18);
     color:#163f2b;
 }
 
@@ -2849,81 +2849,6 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     transform: translateY(-2px);
 }
 
-.package-contact-form {
-    display:grid;
-    gap:13px;
-    padding:16px;
-    border:1px solid rgba(31, 94, 59, .14);
-    border-radius:14px;
-    background:#fbfaf6;
-}
-
-.package-contact-form h3 {
-    margin:0;
-    color:var(--primary-dark);
-    font-family:"Playfair Display",serif;
-    font-size:20px;
-}
-
-.package-contact-form > p:not(.package-enquiry-status) {
-    margin:-8px 0 0;
-    color:#687365;
-    font-size:13px;
-}
-
-.package-contact-field {
-    display:grid;
-    gap:6px;
-}
-
-.package-contact-field label {
-    color:#5e6b5f;
-    font-size:12px;
-    font-weight:700;
-}
-
-.package-contact-field input {
-    width:100%;
-    min-height:44px;
-    padding:10px 12px;
-    border:1px solid #d8d0bf;
-    border-radius:9px;
-    background:#fff;
-    color:#263b2e;
-    font:inherit;
-}
-
-.package-contact-field input:focus-visible {
-    border-color:var(--primary);
-    outline:3px solid rgba(212, 160, 23, .24);
-    outline-offset:1px;
-}
-
-.package-contact-form .package-booking-button {
-    width:100%;
-}
-
-.package-contact-form .package-enquiry-status {
-    margin:0;
-    color:#a83232;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.package-contact-form .package-enquiry-status.is-success {
-    color:var(--primary);
-    font-weight:600;
-}
-
-.package-contact-honeypot {
-    position:absolute;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-    clip-path:inset(50%);
-    white-space:nowrap;
-}
-
 .timeline-content,
 .overview-content,
 .include-card,
@@ -2960,14 +2885,14 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
         justify-content: center;
         align-items: center;
         gap: 10px;
-        padding: 12px 18px;
+        padding: 12px 20px;
         border: 1px solid rgba(255, 255, 255, .18);
         border-radius: 999px;
         background: var(--primary);
         box-shadow: 0 12px 30px rgba(15, 44, 26, .28);
         color: #fff;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 700;
         text-decoration: none;
         transition: background .2s ease, transform .2s ease;
     }
