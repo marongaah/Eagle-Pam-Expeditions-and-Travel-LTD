@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 function text(value, maxLength) {
     return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -26,6 +26,7 @@ module.exports = async function handler(req, res) {
 
     const body = req.body && typeof req.body === "object" ? req.body : {};
 
+    // Honeypot field: real visitors leave it empty.
     if (text(body.website, 200)) {
         return res.status(200).json({ message: "Thank you, we'll reply shortly." });
     }
@@ -40,36 +41,29 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: "Please enter your name, a valid email address, and a message." });
     }
 
-    const smtpUser = process.env.ZOHO_USER;
-    const smtpPassword = process.env.ZOHO_PASS;
+    const apiKey = process.env.RESEND_API_KEY;
 
-    if (!smtpUser || !smtpPassword) {
-        console.error("Contact enquiry email is not configured: Zoho SMTP environment variables are missing.");
+    if (!apiKey) {
+        console.error("Contact enquiry email is not configured: RESEND_API_KEY is missing.");
         return res.status(503).json({ error: "We couldn't send your message just now. Please try again later." });
     }
 
-    const smtpHost = process.env.ZOHO_HOST || "smtp.zoho.com";
     const recipient = process.env.ENQUIRY_TO || "info@eaglepamexpeditionsandtravel.com";
+    const sender = process.env.ENQUIRY_FROM || "Eagle Pam Expeditions <enquiries@eaglepamexpeditionsandtravel.com>";
+
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safePhone = escapeHtml(phone || "Not provided");
     const safeCountry = escapeHtml(country || "Not provided");
     const safeMessage = escapeHtml(message).replace(/\r\n|\r|\n/g, "<br>");
 
-    const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: 465,
-        secure: true,
-        auth: {
-            user: smtpUser,
-            pass: smtpPassword
-        }
-    });
+    const resend = new Resend(apiKey);
 
     try {
-        await transporter.sendMail({
-            from: `Eagle Pam Expeditions <${smtpUser}>`,
-            to: recipient,
+        // Resend returns { data, error } instead of throwing, so check both.
+        const { error } = await resend.emails.send({
+            from: sender,
+            to: [recipient],
             replyTo: email,
             subject: `New website enquiry from ${name.replace(/[\r\n]+/g, " ")}`,
             text: [
@@ -92,10 +86,14 @@ module.exports = async function handler(req, res) {
                 <p><strong>Message:</strong><br>${safeMessage}</p>
             `
         });
+
+        if (error) {
+            throw error;
+        }
     } catch (error) {
-        console.error("Zoho SMTP failed to send a contact enquiry.", {
-            code: error && error.code,
-            responseCode: error && error.responseCode
+        console.error("Resend failed to send a contact enquiry.", {
+            name: error && error.name,
+            message: error && error.message
         });
         return res.status(502).json({ error: "We couldn't send your message just now. Please try again." });
     }
