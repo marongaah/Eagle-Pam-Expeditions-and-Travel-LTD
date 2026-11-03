@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL0B2YVQ67"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZL0B2YVQ67');
+    </script>
     <link rel="icon" href="/assets/images/egfavicon.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" href="/assets/images/egfavicon.jpg">
     <meta charset="UTF-8">
@@ -87,6 +95,9 @@
                     </div>
 
                     <form id="safariForm">
+                        <input id="packageOption" name="packageOption" type="hidden">
+                        <input id="estimatedTotal" name="estimatedTotal" type="hidden">
+                        <input id="estimatedDeposit" name="estimatedDeposit" type="hidden">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="name">Full name <span aria-hidden="true">*</span></label>
@@ -130,6 +141,14 @@
                             <div class="form-group">
                                 <label for="travelers">Number of travelers <span aria-hidden="true">*</span></label>
                                 <input id="travelers" name="travelers" type="number" min="1" max="100" inputmode="numeric" placeholder="e.g. 2" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="guideLanguage">Preferred guide language</label>
+                                <select id="guideLanguage" name="guideLanguage">
+                                    <option value="English">English</option>
+                                    <option value="Other (request)">Other (request)</option>
+                                </select>
                             </div>
 
                             <div class="form-group">

@@ -103,6 +103,10 @@ function initSafariForm() {
         const date = getValue("date");
         const days = getValue("days");
         const travelers = getValue("travelers");
+        const guideLanguage = getValue("guideLanguage");
+        const packageOption = getValue("packageOption");
+        const estimatedTotal = getValue("estimatedTotal");
+        const estimatedDeposit = getValue("estimatedDeposit");
         const budget = getValue("budget");
         const message = getValue("message");
         const formattedDate = date
@@ -126,6 +130,15 @@ function initSafariForm() {
             `Preferred departure date: ${formattedDate}`,
             `Trip duration: ${days ? `${days} days` : "Flexible / not specified"}`,
             `Group size: ${travelers} ${Number(travelers) === 1 ? "traveller" : "travellers"}`,
+            `Preferred guide language: ${guideLanguage || "English"}`,
+            ...(packageOption ? [`Package option: ${packageOption}`] : []),
+            ...(estimatedTotal
+                ? [
+                    `Estimated trip total: ${estimatedTotal}`,
+                    `Estimated 30% deposit: ${estimatedDeposit || "To be confirmed"}`,
+                    "Balance due 60 days before departure."
+                ]
+                : []),
             `Preferred travel style: ${budget || "No preference selected"}`,
             "",
             "TRAVELLER CONTACT DETAILS",
@@ -258,6 +271,14 @@ function initTourSelection() {
     }
 
     const travelDate = document.getElementById("date");
+    const requestedDate = params.get("date");
+    const travelersField = document.getElementById("travelers");
+    const requestedTravelers = Number(params.get("travelers"));
+    const guideLanguageField = document.getElementById("guideLanguage");
+    const requestedLanguage = params.get("language");
+    const packageOptionField = document.getElementById("packageOption");
+    const estimatedTotalField = document.getElementById("estimatedTotal");
+    const estimatedDepositField = document.getElementById("estimatedDeposit");
 
     if (travelDate) {
         const today = new Date();
@@ -268,7 +289,31 @@ function initTourSelection() {
         ].join("-");
 
         travelDate.min = localToday;
+
+        if (requestedDate) {
+            travelDate.value = requestedDate;
+        }
     }
+
+    if (
+        travelersField &&
+        Number.isInteger(requestedTravelers) &&
+        requestedTravelers >= 1 &&
+        requestedTravelers <= 100
+    ) {
+        travelersField.value = String(requestedTravelers);
+    }
+
+    if (guideLanguageField && requestedLanguage) {
+        const matchingOption = [...guideLanguageField.options].find(
+            (option) => option.value === requestedLanguage
+        );
+        if (matchingOption) guideLanguageField.value = requestedLanguage;
+    }
+
+    if (packageOptionField) packageOptionField.value = params.get("option") || "";
+    if (estimatedTotalField) estimatedTotalField.value = params.get("total") || "";
+    if (estimatedDepositField) estimatedDepositField.value = params.get("deposit") || "";
 
 }
 
@@ -756,21 +801,335 @@ function initPackageBookingCta() {
     bookingUrl.searchParams.set("tour", packageTitle);
     bookingUrl.hash = "booking-form";
 
+    const createBookingLink = (className, label = "Choose dates & book") => {
+        const link = document.createElement("a");
+        link.className = className;
+        link.href = bookingUrl.toString();
+        link.setAttribute(
+            "aria-label",
+            label === "Ask on WhatsApp"
+                ? `Ask about ${packageTitle} on WhatsApp`
+                : `Choose dates and book ${packageTitle}`
+        );
+
+        const linkIcon = document.createElement("i");
+        linkIcon.className = className.includes("whatsapp")
+            ? "fa-brands fa-whatsapp"
+            : "fa-solid fa-calendar-check";
+        linkIcon.setAttribute("aria-hidden", "true");
+
+        const linkText = document.createElement("span");
+        linkText.textContent = label;
+
+        link.append(linkIcon, linkText);
+        return link;
+    };
+
+    const priceBox = document.querySelector(".booking-card .price-box");
+    let updateBookingLinks = () => {};
+
+    if (priceBox) {
+        const currencyCode = priceBox.textContent.match(/\b(USD|KES|EUR|GBP)\b/)?.[1] || "USD";
+        const formatAmount = (amount) => new Intl.NumberFormat("en-US", {
+            maximumFractionDigits: 0
+        }).format(amount);
+        const parseAmount = (text) => {
+            const amount = text.replace(/,/g, "").match(/\d+(?:\.\d+)?/)?.[0];
+            return amount ? Number(amount) : null;
+        };
+        const priceTiers = [...priceBox.querySelectorAll(".price-item")].map((item) => ({
+            name: item.querySelector("span")?.textContent.trim() || "",
+            price: parseAmount(item.querySelector("strong")?.textContent || "")
+        })).filter((tier) => tier.name && tier.price !== null);
+
+        if (!priceTiers.length) {
+            const price = parseAmount(priceBox.querySelector("h2")?.textContent || "");
+            if (price !== null) {
+                priceTiers.push({ name: packageTitle, price });
+            }
+        }
+
+        if (!priceTiers.length) {
+            console.error(`Package price could not be read for ${packageTitle}.`);
+        }
+
+        const createElement = (tagName, className, text) => {
+            const element = document.createElement(tagName);
+            if (className) element.className = className;
+            if (text) element.textContent = text;
+            return element;
+        };
+
+        const selectedTier = priceTiers[0];
+        const priceHeader = createElement("div", "package-price-heading");
+        priceHeader.append(
+            createElement("span", "price-label", "From"),
+            createElement("h2", "package-price-amount", selectedTier
+                ? `${currencyCode} ${formatAmount(selectedTier.price)}`
+                : "Contact us"),
+            createElement("p", "", "per person")
+        );
+        priceBox.replaceChildren(priceHeader);
+
+        const bookingControls = document.createElement("div");
+        bookingControls.className = "package-booking-controls";
+
+        const dateField = document.createElement("div");
+        dateField.className = "package-booking-field";
+        const dateLabel = document.createElement("label");
+        dateLabel.htmlFor = "package-start-date";
+        dateLabel.textContent = "Date";
+        const dateInput = document.createElement("input");
+        dateInput.id = "package-start-date";
+        dateInput.name = "date";
+        dateInput.type = "date";
+        dateInput.required = true;
+        const today = new Date();
+        dateInput.min = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+        dateField.append(dateLabel, dateInput);
+
+        const travelersField = document.createElement("div");
+        travelersField.className = "package-booking-field";
+        const travelersLabel = document.createElement("label");
+        travelersLabel.htmlFor = "package-travelers";
+        travelersLabel.textContent = "Travelers";
+        const travelersInput = document.createElement("input");
+        travelersInput.id = "package-travelers";
+        travelersInput.name = "travelers";
+        travelersInput.type = "number";
+        travelersInput.min = "1";
+        travelersInput.max = "100";
+        travelersInput.value = "2";
+        travelersInput.required = true;
+        travelersField.append(travelersLabel, travelersInput);
+
+        const optionField = document.createElement("div");
+        optionField.className = "package-booking-field";
+        const optionLabel = createElement("label", "", priceTiers.length > 1
+            ? "Choose your option"
+            : "Your safari package");
+
+        let optionSelect;
+        const optionSummary = createElement("div", "package-selected-option");
+        const optionName = createElement("strong", "package-option-name");
+        const optionPrice = createElement("strong", "package-option-price");
+        optionSummary.append(optionName, optionPrice);
+
+        if (priceTiers.length > 1) {
+            optionSelect = document.createElement("select");
+            optionSelect.id = "package-option";
+            optionSelect.setAttribute("aria-label", "Choose safari package option");
+            priceTiers.forEach((tier, index) => {
+                const option = document.createElement("option");
+                option.value = String(index);
+                option.textContent = `${tier.name} · ${currencyCode} ${formatAmount(tier.price)} per person`;
+                optionSelect.append(option);
+            });
+            optionField.append(optionLabel, optionSelect, optionSummary);
+        } else {
+            optionSummary.setAttribute("aria-live", "polite");
+            optionField.append(optionLabel, optionSummary);
+        }
+
+        const languageField = document.createElement("div");
+        languageField.className = "package-language-field";
+        const languageLabel = createElement("label", "", "Guide language");
+        languageLabel.htmlFor = "package-guide-language";
+        const languageSelect = document.createElement("select");
+        languageSelect.id = "package-guide-language";
+        languageSelect.name = "language";
+        [
+            ["English", "English"],
+            ["Other (request)", "Other (request)"]
+        ].forEach(([value, label]) => {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = label;
+            languageSelect.append(option);
+        });
+        languageField.append(languageLabel, languageSelect);
+
+        const tripSummary = createElement("div", "package-trip-summary");
+        const tripBreakdown = createElement("span", "package-trip-breakdown");
+        const tripTotalRow = createElement("div", "package-trip-total-row");
+        const tripTotalLabel = createElement("strong", "", "Trip total");
+        const tripTotal = createElement("strong", "package-trip-total");
+        tripTotalRow.append(tripTotalLabel, tripTotal);
+        tripSummary.append(tripBreakdown, tripTotalRow);
+
+        const depositSummary = createElement("div", "package-deposit-summary");
+        const depositText = createElement("div", "package-deposit-copy");
+        const depositHeading = createElement("strong", "", "Pay 30% today to confirm");
+        const balanceText = createElement("span", "package-balance-due");
+        const depositAmount = createElement("strong", "package-deposit-amount");
+        depositText.append(depositHeading, balanceText);
+        depositSummary.append(depositText, depositAmount);
+
+        const bookLink = createBookingLink(
+            "package-booking-button package-price-booking"
+        );
+        const whatsappLink = createBookingLink(
+            "package-booking-button package-whatsapp-booking",
+            "Ask on WhatsApp"
+        );
+        whatsappLink.target = "_blank";
+        whatsappLink.rel = "noopener noreferrer";
+
+        bookingControls.append(
+            dateField,
+            travelersField,
+            optionField,
+            languageField,
+            tripSummary,
+            depositSummary,
+            bookLink,
+            whatsappLink
+        );
+        priceBox.after(bookingControls);
+        priceBox.closest(".booking-card")?.classList.add("has-detailed-package-booking");
+
+        updateBookingLinks = () => {
+            const date = dateInput.value;
+            const travelers = travelersInput.value;
+            const tierIndex = optionSelect ? Number(optionSelect.value) : 0;
+            const tier = priceTiers[tierIndex];
+            const language = languageSelect.value;
+            const travelerCount = Number(travelers);
+            const validTravelerCount = Number.isInteger(travelerCount) &&
+                travelerCount >= 1 && travelerCount <= 100;
+            const tripPrice = tier && validTravelerCount
+                ? tier.price * travelerCount
+                : null;
+            const deposit = tripPrice === null ? null : Math.round(tripPrice * 0.3);
+            const balance = tripPrice === null ? null : tripPrice - deposit;
+
+            if (tier) {
+                optionName.textContent = tier.name;
+                optionPrice.textContent = `${currencyCode} ${formatAmount(tier.price)}`;
+                priceHeader.querySelector(".package-price-amount").textContent =
+                    `${currencyCode} ${formatAmount(tier.price)}`;
+            }
+
+            const travelersLabelText = validTravelerCount
+                ? `${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}`
+                : "Enter a valid traveler count";
+            tripBreakdown.textContent = tier
+                ? `${travelersLabelText} × ${currencyCode} ${formatAmount(tier.price)} per person`
+                : "Contact us for a trip estimate";
+            tripTotal.textContent = tripPrice === null
+                ? "Contact us"
+                : `${currencyCode} ${formatAmount(tripPrice)}`;
+            depositAmount.textContent = deposit === null
+                ? "Contact us"
+                : `${currencyCode} ${formatAmount(deposit)}`;
+            balanceText.textContent = balance === null
+                ? "Our team will confirm your balance."
+                : `Balance ${currencyCode} ${formatAmount(balance)} due 60 days before departure.`;
+
+            const url = new URL(bookingUrl);
+            if (date) url.searchParams.set("date", date);
+            else url.searchParams.delete("date");
+            if (travelers) url.searchParams.set("travelers", travelers);
+            else url.searchParams.delete("travelers");
+            url.searchParams.set("language", language);
+            if (tier) url.searchParams.set("option", tier.name);
+            if (tripPrice !== null) {
+                url.searchParams.set("total", `${currencyCode} ${formatAmount(tripPrice)}`);
+                url.searchParams.set("deposit", `${currencyCode} ${formatAmount(deposit)}`);
+            } else {
+                url.searchParams.delete("total");
+                url.searchParams.delete("deposit");
+            }
+
+            document.querySelectorAll(".package-booking-button, .package-mobile-booking")
+                .forEach((link) => {
+                    if (link.classList.contains("package-whatsapp-booking")) {
+                        const message = [
+                            `Hello, I’m interested in the ${packageTitle}.`,
+                            `Preferred date: ${date || "To be discussed"}.`,
+                            `Travelers: ${travelers || "To be confirmed"}.`,
+                            `Package option: ${tier?.name || "To be confirmed"}.`,
+                            `Guide language: ${language}.`,
+                            `Estimated trip total: ${tripPrice === null ? "To be confirmed" : `${currencyCode} ${formatAmount(tripPrice)}`}.`,
+                            `Estimated 30% deposit: ${deposit === null ? "To be confirmed" : `${currencyCode} ${formatAmount(deposit)}`}.`,
+                            "I understand the 30% deposit and balance due 60 days before departure."
+                        ].join(" ");
+                        link.href = `https://wa.me/254111932279?${new URLSearchParams({ text: message })}`;
+                    } else {
+                        link.href = url.toString();
+                    }
+                });
+        };
+
+        [dateInput, travelersInput].forEach((input) => {
+            input.addEventListener("input", updateBookingLinks);
+            input.addEventListener("change", updateBookingLinks);
+        });
+        optionSelect?.addEventListener("change", updateBookingLinks);
+        languageSelect.addEventListener("change", updateBookingLinks);
+    } else {
+        console.error("Package booking button could not be added to the price card.");
+    }
+
+    let packageCta = document.querySelector(".package-cta");
+    if (!packageCta) {
+        packageCta = document.createElement("section");
+        packageCta.className = "package-cta";
+        packageCta.setAttribute("aria-labelledby", "package-cta-heading");
+        packageCta.innerHTML = `
+            <div class="container">
+                <h2 id="package-cta-heading">Ready to plan your safari?</h2>
+                <p>Choose your dates and let our local team help you prepare for your journey.</p>
+            </div>
+        `;
+
+        const footer = document.getElementById("footer");
+        if (footer?.parentNode) {
+            footer.parentNode.insertBefore(packageCta, footer);
+        } else {
+            document.body.append(packageCta);
+        }
+    }
+
+    const ctaContent = packageCta.querySelector(".container") || packageCta;
+    ctaContent.append(createBookingLink("package-booking-button package-final-booking"));
+
     const mobileBookingLink = document.createElement("a");
     mobileBookingLink.className = "package-mobile-booking";
     mobileBookingLink.href = bookingUrl.toString();
     mobileBookingLink.setAttribute("aria-label", `Choose dates and book ${packageTitle}`);
-
-    const icon = document.createElement("i");
-    icon.className = "fa-solid fa-calendar-check";
-    icon.setAttribute("aria-hidden", "true");
-
-    const text = document.createElement("span");
-    text.textContent = "Choose dates & book";
-
-    mobileBookingLink.append(icon, text);
+    const mobileIcon = document.createElement("i");
+    mobileIcon.className = "fa-solid fa-calendar-check";
+    mobileIcon.setAttribute("aria-hidden", "true");
+    const mobileText = document.createElement("span");
+    mobileText.textContent = "Choose dates & book";
+    mobileBookingLink.append(mobileIcon, mobileText);
     document.body.append(mobileBookingLink);
     document.body.classList.add("has-package-mobile-booking");
+
+    document.querySelectorAll(".package-booking-button, .package-mobile-booking")
+        .forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const dateInput = document.getElementById("package-start-date");
+                const travelersInput = document.getElementById("package-travelers");
+                if (!dateInput || !travelersInput) return;
+
+                if (!dateInput.reportValidity()) {
+                    event.preventDefault();
+                    dateInput.focus();
+                    return;
+                }
+                if (!travelersInput.reportValidity()) {
+                    event.preventDefault();
+                    travelersInput.focus();
+                }
+            });
+        });
+    updateBookingLinks();
 
 }
 
