@@ -10,6 +10,7 @@ module.exports = function handler(req, res) {
     return jsonResponse(res, 200, {
         supabaseUrl: settings.supabaseUrl || null,
         supabaseAnonKey: settings.supabaseAnonKey || null,
-        staffPortalEnabled: Boolean(settings.hasSupabase && settings.staffEmails.length)
+        staffPortalEnabled: settings.hasSupabase,
+        staffEmail: settings.staffEmails[0]
     });
 };

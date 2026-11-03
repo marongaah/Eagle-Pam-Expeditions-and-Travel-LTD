@@ -286,6 +286,9 @@
         try {
             const response = await fetch("/api/public-config");
             config = await readResponse(response);
+            const staffEmailInput = loginForm.elements.namedItem("email");
+            staffEmailInput.value = config.staffEmail || "";
+            staffEmailInput.readOnly = true;
             if (!config.staffPortalEnabled || !config.supabaseUrl || !config.supabaseAnonKey) {
                 loginForm.querySelector("button").disabled = true;
                 setStatus(loginStatus, "Staff sign-in is not configured yet. Ask the site administrator to finish Supabase setup.");
@@ -309,6 +312,10 @@
         if (!loginForm.reportValidity() || !config?.staffPortalEnabled) return;
 
         const email = loginForm.elements.namedItem("email").value.trim().toLowerCase();
+        if (email !== config.staffEmail?.toLowerCase()) {
+            setStatus(loginStatus, "Only the authorized staff email can sign in.");
+            return;
+        }
         const button = loginForm.querySelector("button");
         button.disabled = true;
         setStatus(loginStatus, "Sending your secure sign-in link…");

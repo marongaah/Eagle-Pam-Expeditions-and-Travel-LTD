@@ -8,13 +8,14 @@ and records it in the staff portal.
 
 ## Staff booking portal
 
-The private portal is at `/admin.html`. It uses Supabase email sign-in and only
-authorizes addresses listed in `STAFF_EMAILS`; this defaults to the staff inbox.
+The private portal is at `/admin.html`. It uses Supabase email sign-in and
+authorizes only `info@eaglepamexpeditionsandtravel.com`. The allowlist is fixed
+server-side; environment variables cannot grant another address access.
 
 1. Create a Supabase project and run [`supabase/schema.sql`](./supabase/schema.sql)
    in its SQL editor.
-2. In Supabase Auth, invite `info@eaglepamexpeditionsandtravel.com` (and any other
-   approved team members) as users. Disable public sign-ups.
+2. In Supabase Auth, invite `info@eaglepamexpeditionsandtravel.com` as a user.
+   Do not invite other addresses for this portal, and disable public sign-ups.
 3. Add the production and preview portal URLs (for example,
    `https://your-domain.example/admin.html`) to Supabase's allowed redirect URLs.
 4. Configure these Vercel environment variables for the deployments that need
@@ -22,8 +23,6 @@ authorizes addresses listed in `STAFF_EMAILS`; this defaults to the staff inbox.
    - `SUPABASE_URL`: project URL
    - `SUPABASE_ANON_KEY`: project public/anon key
    - `SUPABASE_SERVICE_ROLE_KEY`: server-only service role key
-   - `STAFF_EMAILS`: optional comma-separated allowlist override; defaults to
-     `info@eaglepamexpeditionsandtravel.com`
 
 Never expose or commit `SUPABASE_SERVICE_ROLE_KEY`. Row-level security is enabled
 on booking records; browser clients do not have direct table access.
