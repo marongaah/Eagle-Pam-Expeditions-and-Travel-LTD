@@ -2280,10 +2280,20 @@ CTA
     padding:12px 20px;
     border:1px solid transparent;
     border-radius:999px;
+    font:inherit;
     font-weight:700;
     text-align:center;
     text-decoration:none;
+    cursor:pointer;
     transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.package-booking-button[hidden] {
+    display:none;
+}
+
+.package-contact-form[hidden] {
+    display:none;
 }
 
 .package-price-booking {
@@ -2837,6 +2847,81 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     background: #16884c;
     color: #fff;
     transform: translateY(-2px);
+}
+
+.package-contact-form {
+    display:grid;
+    gap:13px;
+    padding:16px;
+    border:1px solid rgba(31, 94, 59, .14);
+    border-radius:14px;
+    background:#fbfaf6;
+}
+
+.package-contact-form h3 {
+    margin:0;
+    color:var(--primary-dark);
+    font-family:"Playfair Display",serif;
+    font-size:20px;
+}
+
+.package-contact-form > p:not(.package-enquiry-status) {
+    margin:-8px 0 0;
+    color:#687365;
+    font-size:13px;
+}
+
+.package-contact-field {
+    display:grid;
+    gap:6px;
+}
+
+.package-contact-field label {
+    color:#5e6b5f;
+    font-size:12px;
+    font-weight:700;
+}
+
+.package-contact-field input {
+    width:100%;
+    min-height:44px;
+    padding:10px 12px;
+    border:1px solid #d8d0bf;
+    border-radius:9px;
+    background:#fff;
+    color:#263b2e;
+    font:inherit;
+}
+
+.package-contact-field input:focus-visible {
+    border-color:var(--primary);
+    outline:3px solid rgba(212, 160, 23, .24);
+    outline-offset:1px;
+}
+
+.package-contact-form .package-booking-button {
+    width:100%;
+}
+
+.package-contact-form .package-enquiry-status {
+    margin:0;
+    color:#a83232;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.package-contact-form .package-enquiry-status.is-success {
+    color:var(--primary);
+    font-weight:600;
+}
+
+.package-contact-honeypot {
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip-path:inset(50%);
+    white-space:nowrap;
 }
 
 .timeline-content,

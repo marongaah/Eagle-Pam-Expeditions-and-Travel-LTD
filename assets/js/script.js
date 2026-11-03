@@ -801,15 +801,24 @@ function initPackageBookingCta() {
     bookingUrl.searchParams.set("tour", packageTitle);
     bookingUrl.hash = "booking-form";
 
-    const createBookingLink = (className, label = "Choose dates & book") => {
-        const link = document.createElement("a");
+    const createBookingLink = (className, label = "Send booking enquiry") => {
+        const isWhatsAppLink = className.includes("whatsapp");
+        const link = document.createElement(isWhatsAppLink ? "a" : "button");
         link.className = className;
-        link.href = bookingUrl.toString();
+        if (isWhatsAppLink) {
+            link.href = bookingUrl.toString();
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+        } else {
+            link.type = "button";
+            link.setAttribute("aria-controls", "package-contact-form");
+            link.setAttribute("aria-expanded", "false");
+        }
         link.setAttribute(
             "aria-label",
-            label === "Ask on WhatsApp"
+            isWhatsAppLink
                 ? `Ask about ${packageTitle} on WhatsApp`
-                : `Choose dates and book ${packageTitle}`
+                : `Send a booking enquiry for ${packageTitle}`
         );
 
         const linkIcon = document.createElement("i");
@@ -969,8 +978,38 @@ function initPackageBookingCta() {
         depositText.append(depositHeading, balanceText);
         depositSummary.append(depositText, depositAmount);
 
+        const contactForm = document.createElement("form");
+        contactForm.id = "package-contact-form";
+        contactForm.className = "package-contact-form";
+        contactForm.hidden = true;
+        contactForm.innerHTML = `
+            <h3>Where can we reach you?</h3>
+            <p>Your trip details are included automatically.</p>
+            <div class="package-contact-field">
+                <label for="package-contact-name">Full name</label>
+                <input id="package-contact-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+            </div>
+            <div class="package-contact-field">
+                <label for="package-contact-email">Email address</label>
+                <input id="package-contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="package-contact-field">
+                <label for="package-contact-phone">Phone / WhatsApp</label>
+                <input id="package-contact-phone" name="phone" type="tel" autocomplete="tel" maxlength="50" required>
+            </div>
+            <label class="package-contact-honeypot" aria-hidden="true">
+                Leave this field empty
+                <input name="website" type="text" tabindex="-1" autocomplete="off">
+            </label>
+            <button class="package-booking-button package-price-booking" type="submit">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                Send enquiry
+            </button>
+            <p class="package-enquiry-status" role="status" aria-live="polite"></p>
+        `;
+
         const bookLink = createBookingLink(
-            "package-booking-button package-price-booking"
+            "package-booking-button package-price-booking package-reveal-booking"
         );
         const whatsappLink = createBookingLink(
             "package-booking-button package-whatsapp-booking",
@@ -986,6 +1025,7 @@ function initPackageBookingCta() {
             languageField,
             tripSummary,
             depositSummary,
+            contactForm,
             bookLink,
             whatsappLink
         );
@@ -1030,21 +1070,6 @@ function initPackageBookingCta() {
                 ? "Our team will confirm your balance."
                 : `Balance ${currencyCode} ${formatAmount(balance)} due 60 days before departure.`;
 
-            const url = new URL(bookingUrl);
-            if (date) url.searchParams.set("date", date);
-            else url.searchParams.delete("date");
-            if (travelers) url.searchParams.set("travelers", travelers);
-            else url.searchParams.delete("travelers");
-            url.searchParams.set("language", language);
-            if (tier) url.searchParams.set("option", tier.name);
-            if (tripPrice !== null) {
-                url.searchParams.set("total", `${currencyCode} ${formatAmount(tripPrice)}`);
-                url.searchParams.set("deposit", `${currencyCode} ${formatAmount(deposit)}`);
-            } else {
-                url.searchParams.delete("total");
-                url.searchParams.delete("deposit");
-            }
-
             document.querySelectorAll(".package-booking-button, .package-mobile-booking")
                 .forEach((link) => {
                     if (link.classList.contains("package-whatsapp-booking")) {
@@ -1059,8 +1084,6 @@ function initPackageBookingCta() {
                             "I understand the 30% deposit and balance due 60 days before departure."
                         ].join(" ");
                         link.href = `https://wa.me/254111932279?${new URLSearchParams({ text: message })}`;
-                    } else {
-                        link.href = url.toString();
                     }
                 });
         };
@@ -1071,6 +1094,106 @@ function initPackageBookingCta() {
         });
         optionSelect?.addEventListener("change", updateBookingLinks);
         languageSelect.addEventListener("change", updateBookingLinks);
+
+        const revealContactForm = () => {
+            if (!dateInput.reportValidity()) {
+                dateInput.focus();
+                return;
+            }
+            if (!travelersInput.reportValidity()) {
+                travelersInput.focus();
+                return;
+            }
+
+            contactForm.hidden = false;
+            bookLink.hidden = true;
+            bookLink.setAttribute("aria-expanded", "true");
+            document.querySelectorAll(
+                ".package-final-booking, .package-mobile-booking"
+            ).forEach((button) => button.setAttribute("aria-expanded", "true"));
+            contactForm.querySelector('input[name="name"]').focus();
+        };
+
+        bookLink.addEventListener("click", revealContactForm);
+        contactForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            if (!contactForm.reportValidity()) return;
+
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const status = contactForm.querySelector(".package-enquiry-status");
+            const name = contactForm.elements.namedItem("name").value.trim();
+            const email = contactForm.elements.namedItem("email").value.trim();
+            const phone = contactForm.elements.namedItem("phone").value.trim();
+            const date = dateInput.value;
+            const travelers = Number(travelersInput.value);
+            const tier = priceTiers[optionSelect ? Number(optionSelect.value) : 0];
+            const language = languageSelect.value;
+            const travelerCount = Number.isInteger(travelers) && travelers >= 1 && travelers <= 100
+                ? travelers
+                : 0;
+            const total = tier && travelerCount ? tier.price * travelerCount : null;
+            const deposit = total === null ? null : Math.round(total * 0.3);
+            const formattedDate = new Intl.DateTimeFormat("en", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }).format(new Date(`${date}T00:00:00`));
+            const message = [
+                "NEW SAFARI BOOKING ENQUIRY",
+                "",
+                `Safari: ${packageTitle}`,
+                `Preferred departure date: ${formattedDate}`,
+                `Travelers: ${travelerCount}`,
+                `Package option: ${tier?.name || "To be confirmed"}`,
+                `Guide language: ${language}`,
+                `Estimated trip total: ${total === null ? "To be confirmed" : `${currencyCode} ${formatAmount(total)}`}`,
+                `Estimated 30% deposit: ${deposit === null ? "To be confirmed" : `${currencyCode} ${formatAmount(deposit)}`}`,
+                "Balance due 60 days before departure.",
+                "",
+                `Name: ${name}`,
+                `Email: ${email}`,
+                `Phone / WhatsApp: ${phone}`
+            ].join("\n");
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending enquiry...";
+            status.classList.remove("is-success");
+            status.textContent = "";
+
+            try {
+                const response = await fetch("/api/enquiry", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        phone,
+                        message,
+                        website: contactForm.elements.namedItem("website").value
+                    })
+                });
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || "We couldn't send your enquiry. Please try again.");
+                }
+
+                contactForm.reset();
+                contactForm.querySelectorAll("input").forEach((input) => {
+                    input.disabled = true;
+                });
+                status.classList.add("is-success");
+                status.textContent = "Thank you! Your enquiry has been sent to our safari team. We'll be in touch shortly.";
+                submitButton.textContent = "Enquiry sent";
+            } catch (error) {
+                console.error("Safari booking enquiry submission failed.", error);
+                status.textContent = error instanceof Error
+                    ? error.message
+                    : "We couldn't send your enquiry. Please try again.";
+                submitButton.disabled = false;
+                submitButton.textContent = "Send enquiry";
+            }
+        });
     } else {
         console.error("Package booking button could not be added to the price card.");
     }
@@ -1098,9 +1221,9 @@ function initPackageBookingCta() {
     const ctaContent = packageCta.querySelector(".container") || packageCta;
     ctaContent.append(createBookingLink("package-booking-button package-final-booking"));
 
-    const mobileBookingLink = document.createElement("a");
+    const mobileBookingLink = document.createElement("button");
     mobileBookingLink.className = "package-mobile-booking";
-    mobileBookingLink.href = bookingUrl.toString();
+    mobileBookingLink.type = "button";
     mobileBookingLink.setAttribute("aria-label", `Choose dates and book ${packageTitle}`);
     const mobileIcon = document.createElement("i");
     mobileIcon.className = "fa-solid fa-calendar-check";
@@ -1111,24 +1234,44 @@ function initPackageBookingCta() {
     document.body.append(mobileBookingLink);
     document.body.classList.add("has-package-mobile-booking");
 
-    document.querySelectorAll(".package-booking-button, .package-mobile-booking")
-        .forEach((link) => {
-            link.addEventListener("click", (event) => {
-                const dateInput = document.getElementById("package-start-date");
-                const travelersInput = document.getElementById("package-travelers");
-                if (!dateInput || !travelersInput) return;
+    document.querySelectorAll(".package-final-booking, .package-mobile-booking")
+        .forEach((button) => button.addEventListener("click", revealPackageContact));
 
-                if (!dateInput.reportValidity()) {
-                    event.preventDefault();
-                    dateInput.focus();
-                    return;
-                }
-                if (!travelersInput.reportValidity()) {
-                    event.preventDefault();
-                    travelersInput.focus();
-                }
-            });
-        });
+    document.querySelector(".package-whatsapp-booking")?.addEventListener("click", (event) => {
+        const dateInput = document.getElementById("package-start-date");
+        const travelersInput = document.getElementById("package-travelers");
+        if (!dateInput.reportValidity() || !travelersInput.reportValidity()) {
+            event.preventDefault();
+        }
+    });
+
+    function revealPackageContact() {
+        const dateInput = document.getElementById("package-start-date");
+        const travelersInput = document.getElementById("package-travelers");
+        if (!dateInput.reportValidity()) {
+            dateInput.focus();
+            return;
+        }
+        if (!travelersInput.reportValidity()) {
+            travelersInput.focus();
+            return;
+        }
+
+        const form = document.getElementById("package-contact-form");
+        const primaryButton = document.querySelector(".package-reveal-booking");
+        if (form && primaryButton) {
+            form.hidden = false;
+            primaryButton.hidden = true;
+            document.querySelectorAll(
+                ".package-reveal-booking, .package-final-booking, .package-mobile-booking"
+            ).forEach((button) => button.setAttribute("aria-expanded", "true"));
+            form.querySelector('input[name="name"]').focus();
+            form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else {
+            console.error("Inline safari enquiry form is unavailable.");
+        }
+    }
+
     updateBookingLinks();
 
 }
