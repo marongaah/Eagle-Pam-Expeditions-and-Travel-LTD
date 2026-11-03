@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#163f24">
+    <title>Staff Booking Portal | Eagle Pam Expeditions</title>
+    <link rel="icon" href="/assets/images/egfavicon.jpg" type="image/jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/booking-portal.css">
+</head>
+<body data-base="">
+    <div id="navbar"></div>
+    <main class="portal-page">
+        <div class="portal-shell">
+            <header class="portal-heading">
+                <span>STAFF ONLY</span>
+                <h1>Safari booking requests</h1>
+                <p>Review each request, confirm availability and the final amount, then send bank transfer details for the 30% deposit.</p>
+            </header>
+
+            <section id="portalLogin" class="portal-card" aria-labelledby="portal-login-title">
+                <h2 id="portal-login-title">Staff sign in</h2>
+                <p>Enter your approved staff email to receive a secure sign-in link.</p>
+                <form id="portalLoginForm" class="portal-login-form">
+                    <label for="portalEmail">Staff email</label>
+                    <input id="portalEmail" name="email" type="email" autocomplete="email" required maxlength="254">
+                    <button class="portal-button" type="submit">Email me a sign-in link</button>
+                </form>
+                <p id="portalLoginStatus" class="portal-status" role="status" aria-live="polite"></p>
+            </section>
+
+            <section id="portalDashboard" hidden>
+                <div class="portal-dashboard-heading">
+                    <div>
+                        <span id="portalSignedInEmail"></span>
+                        <h2>Incoming requests</h2>
+                    </div>
+                    <button id="portalRefresh" class="portal-button portal-button-secondary" type="button">Refresh</button>
+                    <button id="portalSignOut" class="portal-button portal-button-secondary" type="button">Sign out</button>
+                </div>
+                <p id="portalPaymentConfig" class="portal-config-notice"></p>
+                <p id="portalDashboardStatus" class="portal-status" role="status" aria-live="polite"></p>
+                <div id="portalRequests" class="portal-requests"></div>
+            </section>
+        </div>
+    </main>
+    <div id="footer"></div>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/booking-portal.js"></script>
+</body>
+</html>

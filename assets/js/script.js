@@ -273,36 +273,13 @@ function initBookingRequestPage() {
         const countryName = form.elements.namedItem("country").value.trim();
         const notes = form.elements.namedItem("notes").value.trim();
         const name = `${firstName} ${lastName}`;
-        const message = [
-            "SAFARI BOOKING REQUEST — PLEASE CONFIRM WITH CLIENT",
-            "",
-            `Safari: ${packageTitle}`,
-            `Requested departure date: ${dateText}`,
-            `Package option: ${option}`,
-            `Guide language: ${language}`,
-            `Travellers: ${travelerCount === null ? "To be confirmed" : travelerCount}`,
-            `Estimated trip total: ${formatMoney(total)}`,
-            `Estimated 30% deposit: ${formatMoney(deposit)}`,
-            `Estimated balance due 60 days before departure: ${formatMoney(balance)}`,
-            "",
-            `Lead traveller: ${name}`,
-            `Email: ${email}`,
-            `Phone / WhatsApp: ${phone}`,
-            `City / country: ${countryName || "Not provided"}`,
-            "",
-            "Additional requests:",
-            notes || "None provided.",
-            "",
-            "No payment has been collected. Please confirm availability, final price, and payment instructions with the client."
-        ].join("\n");
-
         submitButton.disabled = true;
         submitButton.innerHTML = 'Sending request <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
         status.classList.remove("is-success");
         status.textContent = "";
 
         try {
-            const response = await fetch("/api/enquiry", {
+            const response = await fetch("/api/booking-requests", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -310,7 +287,14 @@ function initBookingRequestPage() {
                     email,
                     phone,
                     country: countryName,
-                    message,
+                    safari: packageTitle,
+                    departureDate: validDate ? dateValue : "",
+                    packageOption: option,
+                    guideLanguage: language,
+                    travellerCount: travelerCount,
+                    currency,
+                    estimatedTotal: total,
+                    notes,
                     website: form.elements.namedItem("website").value
                 })
             });
@@ -325,7 +309,7 @@ function initBookingRequestPage() {
             });
             submitButton.innerHTML = 'Request sent <i class="fa-solid fa-check" aria-hidden="true"></i>';
             status.classList.add("is-success");
-            status.textContent = "Your booking request has been sent to our safari team. We’ll confirm availability, your final quote, and payment instructions with you.";
+            status.textContent = result.message || "Your request is with our safari team. They will confirm availability and the final price before requesting any deposit.";
             document.querySelector(".booking-request-page").classList.add("is-submitted");
         } catch (error) {
             console.error("Booking request submission failed.", error);
