@@ -676,10 +676,10 @@ function initPackageBookingCta() {
                 title: "3 Days Masai Mara Safari",
                 location: "Kenya · Masai Mara",
                 days: 3,
-                price: 650,
+                price: 850,
                 seasonalPrices: [
-                    ["Low season (Jan - June)", 650],
-                    ["High season (July - Dec)", 850]
+                    ["Low season (Jan - June)", 850],
+                    ["Peak season (July - Dec)", 1385]
                 ],
                 badge: "Bestseller",
                 format: "Small group",

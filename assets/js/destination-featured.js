@@ -4,8 +4,8 @@
     var packages = {
         mara3: {
             title: "3 Days Masai Mara Safari",
-            price: "$650",
-            priceLabel: "Low season $650 · High season $850 per person",
+            price: "$850",
+            priceLabel: "Low season $850 · Peak season $1,385 per person",
             image: "migration 1.jpg",
             href: "3-days-mara.html",
             description: "Search for the Big Five on game drives across the Mara's open savannah."
