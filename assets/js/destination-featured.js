@@ -5,6 +5,7 @@
         mara3: {
             title: "3 Days Masai Mara Safari",
             price: "$650",
+            priceLabel: "Low season $650 · High season $850 per person",
             image: "migration 1.jpg",
             href: "3-days-mara.html",
             description: "Search for the Big Five on game drives across the Mara's open savannah."
@@ -242,7 +243,7 @@
         return '<article class="featured-safari-card">' +
             '<img src="' + encodeURI(base + "assets/images/" + trip.image) + '" alt="' + esc(trip.title) + '" loading="lazy">' +
             '<div class="featured-safari-content">' +
-                '<span class="featured-safari-label">From ' + esc(trip.price) + ' per person</span>' +
+                '<span class="featured-safari-label">' + esc(trip.priceLabel || ("From " + trip.price + " per person")) + '</span>' +
                 '<h3>' + esc(trip.title) + '</h3>' +
                 '<p>' + esc(description) + '</p>' +
                 '<a class="featured-safari-link" href="' + base + 'Packages-HTML/' + encodeURIComponent(trip.href).replace(/%2F/g, "/") + '">View safari</a>' +

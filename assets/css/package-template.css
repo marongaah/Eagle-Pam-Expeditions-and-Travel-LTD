@@ -2686,6 +2686,10 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     font-size: 13px;
 }
 
+.booking-card .package-price-heading > .price-list {
+    margin-top: 12px;
+}
+
 .booking-card .detail {
     border-color: rgba(31, 94, 59, .1);
 }
@@ -3425,6 +3429,23 @@ MOBILE FIXES — STACK TWO-COLUMN SECTIONS
     color: #b8860b;
     font-size: 1.3rem;
     line-height: 1.3;
+}
+
+.featured-package-card .price .seasonal-price {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+}
+
+.featured-package-card .price .seasonal-price span {
+    color: #777f78;
+    font-size: 10px;
+}
+
+.featured-package-card .price .seasonal-price strong {
+    color: #b8860b;
+    font-size: 1rem;
+    line-height: 1.2;
 }
 
 .featured-package-card .price {

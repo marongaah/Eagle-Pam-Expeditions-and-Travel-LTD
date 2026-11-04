@@ -677,6 +677,10 @@ function initPackageBookingCta() {
                 location: "Kenya · Masai Mara",
                 days: 3,
                 price: 650,
+                seasonalPrices: [
+                    ["Low season (Jan - June)", 650],
+                    ["High season (July - Dec)", 850]
+                ],
                 badge: "Bestseller",
                 format: "Small group",
                 image: "migration 1.jpg",
@@ -854,8 +858,9 @@ function initPackageBookingCta() {
                     </div>
                     <div class="package-footer">
                         <div class="price">
-                            <small>From per person</small>
-                            <h4>$${item.price.toLocaleString("en-US")}</h4>
+                            ${item.seasonalPrices
+                                ? `<small>Seasonal pricing</small>${item.seasonalPrices.map(([season, amount]) => `<span class="seasonal-price"><span>${escapeHTML(season)}</span><strong>$${amount.toLocaleString("en-US")}</strong></span>`).join("")}<small>per person</small>`
+                                : `<small>From per person</small><h4>$${item.price.toLocaleString("en-US")}</h4>`}
                         </div>
                         <a class="card-btn" href="${escapeHTML(item.href)}">View safari</a>
                     </div>
@@ -995,13 +1000,27 @@ function initPackageBookingCta() {
 
         const selectedTier = priceTiers[0];
         const priceHeader = createElement("div", "package-price-heading");
-        priceHeader.append(
-            createElement("span", "price-label", "From"),
-            createElement("h2", "package-price-amount", selectedTier
-                ? `${currencyCode} ${formatAmount(selectedTier.price)}`
-                : "Contact us"),
-            createElement("p", "", "per person")
-        );
+        if (priceTiers.length > 1) {
+            priceHeader.append(createElement("span", "price-label", "Seasonal Pricing"));
+            const priceList = createElement("div", "price-list");
+            priceTiers.forEach((tier) => {
+                const priceItem = createElement("div", "price-item");
+                priceItem.append(
+                    createElement("span", "", tier.name),
+                    createElement("strong", "", `${currencyCode} ${formatAmount(tier.price)}`)
+                );
+                priceList.append(priceItem);
+            });
+            priceHeader.append(priceList, createElement("p", "", "Per Person Sharing"));
+        } else {
+            priceHeader.append(
+                createElement("span", "price-label", "From"),
+                createElement("h2", "package-price-amount", selectedTier
+                    ? `${currencyCode} ${formatAmount(selectedTier.price)}`
+                    : "Contact us"),
+                createElement("p", "", "per person")
+            );
+        }
         priceBox.replaceChildren(priceHeader);
 
         const bookingControls = document.createElement("div");
@@ -1143,8 +1162,10 @@ function initPackageBookingCta() {
             if (tier) {
                 optionName.textContent = tier.name;
                 optionPrice.textContent = `${currencyCode} ${formatAmount(tier.price)}`;
-                priceHeader.querySelector(".package-price-amount").textContent =
-                    `${currencyCode} ${formatAmount(tier.price)}`;
+                const amountHeading = priceHeader.querySelector(".package-price-amount");
+                if (amountHeading) {
+                    amountHeading.textContent = `${currencyCode} ${formatAmount(tier.price)}`;
+                }
             }
 
             const travelersLabelText = validTravelerCount

@@ -6,7 +6,7 @@
 
     /* ---------- Package data (edit here to add/change packages) ---------- */
     var PACKAGES = [
-        { t: "3 Days Masai Mara Safari", loc: "Kenya · Masai Mara", d: 3, p: 650, dest: "kenya", badge: "Bestseller", fmt: "Small group", img: "migration 1.jpg", href: "3-days-mara.html", tags: ["wildlife", "bigcats", "elephants", "budget", "photography"], season: "Best Jul – Oct for the migration", feats: ["Big Five game drives", "Expert guides", "2–6 people"] },
+        { t: "3 Days Masai Mara Safari", loc: "Kenya · Masai Mara", d: 3, p: 650, dest: "kenya", badge: "Bestseller", fmt: "Small group", img: "migration 1.jpg", href: "3-days-mara.html", tags: ["wildlife", "bigcats", "elephants", "budget", "photography"], season: "Best Jul – Oct for the migration", seasons: [["Low season (Jan - June)", 650], ["High season (July - Dec)", 850]], feats: ["Big Five game drives", "Expert guides", "2–6 people"] },
         { t: "7 Days Kenya Wildlife Safari", loc: "Masai Mara · Lake Nakuru · Amboseli", d: 7, p: 2285, dest: "kenya", badge: "Popular", fmt: "Group tour", img: "lion surrounded .jpg", href: "7-days-kenya-wildlife-safari.html", tags: ["wildlife", "bigcats", "elephants", "rhino", "photography"], season: "Good year-round", feats: ["Three parks, one journey", "Full safari circuit", "2–60 people"] },
         { t: "5 Days Kenya Budget 4X4 Jeep Camping Safari", loc: "Masai Mara · Lake Nakuru · Lake Naivasha", d: 5, p: 1370, dest: "kenya", badge: "Budget Safari", fmt: "Group tour", img: "amboseli1.jpg", href: "5-days-kenya-budget-safari.html", tags: ["wildlife", "rhino", "budget"], season: "Good year-round", feats: ["4x4 Land Cruiser", "Camping safari", "2–60 people"] },
         { t: "4 Days Kenya Budget 4x4 Safari", loc: "Masai Mara · Lake Nakuru", d: 4, p: 1300, dest: "kenya", badge: "Budget", fmt: "Group tour", img: "potraite1.jpg", href: "4-days-kenya-budget-4x4-safari.html", tags: ["wildlife", "bigcats", "rhino", "budget"], season: "Good year-round", feats: ["Game drives in the Mara", "Rhino tracking at Lake Nakuru", "4x4 Land Cruiser"] },
@@ -96,6 +96,12 @@
         var pill = '<span class="pk-pill">' + (priv ? ICON_PERSON : ICON_SWAP) + esc(p.fmt) + "</span>";
         var feats = p.feats.map(function (f) { return "<li>" + ICON_CHECK + "<span>" + esc(f) + "</span></li>"; }).join("");
         var nights = p.d - 1;
+        var priceMarkup = p.seasons
+            ? '<span class="pk-label">Seasonal pricing</span><div class="pk-seasonal-prices">' +
+                p.seasons.map(function (season) {
+                    return '<span><span>' + esc(season[0]) + '</span><strong>' + money(season[1]) + '</strong></span>';
+                }).join("") + '</div><span class="pk-sub">per person</span>'
+            : '<span class="pk-label">From</span><span class="pk-big">' + money(p.p) + '</span><span class="pk-sub">' + (p.note || "per person") + "</span>";
         return '<article class="pk-card"><a class="pk-card-link" href="' + BASE + "Packages-HTML/" + p.href + '">' +
             '<div class="pk-card-img"><img src="' + img + '" alt="' + esc(p.t) + '" loading="lazy"><span class="pk-badge">' + esc(p.badge) + "</span></div>" +
             '<div class="pk-card-body">' + pill +
@@ -104,7 +110,7 @@
             '<div class="pk-season">' + esc(p.season) + "</div>" +
             '<ul class="pk-feats">' + feats + "</ul>" +
             '<div class="pk-card-foot">' +
-            '<div><span class="pk-label">From</span><span class="pk-big">' + money(p.p) + '</span><span class="pk-sub">' + (p.note || "per person") + "</span></div>" +
+            '<div class="pk-price-cell">' + priceMarkup + "</div>" +
             '<div><span class="pk-label">Duration</span><span class="pk-big">' + p.d + ' days</span><span class="pk-sub">' + nights + " nights</span></div>" +
             "</div>" +
             "</div></a></article>";
